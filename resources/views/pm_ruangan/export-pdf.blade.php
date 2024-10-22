@@ -21,7 +21,7 @@
         h2,
         h3 {
             text-align: center;
-            margin: 5px 0;
+            margin: 10px 0;
         }
 
         .header {
@@ -29,24 +29,24 @@
         }
 
         .header p {
-            margin: 2px 0;
-            font-size: 12px;
+            margin: 5px 0;
+            font-size: 14px;
         }
 
         .header strong {
-            font-size: 13px;
+            font-size: 16px;
             display: block;
         }
 
         hr {
-            margin: 10px 0;
+            margin: 20px 0;
             border-top: 2px solid black;
         }
 
         .content p {
             margin-left: 50px;
             text-align: justify;
-            font-size: 12px;
+            font-size: 16px;
         }
 
 
@@ -56,13 +56,12 @@
         .signature-section {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 50px;
         }
         table{
             font-size:medium;
             margin-left: 100px;
             margin-top: 10px;
-             font-size: 12px;
 
         }
         .table2{
@@ -74,7 +73,7 @@
             margin-right: 0px;
             border-collapse: collapse;
             text-align: center;
-             font-size: 12px;
+            font-size: 16px;
         }
 
         .tb6 th, .tb6 td {
@@ -87,43 +86,41 @@
         }
 
 
-        .signature-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
+        .signature-box {
+            width: 45%;
+            text-align: center;
+        }
 
-.signature-box {
-    width: 45%;
-    text-align: center;
-    margin-bottom: 0;
-}
+        .signature-box p {
+            margin-top: 10px;
+            border-top: 1px solid #000;
+            padding-top: 20px;
+        }
 
-/* Untuk layar di bawah 600px */
-@media (max-width: 600px) {
+      @media (max-width: 1000px) {
     .signature-section {
-        flex-direction: column; /* Susun secara vertikal */
-        align-items: center; /* Pusatkan elemen */
+        flex-direction: row; /* Pastikan tetap sejajar secara horizontal */
+        justify-content: space-between;
     }
 
     .signature-box {
-        width: 80%; /* Beri lebar penuh tapi tidak terlalu sempit */
-        margin-bottom: 20px; /* Berikan jarak antar tanda tangan */
+        width: 45%; /* Tetap menjaga agar kedua tanda tangan memiliki lebar proporsional */
+        margin-bottom: 0; /* Hilangkan margin bawah agar tidak terlalu banyak spasi */
     }
 }
 
-/* Untuk layar di bawah 400px */
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .signature-section {
-        flex-direction: column;
+        flex-direction: column; /* Pada layar sangat kecil, jadikan vertikal */
         align-items: center;
     }
 
     .signature-box {
-        width: 100%; /* Pada ukuran terkecil, tanda tangan ambil lebar penuh */
-        margin-bottom: 10px; /* Berikan sedikit jarak antar tanda tangan */
+        width: 100%; /* Pada layar kecil, beri tanda tangan penuh lebar */
+        margin-bottom: 20px; /* Berikan sedikit jarak antar tanda tangan */
     }
 }
+
     </style>
 </head>
 
@@ -255,17 +252,16 @@
                 mestinya.</p>
 
             <!-- Signature Section -->
-           <div class="signature-section">
-    <div class="signature-box">
-        <h4>PIHAK KEDUA</h4>
-        <p>(Yayan Burhanudin)</p>
-    </div>
-    <div class="signature-box">
-        <h4>PIHAK PERTAMA</h4>
-        <p>(Happy Budiana, S.Pd. I)</p>
-    </div>
-</div>
-
+            <div class="signature-section">
+                <div class="signature-box">
+                    <h4>PIHAK KEDUA </h4>
+                    <p>(Yayan Burhanudin)</p>
+                </div>
+                <div class="signature-box">
+                    <h4>PIHAK PERTAMA</h4>
+                    <p>(Happy Budiana, S.Pd. I)</p>
+                </div>
+            </div>
 
         </div>
     </div>

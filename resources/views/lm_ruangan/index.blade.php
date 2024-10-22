@@ -8,6 +8,7 @@
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
+           
         </div>
     </div>
 </div>
@@ -17,21 +18,14 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Laporan Maintenance Ruangan</h5>
-
-            <form action="{{ route('lm_ruangan.view-pdf') }}" method="post">
-                @csrf
-
-                <button type="submit" class="btn text-light btn-sm btn-success">Export PDF</button>
-                <a href="/exportexcel" class="btn btn-sm btn-primary">Export EXCEL</a>
-            </form>
+            <h5>Maintenance Ruangan</h5>
         </div>
 
     </div>
 
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table" id="dataTable">
+            <table class="table" id="example">
                 <thead>
                     <tr>
                         <th>No</th>

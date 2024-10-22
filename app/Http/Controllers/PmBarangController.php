@@ -7,10 +7,25 @@ use App\Models\Ruangan;
 use App\Models\Kondisi;
 use App\Models\pm_barang;
 use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 use Illuminate\Http\Request;
 
 class PmBarangController extends Controller
 {
+    public function viewPDF()
+    {
+        $pm_barang = pm_barang::latest()->get();
+
+        $data = [
+            'title' => 'Data Produk',
+            'date' => date('m/d/Y'),
+            'pm_barang' => $pm_barang,
+        ];
+
+        $pdf = PDF::loadView('pm_barang.export-pdf', $data)
+            ->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
 
     public function __construct()
     {

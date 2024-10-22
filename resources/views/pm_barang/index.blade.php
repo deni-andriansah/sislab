@@ -43,7 +43,6 @@
                         <th>status</th>
                         <th>serah terima</th>
                         <th>berita peminjaman</th>
-
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -68,12 +67,12 @@
                         <td>
 
                             <a href=""
-                                class="btn btn-sm btn-warning">sudah di kembalikan</a> 
+                                class="btn btn-sm btn-warning">sudah di kembalikan</a>
                         </td>
 
 
                         <td>
-                            <form action="" method="post">
+                            <form action="{{ route('pm_barang.view-pdf') }}" method="post">
                                 @csrf
 
                                 <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
