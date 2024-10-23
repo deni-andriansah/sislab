@@ -3858,7 +3858,7 @@ fieldset:disabled .btn {
   --bs-card-spacer-y: 1.5rem;
   --bs-card-spacer-x: 1.5rem;
   --bs-card-title-spacer-y: 0.875rem;
-  --bs-card-title-color: #566a7f;
+  --bs-card-title-color: #e8ebef;
   --bs-card-subtitle-color: ;
   --bs-card-border-width: 0;
   --bs-card-border-color: #d9dee3;
@@ -3913,6 +3913,8 @@ fieldset:disabled .btn {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
+  border-radius: 5px;
+
 }
 
 .card-title {

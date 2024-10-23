@@ -12,7 +12,7 @@ class PmRuanganController extends Controller
 {
     public function viewPDF()
     {
-        $pm_ruangan = pm_Ruangan::latest()->get();
+        $pm_ruangan = pm_ruangan::latest()->get();
 
         $data = [
             'title' => 'Data Produk',

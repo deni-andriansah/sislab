@@ -7,6 +7,8 @@ use App\Models\Merk;
 use App\Models\Kategori;
 use App\Models\Kondisi;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use Storage;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -22,7 +24,7 @@ class BarangController extends Controller
 
     public function create()
     {
-       $merk =  Merk::all();
+        $merk =  Merk::all();
         $kategori = Kategori::all();
         $kondisi = Kondisi::all();
         return view('barang.create', compact('merk', 'kategori', 'kondisi'));
@@ -62,32 +64,33 @@ class BarangController extends Controller
     public function edit($id)
     {
         $merk =  Merk::all();
-        $ruangan = Ruangan::all();
+        $kategori = Kategori::all();
         $kondisi = Kondisi::all();
-        $barang = barang::findOrFail($id);
-        return view('barang.edit', compact('barang','merk','ruangan','kondisi'));
+        $barang = Barang::findOrFail($id);
+        return view('barang.edit', compact('barang', 'merk', 'kategori', 'kondisi'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $validated = $request->validate([
             'nama_barang' => 'required',
             'posisi' => 'required',
             'spek' => 'required',
 
         ]);
 
-        $barang = barang::findOrFail($id);
+        $barang = Barang::findOrFail($id);
         $barang->nama_barang = $request->nama_barang;
         $barang->id_merk = $request->id_merk;
-        $barang->id_ruangan = $request->id_ruangan;
+        $barang->id_kategori = $request->id_kategori;
         $barang->id_kondisi = $request->id_kondisi;
         $barang->posisi = $request->posisi;
         $barang->spek = $request->spek;
 
-        Alert::success('Success','data berhasil diubah')->autoClose(1000);
+        Alert::success('Success','data berhasil dirubah')->autoClose(1000);
         $barang->save();
+
         return redirect()->route('barang.index');
     }
 

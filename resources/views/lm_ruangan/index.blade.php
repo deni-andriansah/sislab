@@ -8,7 +8,7 @@
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
-           
+
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Maintenance Ruangan</h5>
+            <h5>Laporan Maintenance Ruangan</h5>
         </div>
 
     </div>

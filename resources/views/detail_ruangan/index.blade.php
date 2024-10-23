@@ -17,7 +17,7 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Detail ruangan</h5>
+            <h5>Detail Ruangan</h5>
         </div>
         <div class="float-end ">
             <a href="{{ route('detail_ruangan.create') }}" class="btn btn-sm btn-primary">Add</a>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Merk;
 use App\Models\Ruangan;
+use App\Models\Kategori;
 
 class HomeController extends Controller
 {
@@ -26,9 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $kategori = Kategori::count('id');
         $barang = Barang::count('id');
         $merk = Merk::count('id');
         $ruangan = Ruangan::count('id');
-        return view('home',compact('barang','merk','ruangan'));
+        return view('home',compact('kategori','barang','merk','ruangan'));
     }
 }

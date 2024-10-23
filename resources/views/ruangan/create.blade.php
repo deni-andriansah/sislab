@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        <h5>ruangan</h5>
+                        <h5>Ruangan</h5>
                     </div>
                     <div class="float-end">
                         <a href="{{ route('ruangan.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
 
-                
+
 
 
 
