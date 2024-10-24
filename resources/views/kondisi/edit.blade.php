@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ __('Dashboard') }}
+                        {{ __('Kondisi') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('kondisi.index') }}" class="btn btn-sm btn-primary">Kembali</a>

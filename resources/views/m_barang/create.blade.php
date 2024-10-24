@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        <h5>Maintenance Barang</h5>
+                        {{ __('Maintenance Barang') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('m_barang.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -38,7 +38,7 @@
                         <div class="mb-2">
                             <label class="form-label">Posisi</label>
                             <input type="text" class="form-control @error('posisi') is-invalid @enderror" name="posisi"
-                            value="{{ old('posisi') }}" placeholder="posisi" required>
+                            value="{{ old('posisi') }}" placeholder="Posisi" required>
                             @error('posisi')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                         <div class="mb-2">
                             <label class="form-label">Jenis Perbaikan</label>
                             <input type="text" class="form-control @error('jenis_perbaikan') is-invalid @enderror" name="jenis_perbaikan"
-                            value="{{ old('jenis_perbaikan') }}" placeholder="jenis perbaikan" required>
+                            value="{{ old('jenis_perbaikan') }}" placeholder="Jenis perbaikan" required>
                             @error('jenis_perbaikan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                         <div class="mb-2">
                             <label class="form-label">Waktu Pengerjaan</label>
                             <input type="text" class="form-control @error('waktu_pengerjaan') is-invalid @enderror" name="waktu_pengerjaan"
-                            value="{{ old('waktu_pengerjaan') }}" placeholder="waktu pengerjaan" required>
+                            value="{{ old('waktu_pengerjaan') }}" placeholder="Waktu pengerjaan" required>
                             @error('waktu_pengerjaan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ __('Dashboard') }}
+                        {{ __('Maintenance Ruangan') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('m_ruangan.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <label class="form-label">Jenis Perbaikan</label>
                             <input type="text" class="form-control @error('jenis_perbaikan') is-invalid @enderror" name="jenis_perbaikan"
-                                value="{{ $m_ruangan->jenis_perbaikan }}" placeholder="jenis perbaikan" required>
+                                value="{{ $m_ruangan->jenis_perbaikan }}" placeholder="Jenis perbaikan" required>
                             @error('jenis_perbaikan')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                         <div class="mb-3">
                             <label class="form-label">Waktu Pengerjaan</label>
                             <input type="text" class="form-control @error('waktu_pengerjaan') is-invalid @enderror" name="waktu_pengerjaan"
-                                value="{{ $m_ruangan->waktu_pengerjaan }}" placeholder="waktu pengerjaan" required>
+                                value="{{ $m_ruangan->waktu_pengerjaan }}" placeholder="Waktu pengerjaan" required>
                             @error('waktu_pengerjaan')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

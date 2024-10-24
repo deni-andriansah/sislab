@@ -23,7 +23,7 @@
                         <div class="mb-3">
                             <label class="form-label">Nama Barang</label>
                             <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang"
-                                value="{{ $barang->nama_barang }}" placeholder="nama" required>
+                                value="{{ $barang->nama_barang }}" placeholder="Nama barang" required>
                             @error('nama_barang')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                         <div class="mb-3">
                             <label class="form-label">Posisi</label>
                             <input type="text" class="form-control @error('posisi') is-invalid @enderror" name="posisi"
-                                value="{{ $barang->posisi }}" placeholder="posisi" required>
+                                value="{{ $barang->posisi }}" placeholder="Posisi" required>
                             @error('posisi')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
                         <div class="mb-3">
                             <label class="form-label">Spek</label>
                             <input type="text" class="form-control @error('spek') is-invalid @enderror" name="spek"
-                                value="{{ $barang->spek }}" placeholder="spek" required>
+                                value="{{ $barang->spek }}" placeholder="Spek" required>
                             @error('spek')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

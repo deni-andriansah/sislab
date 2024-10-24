@@ -8,7 +8,7 @@
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
-        </div>
+               </div>
     </div>
 </div>
 <div class="container">
@@ -17,16 +17,16 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Barang</h5>
+            <h5>Merk</h5>
         </div>
         <div class="float-end ">
-            <a href="{{ route('barang.create') }}" class="btn btn-sm btn-primary">Add</a>
+            <a href="{{ route('merk.create') }}" class="btn btn-sm btn-primary">Add</a>
         </div>
     </div>
 
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table" id="dataTable">
+            <table class="table" id="example">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -64,6 +64,7 @@
                     </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
     </div>

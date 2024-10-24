@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        <h5>Barang</h5>
+                        {{ __('Barang') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('barang.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -58,7 +58,7 @@
                         <div class="mb-2">
                             <label class="form-label">Posisi</label>
                             <input type="text" class="form-control @error('posisi') is-invalid @enderror" name="posisi"
-                            value="{{ old('posisi') }}" placeholder="posisi" required>
+                            value="{{ old('posisi') }}" placeholder="Posisi" required>
                             @error('posisi')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -69,7 +69,7 @@
                         <div class="mb-2">
                             <label class="form-label">Spek</label>
                             <input type="text" class="form-control @error('spek') is-invalid @enderror" name="spek"
-                            value="{{ old('spek') }}" placeholder="spek" required>
+                            value="{{ old('spek') }}" placeholder="Spek" required>
                             @error('spek')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

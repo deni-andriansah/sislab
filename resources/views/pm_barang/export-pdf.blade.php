@@ -4,272 +4,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Acara Peminjaman Headset</title>
+    <title>Berita Acara Serah Terima</title>
     <style>
+        /* General body styling */
         body {
             font-family: Arial, sans-serif;
-
             line-height: 1.6;
-
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
 
+        /* Full-page container for PDF export */
         .container {
-
+            max-width: 100%; /* Adjusted to full width */
+            padding: 5%; /* Padding for content */
+            box-sizing: border-box; /* Include padding in width calculations */
+            overflow: hidden; /* Prevent scrolling */
+            margin: auto; /* Center the container */
         }
 
-        h1,
+        /* Center and style headings */
         h2,
         h3 {
             text-align: center;
-            margin: 5px 0;
+            margin-bottom: 1%; /* Margin bottom for headings */
         }
 
-        .header {
-            text-align: center;
+        p {
+            margin: 1% 0; /* Margin top and bottom for paragraphs */
         }
 
-        .header p {
-            margin: 2px 0;
-            font-size: 12px;
-        }
-
-        .header strong {
-            font-size: 13px;
-            display: block;
-        }
-
+        /* Horizontal line */
         hr {
-            margin: 10px 0;
-            border-top: 2px solid black;
+            margin: 1% 0; /* Margin top and bottom for horizontal line */
+            border: 0;
+            border-top: 2px solid #333;
         }
 
-        .content p {
-            margin-left: 50px;
-            text-align: justify;
-            font-size: 12px;
+        /* Styling for the bordered heading */
+        .border h3 {
+            border: 3px double #000;
         }
 
+        /* Checkbox styling */
+        .checkbox {
+            margin-right: 1%; /* Margin right for checkboxes */
+        }
 
-
-
-
-        .signature-section {
+        /* Signature area */
+        .signature-area {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 10%; /* Margin top for signature area */
         }
-        table{
-            font-size:medium;
-            margin-left: 100px;
-            margin-top: 10px;
-             font-size: 12px;
 
-        }
-        .table2{
-            margin-top: 20px;
-        }
-        .tb6 {
-            width: 70%;
-            margin-top: 20px;
-            margin-right: 0px;
-            border-collapse: collapse;
+        /* Signature block */
+        .signature {
             text-align: center;
-             font-size: 12px;
+            width: 40%; /* Adjusted to fit better in smaller screens */
         }
 
-        .tb6 th, .tb6 td {
-            border: 1px solid black;
-            padding: 8px;
+        /* Space for signature line */
+        .signature-line {
+            border-top: 1px solid black;
+            width: 100%;
+            margin-top: 1%; /* Margin top for signature line */
         }
 
-        .tb6 th {
-            background-color: #f2f2f2;
+        .badan {
+            border: 3px double #000;
+            padding: 1%; /* Padding for content inside the bordered section */
+            box-sizing: border-box; /* Include padding in width calculations */
         }
 
+        /* Styling for the information section */
+        .badan strong {
+            font-size: 18px;
+            display: block;
+            margin: 1% 0; /* Margin top and bottom for strong tags */
+        }
 
-        .signature-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
+        /* Dynamic margin for signature section */
+        .signature-area .signature p {
+            margin-bottom: 1%; /* Margin bottom for signature section paragraphs */
+        }
 
-.signature-box {
-    width: 45%;
-    text-align: center;
-    margin-bottom: 0;
-}
+        /* Print Styles */
+        @media print {
+            body {
+                margin: 0; /* Remove margins for print */
+            }
 
-/* Untuk layar di bawah 600px */
-@media (max-width: 600px) {
-    .signature-section {
-        flex-direction: column; /* Susun secara vertikal */
-        align-items: center; /* Pusatkan elemen */
-    }
+            .container {
+                max-width: none; /* Allow full width for printing */
+                height: auto; /* Allow height to adjust */
+                padding: 5%; /* Padding for content */
+            }
 
-    .signature-box {
-        width: 80%; /* Beri lebar penuh tapi tidak terlalu sempit */
-        margin-bottom: 20px; /* Berikan jarak antar tanda tangan */
-    }
-}
+            /* Hide elements that shouldn't be printed */
+            .no-print {
+                display: none;
+            }
+        }
 
-/* Untuk layar di bawah 400px */
-@media (max-width: 400px) {
-    .signature-section {
-        flex-direction: column;
-        align-items: center;
-    }
+        /* Responsive design adjustments */
+        @media (max-width: 0px) {
+            .signature-area {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .signature-box {
-        width: 100%; /* Pada ukuran terkecil, tanda tangan ambil lebar penuh */
-        margin-bottom: 10px; /* Berikan sedikit jarak antar tanda tangan */
-    }
-}
+            .signature {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <img src="logo.png" alt="UIN Logo" style="height: 80px;">
-            <strong>KEMENTERIAN AGAMA REPUBLIK INDONESIA</strong>
-            <strong>UNIVERSITAS ISLAM NEGERI SUNAN GUNUNG DJATI BANDUNG</strong>
-            <strong>PUSAT PENGEMBANGAN BAHASA</strong>
-            <p>Jalan A.H. Nasution No. 105 Cibiru Bandung 40614 Telp: 022-7800525 Fax: 022-7803936</p>
+        <!-- Title Section -->
+        <h2>SNPMPB</h2>
+        <div class="head">
+            <center>
+                <p><strong>KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI</strong><br>
+                    SELEKSI NASIONAL BERDASARKAN TES (SNBT)<br>
+                    PUSAT UJIAN TULIS BERBASIS KOMPUTER (UTBK) UNIVERSITAS PADJADJARAN<br>
+                    Sekretariat: Gedung Kandaga Universitas Padjadjaran Jl. Ir. Soekarno Km. 21 (dh/Jl. Raya
+                    Bandung-Sumedang Km.
+                    21)
+                    Jatinangor - Tlp 022848288888
+                </p>
+            </center>
         </div>
 
         <hr>
 
-        <!-- Title -->
-        <h3>BERITA ACARA PEMINJAMAN HEADSET</h3>
+        <!-- Document Title -->
+        <div class="border">
+            <h3>BERITA ACARA SERAH TERIMA</h3>
+        </div>
 
-        <!-- Content -->
+        <!-- Main Content -->
+        <div class="badan">
+            <p>Lembar ini untuk:</p>
+            <p><input type="checkbox" class="checkbox"> Yang Menyerahkan<br>
+                <input type="checkbox" class="checkbox"> Yang Menerima
+            </p>
 
-        <div class="content">
+            <center>
+                <p>Pada hari ini Kamis tanggal 25 bulan April tahun 2024 bertempat di Universitas Padjadjaran telah
+                    diserahkan oleh:</p>
 
-            <p>Pada hari ..... , Tanggal ..... bulan ..... , tahun ..... , kami yang bertanda tangan di bawah
-                ini:</p>
+                <strong>Sub Bidang TIK Pusat UTBK Unpad</strong>
 
+                <p><strong>Kepada</strong><br>
+                    PIC Laboratorium Komputer PTIPD UIN Sunan Gunung Djati Bandung</p>
 
+                <p><strong>Berupa</strong><br>
+                    Stiker Workstation dan Daftar Nomor Meja Peserta<br>
+                    Lab 2.1 - 2.4 - PTIPD Lt. 2<br>
+                    Lab 3.1 - 3.7 - PTIPD Lt. 3<br>
+                    Lab 4.1 - 4.5 - PTIPD Lt. 4
+                </p>
+            </center>
 
-                    <table>
-                        <tr>
-                            <td >1</td>
-                            <td></td>
-                            <td> Nama</td>
-                            <td>: </td>
-                            <td>Happy Budiana, S.Pd. I</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> Jabatan</td>
-                            <td>: </td>
-                            <td>Administrasi Bag Rumah Tangga</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> NIP</td>
-                            <td>: </td>
-                            <td>19770312104121002</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        <td> alamat</td>
-                        <td>: </td>
-                        <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> </td>
-                            <td> </td>
-                            <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
-                        </tr>
-                    </table>
-                            <table class="table2">
-                                <tr>
-                                    <td>2</td>
-                                    <td></td>
-                                    <td> Nama</td>
-                                    <td>: </td>
-                                    <td>Happy Budiana, S.Pd. I</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> Jabatan</td>
-                                    <td>: </td>
-                                    <td>Administrasi Bag Rumah Tangga</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> NIP</td>
-                                    <td>: </td>
-                                    <td>19770312104121002</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> alamat</td>
-                                    <td>: </td>
-                                    <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
-                                </tr>
-                            </table>
+            <!-- Signature Area -->
 
-
-
-
-
-            <p>Pada hari ini telah menyerahkan barang-barang di bawah ini kepada PIHAK KEDUA Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sequi distinctio ut. Sapiente maxime, aspernatur est perferendis, pariatur, fuga molestiae ea illo amet libero esse velit molestias distinctio neque laboriosam.:</p>
-<center>        <table class="tb6">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Jenis Barang dan Merk</th>
-                        <th>Keterangan/Jumlah</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Headset</td>
-                        <td>Bekas dan Baik / 50 buah</td>
-                    </tr>
-                </tbody>
-            </table>
-</center>
-
-            <p>Demikian berita acara ini dibuat sesuai dengan keadaan yang sebenarnya dan untuk digunakan sebagaimana
-                mestinya.</p>
-
-            <!-- Signature Section -->
-           <div class="signature-section">
-    <div class="signature-box">
-        <h4>PIHAK KEDUA</h4>
-        <p>(Yayan Burhanudin)</p>
-    </div>
-    <div class="signature-box">
-        <h4>PIHAK PERTAMA</h4>
-        <p>(Happy Budiana, S.Pd. I)</p>
-    </div>
-</div>
-
-
+            <div class="signature-area">
+                <div class="signature">
+                    <p>Yang Menyerahkan,</p>
+                    <div class="signature-line"></div>
+                </div>
+                <div class="signature">
+                    <p>Yang Menerima,</p>
+                    <div class="signature-line"></div>
+                </div>
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>

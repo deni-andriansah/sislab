@@ -8,9 +8,7 @@
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
-            <div class="welcome-text">
-              <h4>Tables / Laporan Ruangan</h4>
-            </div>
+            
         </div>
     </div>
 </div>

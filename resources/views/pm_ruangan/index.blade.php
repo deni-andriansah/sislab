@@ -85,7 +85,7 @@
 
                         </td>
 
-                        <td>
+                        <td style="width: 10000px">
                             <form action="{{ route('pm_ruangan.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

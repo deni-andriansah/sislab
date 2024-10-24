@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        <h5>Detail Ruangan</h5>
+                        {{ __('Detail Ruangan') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('detail_ruangan.index') }}" class="btn btn-sm btn-primary">Kembali</a>

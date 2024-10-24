@@ -110,7 +110,6 @@ class PmBarangController extends Controller
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'keterangan' => 'required',
-
         ]);
 
         $pm_barang = pm_barang::findOrFail($id);
@@ -120,7 +119,7 @@ class PmBarangController extends Controller
         $pm_barang->id_barang = $request->id_barang;
         $pm_barang->id_ruangan = $request->id_ruangan;
         $pm_barang->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pm_ruangan->tanggal_pengembalian = $request->tanggal_pengembalian;
+        $pm_barang->tanggal_pengembalian = $request->tanggal_pengembalian;
         $pm_barang->keterangan = $request->keterangan;
         $pm_barang->id_kondisi = $request->id_kondisi;
 
@@ -135,7 +134,6 @@ class PmBarangController extends Controller
         $pm_barang->save();
         return redirect()->route('pm_barang.index');
     }
-
 
     public function destroy($id)
     {

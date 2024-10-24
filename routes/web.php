@@ -40,5 +40,5 @@ Route::resource('pm_barang', App\Http\Controllers\PmBarangController::class)->mi
 Route::resource('l_barang', App\Http\Controllers\LBarangController::class)->middleware('auth');
 Route::resource('l_ruangan', App\Http\Controllers\LRuanganController::class)->middleware('auth');
 
-Route::post('pm_barang/export-pm_barang', [App\Http\Controllers\LmRuanganController::class, 'viewPDF'])->name('pm_barang.view-pdf');
-Route::post('pm_ruangan/export-pm_ruangan', [App\Http\Controllers\LmRuanganController::class, 'viewPDF'])->name('pm_ruangan.view-pdf');
+Route::post('pm_barang/export-pm_barang', [App\Http\Controllers\PmBarangController::class, 'viewPDF'])->name('pm_barang.view-pdf');
+Route::post('pm_ruangan/export-pm_ruangan', [App\Http\Controllers\PmRuanganController::class, 'viewPDF'])->name('pm_ruangan.view-pdf');

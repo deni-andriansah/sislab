@@ -52,7 +52,7 @@
                         <td>{{ $data->waktu_pengerjaan }}</td>
                         <td>{{$data->kondisi->kondisi}}</td>
 
-                        <td>
+                        <td style="width: 10000px">
                             <form action="{{ route('m_barang.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

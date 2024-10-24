@@ -8,9 +8,7 @@
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
-            <div class="welcome-text">
-              <h4>Tables / Maintenance Ruangan</h4>
-            </div>
+
         </div>
     </div>
 </div>
@@ -50,7 +48,7 @@
                         <td>{{ $data->waktu_pengerjaan }}</td>
                         <td>{{$data->kondisi->kondisi}}</td>
 
-                        <td>
+                        <td style="width: 10000px">
                             <form action="{{ route('m_ruangan.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

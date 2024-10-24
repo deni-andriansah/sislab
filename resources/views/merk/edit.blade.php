@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ __('Dashboard') }}
+                        {{ __('Merk') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('merk.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -23,7 +23,7 @@
                         <div class="mb-3">
                             <label class="form-label">Nama Merk</label>
                             <input type="text" class="form-control @error('nama_merk') is-invalid @enderror" name="nama_merk"
-                                value="{{ $merk->nama_merk }}" placeholder="nama" required>
+                                value="{{ $merk->nama_merk }}" placeholder="Nama merk" required>
                             @error('nama_merk')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

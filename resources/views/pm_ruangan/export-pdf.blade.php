@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,72 +9,55 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-
             line-height: 1.6;
-
         }
 
-        .container {
-
-        }
-
-        h1,
-        h2,
-        h3 {
+        h1, h2, h3 {
             text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .header {
-            text-align: center;
-        }
+            margin: 0%;
+             }
 
         .header p {
-            margin: 5px 0;
-            font-size: 14px;
+            margin: 2px 0;
+            font-size: 10px;
         }
 
         .header strong {
-            font-size: 16px;
+            font-size: 15px;
             display: block;
         }
 
         hr {
-            margin: 20px 0;
+            margin: 10px 0;
             border-top: 2px solid black;
         }
 
         .content p {
             margin-left: 50px;
             text-align: justify;
-            font-size: 16px;
+            font-size: 12px;
         }
 
-
-
-
-
-        .signature-section {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
-        }
-        table{
-            font-size:medium;
+        .table4 {
+            font-size: medium;
             margin-left: 100px;
             margin-top: 10px;
+            font-size: 12px;
+        }
 
-        }
-        .table2{
-            margin-top: 20px;
-        }
+
         .tb6 {
             width: 70%;
             margin-top: 20px;
             margin-right: 0px;
             border-collapse: collapse;
             text-align: center;
-            font-size: 16px;
+            font-size: 12px;
+            margin-left: 90px
         }
 
         .tb6 th, .tb6 td {
@@ -85,41 +69,64 @@
             background-color: #f2f2f2;
         }
 
+        .signature-section {
+            display: flex;
+            justify-content: space-between; /* Distributes space evenly between items */
+            margin-top: 40px;
+            width: 100%; /* Adjust width to ensure it spans the container */
+        }
 
         .signature-box {
             width: 45%;
             text-align: center;
         }
 
-        .signature-box p {
-            margin-top: 10px;
-            border-top: 1px solid #000;
-            padding-top: 20px;
+
+        td {
+            vertical-align: top; /* Agar teks sejajar di bagian atas */
+            padding: 5px;
+            align-items: center;
         }
 
-      @media (max-width: 1000px) {
-    .signature-section {
-        flex-direction: row; /* Pastikan tetap sejajar secara horizontal */
-        justify-content: space-between;
-    }
+        .header-text {
+            text-align: center; /* Agar teks di tengah */
 
-    .signature-box {
-        width: 45%; /* Tetap menjaga agar kedua tanda tangan memiliki lebar proporsional */
-        margin-bottom: 0; /* Hilangkan margin bawah agar tidak terlalu banyak spasi */
-    }
-}
+        }
+        .qwe{
+            padding-right: 90px;
+        }
 
-@media (max-width: 600px) {
-    .signature-section {
-        flex-direction: column; /* Pada layar sangat kecil, jadikan vertikal */
-        align-items: center;
-    }
 
-    .signature-box {
-        width: 100%; /* Pada layar kecil, beri tanda tangan penuh lebar */
-        margin-bottom: 20px; /* Berikan sedikit jarak antar tanda tangan */
-    }
-}
+        .hhh {
+            width: 100%;
+            border-collapse: collapse;
+            padding-left: 30px;
+            padding-right: 30px;
+
+
+        }
+
+        .hhh td {
+            width: 50%;
+            vertical-align: top; /* Agar konten sejajar di bagian atas */
+           }
+
+
+        .hhh h5 {
+            margin-bottom: 60px; /* Ruang untuk tanda tangan */
+            margin-top: 20px
+        }
+
+       .hhh p {
+            margin: 0; /* Menghilangkan margin default */
+
+        }
+        .right-signature {
+            text-align: right;
+        }
+        .right-signature p{
+            text-align: right;
+        }
 
     </style>
 </head>
@@ -128,13 +135,27 @@
 
     <div class="container">
         <!-- Header Section -->
-        <div class="header">
-            <img src="logo.png" alt="UIN Logo" style="height: 80px;">
-            <strong>KEMENTERIAN AGAMA REPUBLIK INDONESIA</strong>
-            <strong>UNIVERSITAS ISLAM NEGERI SUNAN GUNUNG DJATI BANDUNG</strong>
-            <strong>PUSAT PENGEMBANGAN BAHASA</strong>
-            <p>Jalan A.H. Nasution No. 105 Cibiru Bandung 40614 Telp: 022-7800525 Fax: 022-7803936</p>
-        </div>
+      <div class="header">
+        <table class="qwe">
+            <tr>
+                <!-- Kolom untuk gambar logo -->
+                <td style="width: 50%;">
+                    <center>
+                          <img src="assets/img/uin.png" alt="UIN Logo" style="height: 110px; "width="100%">
+                    </center>
+
+                </td>
+                <!-- Kolom untuk teks -->
+                <td class="header-text">
+                    <strong>KEMENTERIAN AGAMA REPUBLIK INDONESIA</strong>
+                    <strong>UNIVERSITAS ISLAM NEGERI SUNAN GUNUNG DJATI BANDUNG</strong>
+                    <strong>PUSAT PENGEMBANGAN BAHASA</strong>
+                    <p>Jalan A.H. Nasution No. 105 Cibiru Bandung 40614 Telp: 022-7800525 Fax: 022-7803936</p>
+
+                </td>
+            </tr>
+        </table>
+    </div>
 
         <hr>
 
@@ -144,125 +165,130 @@
         <!-- Content -->
 
         <div class="content">
-
             <p>Pada hari ..... , Tanggal ..... bulan ..... , tahun ..... , kami yang bertanda tangan di bawah
                 ini:</p>
 
+            <table class="table4">
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td> Nama</td>
+                    <td>: </td>
+                    <td>Happy Budiana, S.Pd. I</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> Jabatan</td>
+                    <td>: </td>
+                    <td>Administrasi Bag Rumah Tangga</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> NIP</td>
+                    <td>: </td>
+                    <td>19770312104121002</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> alamat</td>
+                    <td>: </td>
+                    <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
+                </tr>
+            </table>
 
-
-                    <table>
-                        <tr>
-                            <td >1</td>
-                            <td></td>
-                            <td> Nama</td>
-                            <td>: </td>
-                            <td>Happy Budiana, S.Pd. I</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> Jabatan</td>
-                            <td>: </td>
-                            <td>Administrasi Bag Rumah Tangga</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> NIP</td>
-                            <td>: </td>
-                            <td>19770312104121002</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        <td> alamat</td>
-                        <td>: </td>
-                        <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> </td>
-                            <td> </td>
-                            <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
-                        </tr>
-                    </table>
-                            <table class="table2">
-                                <tr>
-                                    <td>2</td>
-                                    <td></td>
-                                    <td> Nama</td>
-                                    <td>: </td>
-                                    <td>Happy Budiana, S.Pd. I</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> Jabatan</td>
-                                    <td>: </td>
-                                    <td>Administrasi Bag Rumah Tangga</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> NIP</td>
-                                    <td>: </td>
-                                    <td>19770312104121002</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> alamat</td>
-                                    <td>: </td>
-                                    <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
-                                </tr>
-                            </table>
-
-
-
-
+            <table class="table4">
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td> Nama</td>
+                    <td>: </td>
+                    <td>Happy Budiana, S.Pd. I</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> Jabatan</td>
+                    <td>: </td>
+                    <td>Administrasi Bag Rumah Tangga</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> NIP</td>
+                    <td>: </td>
+                    <td>19770312104121002</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> alamat</td>
+                    <td>: </td>
+                    <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
+                </tr>
+            </table>
 
             <p>Pada hari ini telah menyerahkan barang-barang di bawah ini kepada PIHAK KEDUA Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sequi distinctio ut. Sapiente maxime, aspernatur est perferendis, pariatur, fuga molestiae ea illo amet libero esse velit molestias distinctio neque laboriosam.:</p>
-<center>        <table class="tb6">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Jenis Barang dan Merk</th>
-                        <th>Keterangan/Jumlah</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Headset</td>
-                        <td>Bekas dan Baik / 50 buah</td>
-                    </tr>
-                </tbody>
-            </table>
-</center>
+
+            <center>
+                <table class="tb6">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Jenis Barang dan Merk</th>
+                            <th>Keterangan/Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Headset</td>
+                            <td>Bekas dan Baik / 50 buah</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
 
             <p>Demikian berita acara ini dibuat sesuai dengan keadaan yang sebenarnya dan untuk digunakan sebagaimana
                 mestinya.</p>
 
             <!-- Signature Section -->
             <div class="signature-section">
-                <div class="signature-box">
-                    <h4>PIHAK KEDUA </h4>
-                    <p>(Yayan Burhanudin)</p>
-                </div>
-                <div class="signature-box">
-                    <h4>PIHAK PERTAMA</h4>
-                    <p>(Happy Budiana, S.Pd. I)</p>
-                </div>
-            </div>
+                <table class="hhh">
+                    <tr>
+                        <!-- Pihak Kedua di sebelah kiri -->
+                        <td class="left-signature">
+                            <h5>PIHAK KEDUA</h5>
+                            <p>..........................................</p>
+                            <p>NIP.....................................</p>
 
+                        </td>
+                        <!-- Pihak Pertama di sebelah kanan -->
+                        <td class="right-signature">
+                            <h5>PIHAK PERTAMA</h5>
+                            <p>Happy Budiana, S.Pd. I</p>
+                            <p>NIP.57765644565</p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 
