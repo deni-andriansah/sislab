@@ -40,7 +40,6 @@
                         <th>Keterangan</th>
                         <th>Kondisi</th>
                         <th>Dokumentasi</th>
-                        <th>status</th>
                         <th>serah terima</th>
                         <th>berita peminjaman</th>
                         <th>Aksi</th>
@@ -63,11 +62,6 @@
                         <td>
                             <img src="{{ asset('/images/pm_barang/' . $data->cover) }}"
                                 style="width: 150px">
-                        </td>
-                        <td>
-
-                            <a href=""
-                                class="btn btn-sm btn-warning">sudah di kembalikan</a>
                         </td>
 
 

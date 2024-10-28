@@ -52,7 +52,7 @@ class PmRuanganController extends Controller
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'keterangan' => 'required',
-
+            'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
         ]);
 
         $pm_ruangan = new pm_ruangan();
@@ -101,7 +101,7 @@ class PmRuanganController extends Controller
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'keterangan' => 'required',
-
+            'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
         ]);
 
         $pm_ruangan = pm_ruangan::findOrFail($id);

@@ -57,6 +57,7 @@ class PmBarangController extends Controller
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'keterangan' => 'required',
+            'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
 
         ]);
 
@@ -110,6 +111,7 @@ class PmBarangController extends Controller
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'keterangan' => 'required',
+            'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
         ]);
 
         $pm_barang = pm_barang::findOrFail($id);

@@ -38,7 +38,6 @@
                         <th>Tanggal Pengembalian</th>
                         <th>Keterangan</th>
                         <th>Dokumentasi</th>
-                        <th>status</th>
                         <th>serah terima</th>
                         <th>berita peminjaman</th>
                         <th>Aksi</th>
@@ -60,13 +59,6 @@
                             <img src="{{ asset('/images/pm_ruangan/' . $data->cover) }}"
                                 style="width: 150px">
                         </td>
-
-                        <td>
-
-                            <a href=""
-                                class="btn btn-sm btn-warning">sudah di kembalikan</a>
-                        </td>
-
 
                         <td>
                             <form action="{{ route('pm_ruangan.view-pdf') }}" method="post">
