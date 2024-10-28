@@ -12,17 +12,32 @@ use Illuminate\Http\Request;
 
 class PmBarangController extends Controller
 {
-    public function viewPDF()
+    public function viewPDF(Request $request)
     {
-        $pm_barang = pm_barang::latest()->get();
+        $pm_barang = pm_barang::findOrFail($request->idPeminjaman);
 
         $data = [
-            'title' => 'Data Produk',
             'date' => date('m/d/Y'),
             'pm_barang' => $pm_barang,
+
         ];
 
         $pdf = PDF::loadView('pm_barang.export-pdf', $data)
+            ->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function viewBARANG(Request $request)
+    {
+        $pm_barang = pm_barang::findOrFail($request->idPeminjaman);
+
+        $isi = [
+            'date' => date('m/d/Y'),
+            'pm_barang' => $pm_barang,
+
+        ];
+
+        $pdf = PDF::loadView('pm_barang.export-barang', $isi)
             ->setPaper('a4', 'portrait');
         return $pdf->stream();
     }

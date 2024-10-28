@@ -42,3 +42,6 @@ Route::resource('l_ruangan', App\Http\Controllers\LRuanganController::class)->mi
 
 Route::post('pm_barang/export-pm_barang', [App\Http\Controllers\PmBarangController::class, 'viewPDF'])->name('pm_barang.view-pdf');
 Route::post('pm_ruangan/export-pm_ruangan', [App\Http\Controllers\PmRuanganController::class, 'viewPDF'])->name('pm_ruangan.view-pdf');
+
+Route::post('pm_barang/cetak-pm_barang', [App\Http\Controllers\PmBarangController::class, 'viewBARANG'])->name('pm_barang.view-barang');
+Route::post('pm_ruangan/cetak-pm_ruangan', [App\Http\Controllers\PmRuanganController::class, 'viewRUANGAN'])->name('pm_ruangan.view-ruangan');

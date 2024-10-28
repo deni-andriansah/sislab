@@ -17,7 +17,9 @@
       <!-- User -->
       <li class="nav-item navbar-dropdown dropdown-user dropdown">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-            <img src="/images/user.png" alt class="w-px-30 h-auto rounded-circle" />
+
+                <span class="avatar-initial " style="border-radius: 500px"><i class='bx bxs-user'></i></span>
+           
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
             <li>

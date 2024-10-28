@@ -24,6 +24,22 @@ class PmRuanganController extends Controller
             ->setPaper('a4', 'portrait');
         return $pdf->stream();
     }
+
+    public function viewRUANGAN()
+    {
+        $pm_ruangan = pm_ruangan::latest()->get();
+
+        $isi = [
+            'date' => date('m/d/Y'),
+            'pm_ruangan' => $pm_ruangan,
+
+        ];
+
+        $pdf = PDF::loadView('pm_ruangan.export-ruangan', $isi)
+            ->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
     public function __construct()
     {
         $this -> middleware('auth');

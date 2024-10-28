@@ -64,19 +64,18 @@
                                 style="width: 150px">
                         </td>
 
-
                         <td>
                             <form action="{{ route('pm_barang.view-pdf') }}" method="post">
                                 @csrf
-
-                                <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
+                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
+                                <button type="submit" class="btn text-light btn-sm btn-primary">Cetak surat</button>
                             </form>
 
                         </td>
                         <td>
-                            <form action="" method="post">
+                            <form action="{{ route('pm_barang.view-barang') }}" method="post">
                                 @csrf
-
+                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
                                 <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
                             </form>
 

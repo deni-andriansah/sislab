@@ -64,12 +64,12 @@
                             <form action="{{ route('pm_ruangan.view-pdf') }}" method="post">
                                 @csrf
 
-                                <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
+                                <button type="submit" class="btn text-light btn-sm btn-primary">Cetak surat</button>
                             </form>
 
                         </td>
                         <td>
-                            <form action="" method="post">
+                            <form action="{{ route('pm_ruangan.view-ruangan') }}" method="post">
                                 @csrf
 
                                 <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
