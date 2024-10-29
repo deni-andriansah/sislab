@@ -4,6 +4,23 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
 @endsection
 
+<style>
+    #dataTable thead th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+#dataTable tbody td:first-child,
+#dataTable thead th:first-child {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 2;
+}
+</style>
+
 @section('content')
 <div class="container mt-10">
     <div class="row page-titles mx-0">
@@ -26,7 +43,7 @@
 
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table" id="example">
+            <table class="table" id="dataTable">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -101,10 +118,17 @@
 </div>
 @endsection
 
+<script>
+    new DataTable('#dataTable', {
+        scrollX: true, // Enable horizontal scrolling
+        fixedHeader: true // Fixes the header at the top
+    });
+</script>
+
 @push('scripts')
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
 <script>
-    new DataTable('#example');
+    new DataTable('#dataTable');
 </script>
 @endpush

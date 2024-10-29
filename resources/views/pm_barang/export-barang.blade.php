@@ -13,6 +13,11 @@
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
         }
+        .head{
+            font-size: 10px
+
+
+        }
 
         /* Full-page container for PDF export */
         .container {
@@ -85,10 +90,23 @@
         }
 
         /* Dynamic margin for signature section */
-        .signature-area .signature p {
-            margin-bottom: 1%; /* Margin bottom for signature section paragraphs */
+        .hhh h5 {
+            margin-bottom: 60px; /* Ruang untuk tanda tangan */
+            margin-top: 20px;
+            margin-right:
         }
 
+       .hhh p {
+            margin: 0; /* Menghilangkan margin default */
+            margin-bottom: 50px
+
+        }
+        .right-signature {
+            text-align: right;
+        }
+        .left-signature p{
+            text-align: left;
+        }
         /* Print Styles */
         @media print {
             body {
@@ -125,7 +143,7 @@
 <body>
     <div class="container">
         <!-- Title Section -->
-        <h2>SNPMPB</h2>
+      <center>  <img src="Group 7 (2).png" width="50%"></center>
         <div class="head">
             <center>
                 <p><strong>KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI</strong><br>
@@ -172,17 +190,24 @@
 
             <!-- Signature Area -->
 
-            <div class="signature-area">
-                <div class="signature">
-                    <p>Yang Menyerahkan,</p>
-                    <div class="signature-line"></div>
-                </div>
-                <div class="signature">
-                    <p>Yang Menerima,</p>
-                    <div class="signature-line"></div>
-                </div>
-            </div>
-        </div>
+            <div class="signature-section">
+                <table class="hhh">
+                    <tr>
+                        <!-- Pihak Kedua di sebelah kiri -->
+                        <td class="left-signature">
+                            <h5>yang menyerahkan</h5>
+                            <p>..........................................</p>
+
+                        </td>
+                        <!-- Pihak Pertama di sebelah kanan -->
+                        <td class="right-signature">
+                            <h5>yang menerima</h5>
+                             <p>..........................................</p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div> </div>
     </div>
 </body>
 

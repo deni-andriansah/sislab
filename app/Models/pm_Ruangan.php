@@ -21,4 +21,6 @@ class pm_Ruangan extends Model
             return unlink(public_path('images/pm_ruangan' . $this->cover));
         }
     }
+
+    
 }

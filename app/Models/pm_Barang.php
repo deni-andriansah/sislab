@@ -34,4 +34,6 @@ class pm_Barang extends Model
             return unlink(public_path('images/pm_barang' . $this->cover));
         }
     }
+
+    
 }
