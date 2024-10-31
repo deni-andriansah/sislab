@@ -2,24 +2,8 @@
 
 @section('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+
 @endsection
-
-<style>
-    #dataTable thead th {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1;
-}
-
-#dataTable tbody td:first-child,
-#dataTable thead th:first-child {
-    position: sticky;
-    left: 0;
-    background-color: white;
-    z-index: 2;
-}
-</style>
 
 @section('content')
 <div class="container mt-10">
@@ -57,9 +41,9 @@
                         <th>Keterangan</th>
                         <th>Kondisi</th>
                         <th>Dokumentasi</th>
-                        <th>serah terima</th>
+                        <th>serah terima </th>
                         <th>berita peminjaman</th>
-                        <th>Aksi</th>
+                        <th>aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -81,24 +65,24 @@
                                 style="width: 150px">
                         </td>
 
-                        <td>
-                            <form action="{{ route('pm_barang.view-pdf') }}" method="post">
+                        <td class="button">
+                            <form action="{{ route('pm_barang.view-pdf') }}" method="POST" >
                                 @csrf
                                 <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
-                                <button type="submit" class="btn text-light btn-sm btn-primary">Cetak surat</button>
+                                <button type="submit" class="btn  btn-sm btn-primary">Cetak </button>
                             </form>
 
                         </td>
                         <td>
-                            <form action="{{ route('pm_barang.view-barang') }}" method="post">
+                            <form action="{{ route('pm_barang.view-barang') }}" method="POST">
                                 @csrf
                                 <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
-                                <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
+                                <button type="submit" class="btn  btn-sm btn-success">Cetak </button>
                             </form>
 
                         </td>
 
-                        <td style="width: 10000px">
+                        <td  style="width: 10000px" >
                             <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -117,13 +101,6 @@
 </div>
 </div>
 @endsection
-
-<script>
-    new DataTable('#dataTable', {
-        scrollX: true, // Enable horizontal scrolling
-        fixedHeader: true // Fixes the header at the top
-    });
-</script>
 
 @push('scripts')
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>

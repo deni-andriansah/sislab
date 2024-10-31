@@ -275,7 +275,7 @@
                         <td class="left-signature">
                             <h5>PIHAK KEDUA</h5>
                             <p>{{$pm_barang->nama_peminjam}}</p>
-                         
+
                         </td>
                         <!-- Pihak Pertama di sebelah kanan -->
                         <td class="right-signature">

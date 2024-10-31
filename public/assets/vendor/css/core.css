@@ -2644,7 +2644,7 @@ textarea.form-control-lg {
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.53;
-  color: #697a8d;
+  color: #f5f6f7;
   text-align: center;
   white-space: nowrap;
   background-color: #fff;
@@ -2734,6 +2734,7 @@ textarea.form-control-lg {
   border-radius: var(--bs-btn-border-radius);
   background-color: var(--bs-btn-bg);
   transition: all 0.2s ease-in-out;
+
 }
 @media (prefers-reduced-motion: reduce) {
   .btn {

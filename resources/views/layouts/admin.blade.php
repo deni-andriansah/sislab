@@ -27,7 +27,7 @@
       rel="stylesheet" />
 
     <link rel="stylesheet" href="{{asset('assets/vendor/fonts/boxicons.css')}}" />
- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css')}}">
+     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css')}}">
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{asset('assets/vendor/css/core.css')}}" class="template-customizer-core-css" />

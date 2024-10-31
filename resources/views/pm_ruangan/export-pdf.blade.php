@@ -160,51 +160,50 @@
         <hr>
 
         <!-- Title -->
-        <h3>BERITA ACARA PEMINJAMAN HEADSET</h3>
+        <h3>BERITA ACARA PEMINJAMAN Ruangan </h3>
 
         <!-- Content -->
 
         <div class="content">
             <p>Pada hari ..... , Tanggal ..... bulan ..... , tahun ..... , kami yang bertanda tangan di bawah
                 ini:</p>
-
-            <table class="table4">
-                <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td> Nama</td>
-                    <td>: </td>
-                    <td>Happy Budiana, S.Pd. I</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td> Jabatan</td>
-                    <td>: </td>
-                    <td>Administrasi Bag Rumah Tangga</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td> NIP</td>
-                    <td>: </td>
-                    <td>19770312104121002</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td> alamat</td>
-                    <td>: </td>
-                    <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td> </td>
-                    <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
-                </tr>
-            </table>
+                <table class="table4">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td> Nama</td>
+                        <td>: </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td> Jabatan</td>
+                        <td>: </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td> NIP</td>
+                        <td>: </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td> alamat</td>
+                        <td>: </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td> </td>
+                        <td>Selanjutnya disebut PIHAK PERTAMA (2)</td>
+                    </tr>
+                </table>
 
             <table class="table4">
                 <tr>
@@ -212,37 +211,25 @@
                     <td></td>
                     <td> Nama</td>
                     <td>: </td>
-                    <td>Happy Budiana, S.Pd. I</td>
+                    <td>{{$pm_ruangan->penanggungjawab}}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td> Jabatan</td>
+                    <td> instansi</td>
                     <td>: </td>
-                    <td>Administrasi Bag Rumah Tangga</td>
+                    <td>{{$pm_ruangan->instansi}}</td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td> NIP</td>
-                    <td>: </td>
-                    <td>19770312104121002</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td> alamat</td>
-                    <td>: </td>
-                    <td>Jl. AH Nasution No. 105 Cibiru Bandung</td>
-                </tr>
+
                 <tr>
                     <td></td>
                     <td></td>
                     <td> </td>
                     <td> </td>
-                    <td>Selanjutnya disebut PIHAK PERTAMA (1)</td>
+
                 </tr>
             </table>
+
 
             <p>Pada hari ini telah menyerahkan barang-barang di bawah ini kepada PIHAK KEDUA Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sequi distinctio ut. Sapiente maxime, aspernatur est perferendis, pariatur, fuga molestiae ea illo amet libero esse velit molestias distinctio neque laboriosam.:</p>
 
@@ -251,15 +238,22 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Jenis Barang dan Merk</th>
-                            <th>Keterangan/Jumlah</th>
+                            <th>Nama Ruangan</th>
+                            <th>Jenis kegiatan</th>
+                            <th>Tanggal peminjaman</th>
+                            <th>Tanggal pengembalian</th>
+                            <th>keterangan</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Headset</td>
-                            <td>Bekas dan Baik / 50 buah</td>
+                            <td>{{$pm_ruangan->ruangan->nama_ruangan}}</td>
+                            <td>{{$pm_ruangan->jenis_kegiatan}}</td>
+                            <td>{{$pm_ruangan->tanggal_peminjaman}}</td>
+                            <td>{{$pm_ruangan->tanggal_pengembalian}}</td>
+                            <td>{{$pm_ruangan->keterangan}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -275,15 +269,15 @@
                         <!-- Pihak Kedua di sebelah kiri -->
                         <td class="left-signature">
                             <h5>PIHAK KEDUA</h5>
-                            <p>..........................................</p>
-                            <p>NIP.....................................</p>
+                            <p>{{$pm_ruangan->penanggungjawab}}</p>
 
                         </td>
                         <!-- Pihak Pertama di sebelah kanan -->
                         <td class="right-signature">
                             <h5>PIHAK PERTAMA</h5>
-                            <p>Happy Budiana, S.Pd. I</p>
-                            <p>NIP.57765644565</p>
+                            <p>..........................................</p>
+                            <p>NIP.....................................</p>
+
 
                         </td>
                     </tr>

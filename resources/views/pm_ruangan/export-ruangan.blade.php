@@ -13,6 +13,11 @@
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
         }
+        .head{
+            font-size: 10px
+
+
+        }
 
         /* Full-page container for PDF export */
         .container {
@@ -32,6 +37,7 @@
 
         p {
             margin: 1% 0; /* Margin top and bottom for paragraphs */
+            font-size: 12px;
         }
 
         /* Horizontal line */
@@ -79,14 +85,37 @@
 
         /* Styling for the information section */
         .badan strong {
-            font-size: 18px;
+            font-size: 13px;
             display: block;
             margin: 1% 0; /* Margin top and bottom for strong tags */
         }
 
         /* Dynamic margin for signature section */
-        .signature-area .signature p {
-            margin-bottom: 1%; /* Margin bottom for signature section paragraphs */
+        .hhh h5 {
+            margin-bottom: 60px; /* Ruang untuk tanda tangan */
+            margin-top: 20px;
+            margin-right:
+        }
+        .hhh{
+            width: 100%;
+
+        }
+
+       .hhh p {
+            margin: 0; /* Menghilangkan margin default */
+            margin-bottom: 50px;
+            text-align: center;
+
+        }
+        .right-signature {
+            text-align: center;
+
+        }
+        .left-signature p{
+            text-align: center;
+        }
+        .left-signature h5{
+            text-align: center;
         }
 
         /* Print Styles */
@@ -125,7 +154,7 @@
 <body>
     <div class="container">
         <!-- Title Section -->
-        <h2>SNPMPB</h2>
+      <center>  <img src="Group 7 (2).png" width="50%"></center>
         <div class="head">
             <center>
                 <p><strong>KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI</strong><br>
@@ -154,35 +183,39 @@
             </p>
 
             <center>
-                <p>Pada hari ini Kamis tanggal 25 bulan April tahun 2024 bertempat di Universitas Padjadjaran telah
+                <p>Pada hari ini ....... tanggal .... bulan ..... tahun 20.... bertempat di ................ telah
                     diserahkan oleh:</p>
 
-                <strong>Sub Bidang TIK Pusat UTBK Unpad</strong>
+                <strong>PTIPD UIN Sunan Gunung Djati</strong>
 
                 <p><strong>Kepada</strong><br>
-                    PIC Laboratorium Komputer PTIPD UIN Sunan Gunung Djati Bandung</p>
-
+                    {{$pm_ruangan->penanggungjawab}}
                 <p><strong>Berupa</strong><br>
-                    Stiker Workstation dan Daftar Nomor Meja Peserta<br>
-                    Lab 2.1 - 2.4 - PTIPD Lt. 2<br>
-                    Lab 3.1 - 3.7 - PTIPD Lt. 3<br>
-                    Lab 4.1 - 4.5 - PTIPD Lt. 4
+                    {{$pm_ruangan->ruangan->nama_ruangan}}<br>
+
                 </p>
             </center>
 
             <!-- Signature Area -->
 
-            <div class="signature-area">
-                <div class="signature">
-                    <p>Yang Menyerahkan,</p>
-                    <div class="signature-line"></div>
-                </div>
-                <div class="signature">
-                    <p>Yang Menerima,</p>
-                    <div class="signature-line"></div>
-                </div>
-            </div>
-        </div>
+            <div class="signature-section">
+                <table class="hhh">
+                    <tr>
+                        <!-- Pihak Kedua di sebelah kiri -->
+                        <td class="left-signature">
+                            <h5>yang menyerahkan</h5>
+                            <p>..........................................</p>
+
+                        </td>
+                        <!-- Pihak Pertama di sebelah kanan -->
+                        <td class="right-signature">
+                            <h5>yang menerima</h5>
+                             <p>..........................................</p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div> </div>
     </div>
 </body>
 

@@ -60,22 +60,23 @@
                                 style="width: 150px">
                         </td>
 
-                        <td>
-                            <form action="{{ route('pm_ruangan.view-pdf') }}" method="post">
+                        <td class="button">
+                            <form action="{{ route('pm_ruangan.view-pdf') }}" method="POST" >
                                 @csrf
-
-                                <button type="submit" class="btn text-light btn-sm btn-primary">Cetak surat</button>
+                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
+                                <button type="submit" class="btn  btn-sm btn-primary">Cetak </button>
                             </form>
 
                         </td>
                         <td>
-                            <form action="{{ route('pm_ruangan.view-ruangan') }}" method="post">
+                            <form action="{{ route('pm_ruangan.view-ruangan') }}" method="POST">
                                 @csrf
-
-                                <button type="submit" class="btn text-light btn-sm btn-success">Cetak surat</button>
+                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
+                                <button type="submit" class="btn  btn-sm btn-success">Cetak </button>
                             </form>
 
                         </td>
+
 
                         <td style="width: 10000px">
                             <form action="{{ route('pm_ruangan.destroy', $data->id) }}" method="POST">

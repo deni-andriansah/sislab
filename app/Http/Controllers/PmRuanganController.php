@@ -10,9 +10,9 @@ use PDF;
 
 class PmRuanganController extends Controller
 {
-    public function viewPDF()
+    public function viewPDF(Request $request)
     {
-        $pm_ruangan = pm_ruangan::latest()->get();
+        $pm_ruangan = pm_ruangan::findOrFail($request->idPeminjaman);
 
         $data = [
             'title' => 'Data Produk',
@@ -25,9 +25,9 @@ class PmRuanganController extends Controller
         return $pdf->stream();
     }
 
-    public function viewRUANGAN()
+    public function viewRUANGAN(Request $request)
     {
-        $pm_ruangan = pm_ruangan::latest()->get();
+        $pm_ruangan = pm_ruangan::findOrFail($request->idPeminjaman);
 
         $isi = [
             'date' => date('m/d/Y'),
