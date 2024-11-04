@@ -160,7 +160,7 @@
         <hr>
 
         <!-- Title -->
-        <h3>BERITA ACARA PEMINJAMAN Ruangan </h3>
+        <h3 style="text-transform: uppercase;">BERITA ACARA PEMINJAMAN Ruangan </h3>
 
         <!-- Content -->
 

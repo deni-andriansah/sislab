@@ -22,8 +22,10 @@ class PmRuanganController extends Controller
 
         $pdf = PDF::loadView('pm_ruangan.export-pdf', $data)
             ->setPaper('a4', 'portrait');
-        return $pdf->stream();
-    }
+            return response($pdf->stream(), 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="document.pdf"');
+   }
 
     public function viewRUANGAN(Request $request)
     {
@@ -37,8 +39,10 @@ class PmRuanganController extends Controller
 
         $pdf = PDF::loadView('pm_ruangan.export-ruangan', $isi)
             ->setPaper('a4', 'portrait');
-        return $pdf->stream();
-    }
+            return response($pdf->stream(), 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="document.pdf"');
+  }
 
     public function __construct()
     {

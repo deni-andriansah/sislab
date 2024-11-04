@@ -40,8 +40,10 @@ Route::resource('pm_barang', App\Http\Controllers\PmBarangController::class)->mi
 Route::resource('l_barang', App\Http\Controllers\LBarangController::class)->middleware('auth');
 Route::resource('l_ruangan', App\Http\Controllers\LRuanganController::class)->middleware('auth');
 
-Route::post('pm_barang/export-pm_barang', [App\Http\Controllers\PmBarangController::class, 'viewPDF'])->name('pm_barang.view-pdf');
-Route::post('pm_ruangan/export-pm_ruangan', [App\Http\Controllers\PmRuanganController::class, 'viewPDF'])->name('pm_ruangan.view-pdf');
+// Route untuk menampilkan PDF
+// web.php
+Route::get('/pm_barang/view-pdf/{idPeminjaman}', [App\Http\Controllers\PmBarangController::class, 'viewPDF'])->name('pm_barang.view-pdf');
+Route::get('/pm_ruangan/view-pdf/{idPeminjaman}', [App\Http\Controllers\PmruanganController::class, 'viewPDF'])->name('pm_ruangan.view-pdf');
 
-Route::post('pm_barang/cetak-pm_barang', [App\Http\Controllers\PmBarangController::class, 'viewBARANG'])->name('pm_barang.view-barang');
-Route::post('pm_ruangan/cetak-pm_ruangan', [App\Http\Controllers\PmRuanganController::class, 'viewRUANGAN'])->name('pm_ruangan.view-ruangan');
+Route::get('pm_barang/export-barang/{idPeminjaman}', [App\Http\Controllers\PmBarangController::class, 'viewBARANG'])->name('pm_barang.view-barang');
+Route::get('pm_ruangan/export-ruangan/{idPeminjaman}', [App\Http\Controllers\PmruanganController::class, 'viewruangan'])->name('pm_ruangan.view-ruangan');

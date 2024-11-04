@@ -60,22 +60,54 @@
                                 style="width: 150px">
                         </td>
 
+                                                <!-- Tombol untuk membuka modal -->
+                    <td class="button">
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal-{{ $data->id }}">
+                            Cetak
+                        </button>
+                    </td>
+
+                    <!-- Modal untuk menampilkan PDF -->
+                    <div class="modal fade" id="pdfModal-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat berita acara</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Iframe untuk menampilkan PDF -->
+                                    <iframe src="{{ route('pm_ruangan.view-pdf', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <td class="button">
-                            <form action="{{ route('pm_ruangan.view-pdf') }}" method="POST" >
-                                @csrf
-                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
-                                <button type="submit" class="btn  btn-sm btn-primary">Cetak </button>
-                            </form>
-
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#pdfModal2-{{ $data->id }}">
+                                Cetak
+                            </button>
                         </td>
-                        <td>
-                            <form action="{{ route('pm_ruangan.view-ruangan') }}" method="POST">
-                                @csrf
-                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
-                                <button type="submit" class="btn  btn-sm btn-success">Cetak </button>
-                            </form>
+                        <div class="modal fade" id="pdfModal2-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat berita acara</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Iframe untuk menampilkan PDF -->
+                                        <iframe src="{{ route('pm_ruangan.view-ruangan', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        </td>
 
 
                         <td style="width: 10000px">

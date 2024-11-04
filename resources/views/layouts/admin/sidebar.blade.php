@@ -21,7 +21,7 @@
 
           class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
-          <div data-i18n="Email">dasboard</div>
+          <div data-i18n="Email">Dasboard</div>
 
         </a>
       </li>
@@ -34,37 +34,37 @@
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-table"></i>
-          <div data-i18n="Account Settings">table</div>
+          <div data-i18n="Account Settings">Master Data</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
             <a href="{{ route('ruangan.index') }}" class="menu-link">
-              <div data-i18n="Account">ruangan</div>
+              <div data-i18n="Account">Ruangan</div>
             </a>
           </li>
           <li class="menu-item">
               <a href="{{ route('kategori.index') }}" class="menu-link">
-                <div data-i18n="Connections">kategori</div>
+                <div data-i18n="Connections">Kategori</div>
               </a>
             </li>
           <li class="menu-item">
             <a href="{{ route('merk.index') }}" class="menu-link">
-              <div data-i18n="Connections">merk</div>
+              <div data-i18n="Connections">Merk</div>
             </a>
           </li>
            <li class="menu-item">
             <a href="{{ route('kondisi.index') }}" class="menu-link">
-              <div data-i18n="Connections">kondisi</div>
+              <div data-i18n="Connections">Kondisi</div>
             </a>
           </li>
           <li class="menu-item">
               <a href="{{ route('barang.index') }}" class="menu-link">
-                <div data-i18n="Notifications">barang</div>
+                <div data-i18n="Notifications">Barang</div>
               </a>
             </li>
             <li class="menu-item">
               <a href="{{ route('detail_ruangan.index') }}" class="menu-link">
-                <div data-i18n="Notifications">detail ruangan</div>
+                <div data-i18n="Notifications">Detail Ruangan</div>
               </a>
             </li>
         </ul>
@@ -72,17 +72,17 @@
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-desktop"></i>
-          <div data-i18n="Authentications">peminjaman</div>
+          <div data-i18n="Authentications">Peminjaman</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
             <a href="{{ route('pm_barang.index') }}" class="menu-link" >
-              <div data-i18n="Basic">peminjaman barang</div>
+              <div data-i18n="Basic">Peminjaman Barang</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="{{ route('pm_ruangan.index') }}" class="menu-link" >
-              <div data-i18n="Basic">peminjaman ruangan</div>
+              <div data-i18n="Basic">Peminjaman Ruangan</div>
             </a>
           </li>
 
@@ -91,17 +91,17 @@
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-wrench"></i>
-          <div data-i18n="Misc">maintenance</div>
+          <div data-i18n="Misc">Maintenance</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
             <a href="{{ route('m_barang.index') }}" class="menu-link">
-              <div data-i18n="Error">maintenance barang</div>
+              <div data-i18n="Error">Maintenance Barang</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="{{ route('m_ruangan.index') }}" class="menu-link">
-              <div data-i18n="Under Maintenance"> Maintenance ruangan</div>
+              <div data-i18n="Under Maintenance"> Maintenance Ruangan</div>
             </a>
           </li>
         </ul>
@@ -109,27 +109,27 @@
       <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-book"></i>
-          <div data-i18n="User interface">laporan</div>
+          <div data-i18n="User interface">Laporan</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
             <a href="{{ route('l_barang.index') }}" class="menu-link">
-              <div data-i18n="Accordion">laporan peminjaman barang</div>
+              <div data-i18n="Accordion">Laporan Peminjaman Barang</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="{{ route('l_ruangan.index') }}" class="menu-link">
-              <div data-i18n="Alerts">laporan peminjaman ruangan</div>
+              <div data-i18n="Alerts">Laporan Peminjaman Ruangan</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="{{ route('lm_barang.index') }}" class="menu-link">
-              <div data-i18n="Badges">laporan maintenance barang</div>
+              <div data-i18n="Badges">Laporan Maintenance Barang</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="{{ route('lm_ruangan.index') }}" class="menu-link">
-              <div data-i18n="Buttons">laporan maintenance ruangan</div>
+              <div data-i18n="Buttons">Laporan Maintenance Ruangan</div>
             </a>
           </li>
 

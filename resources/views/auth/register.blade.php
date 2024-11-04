@@ -19,14 +19,19 @@
     background-attachment: fixed; /* membuat latar belakang tetap diam */
 }
 
-.img img {
-    width: 100%;
-    height: auto;
-    object-fit: cover; /* gambar mengikuti ukuran layar */
-}
+.img {
+            width: 50%;
+
+           margin-right: 5%;
+           margin-top: 0%
+        }
+        .img img {
+            width: 90%;
+            height: auto;
+        }
 
         .logo img {
-            width: 100%;
+            width: 80%;
             max-width: 150px;
         }
 
@@ -51,8 +56,8 @@
 <body>
     <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center vh-100">
         <!-- Image Section -->
-        <div class="img col-12 col-md-6 text-center mb-4 mb-md-0">
-            <img src="XBMjuAjRpRkd6TLebVnLm-transformed.png" alt="Decorative Image">
+        <div class="img">
+            <img src="rb_2147848878.png" alt="Decorative Image">
         </div>
 
         <!-- Logo and Form Section -->

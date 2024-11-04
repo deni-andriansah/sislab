@@ -160,7 +160,9 @@
         <hr>
 
         <!-- Title -->
-        <h3>BERITA ACARA PEMINJAMAN {{$pm_barang->barang->nama_barang}} </h3>
+        <h3 style="text-transform: uppercase;">
+            BERITA ACARA PEMINJAMAN {{$pm_barang->barang->nama_barang}}
+        </h3>
 
         <!-- Content -->
 

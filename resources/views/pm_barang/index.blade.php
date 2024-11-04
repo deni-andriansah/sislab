@@ -65,22 +65,57 @@
                                 style="width: 150px">
                         </td>
 
-                        <td class="button">
-                            <form action="{{ route('pm_barang.view-pdf') }}" method="POST" >
-                                @csrf
-                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
-                                <button type="submit" class="btn  btn-sm btn-primary">Cetak </button>
-                            </form>
+<!-- Tombol untuk membuka modal -->
+<td class="button">
+    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal-{{ $data->id }}">
+        Cetak
+    </button>
+</td>
 
-                        </td>
-                        <td>
-                            <form action="{{ route('pm_barang.view-barang') }}" method="POST">
-                                @csrf
-                                <input type="hidden" id="idPeminjaman" name="idPeminjaman" value="{{$data->id}}"/>
-                                <button type="submit" class="btn  btn-sm btn-success">Cetak </button>
-                            </form>
+<!-- Modal untuk menampilkan PDF -->
+<div class="modal fade" id="pdfModal-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat berita acara</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Iframe untuk menampilkan PDF -->
+                <iframe src="{{ route('pm_barang.view-pdf', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+            </div>
+        </div>
+    </div>
+</div>
+<td class="button">
+    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#pdfModal2-{{ $data->id }}">
+        Cetak
+    </button>
+</td>
 
-                        </td>
+<!-- Modal untuk menampilkan PDF -->
+<div class="modal fade" id="pdfModal2-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat serah terima</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Iframe untuk menampilkan PDF -->
+                <iframe src="{{ route('pm_barang.view-barang', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
                         <td  style="width: 10000px" >
                             <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST">
@@ -105,6 +140,7 @@
 @push('scripts')
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+
 <script>
     new DataTable('#dataTable');
 </script>

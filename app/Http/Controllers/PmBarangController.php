@@ -19,12 +19,13 @@ class PmBarangController extends Controller
         $data = [
             'date' => date('m/d/Y'),
             'pm_barang' => $pm_barang,
-
         ];
 
-        $pdf = PDF::loadView('pm_barang.export-pdf', $data)
-            ->setPaper('a4', 'portrait');
-        return $pdf->stream();
+        $pdf = PDF::loadView('pm_barang.export-pdf', $data)->setPaper('a4', 'portrait');
+
+        return response($pdf->stream(), 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="document.pdf"');
     }
 
     public function viewBARANG(Request $request)
@@ -39,7 +40,10 @@ class PmBarangController extends Controller
 
         $pdf = PDF::loadView('pm_barang.export-barang', $isi)
             ->setPaper('a4', 'portrait');
-        return $pdf->stream();
+            return response($pdf->stream(), 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="document.pdf"');
+
     }
 
     public function __construct()
