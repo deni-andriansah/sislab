@@ -115,9 +115,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <a href="{{ route('pm_ruangan.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a> |
+                                    class="btn btn-sm btn-warning">Edit</a>
                                 <a href="{{ route('pm_ruangan.destroy', $data->id)}}"
-                                     class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
+                                     class="btn btn-sm btn-danger mt-2" data-confirm-delete="true">Delete</a>
                             </form>
                         </td>
                     </tr>

@@ -78,7 +78,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat berita acara</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            9.    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Iframe untuk menampilkan PDF -->
@@ -122,9 +122,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <a href="{{ route('pm_barang.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a> |
+                                    class="btn btn-sm btn-warning">Edit</a>
                                 <a href="{{ route('pm_barang.destroy', $data->id)}}"
-                                     class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
+                                     class="btn btn-sm btn-danger mt-2" data-confirm-delete="true">Delete</a>
                             </form>
                         </td>
                     </tr>

@@ -3,6 +3,7 @@
 
             <div class="row www">
               <div class="col-md-5 grid-margin stretch-card">
+
                 <!-- Bootstrap carousel -->
                 <div class="col-md">
                      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -63,7 +64,7 @@
                     <div class="card card-tale">
                       <div class="card-body" style="background-color: rgb(124, 207, 255); color:rgb(255, 255, 255)">
                         <p class="mb-4 text"><b>Jumlah Data di Tabel Barang</b></p>
-                        <p class="fs-30 mb-2"><h4>{{$barang}}</h4></p>
+                        <p class="fs-30 mb-2"><h4>{{$baranhhg}}</h4></p>
                       </div>
                     </div>
                   </div>
