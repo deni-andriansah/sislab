@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Jenis Perbaikan</label>
+                            <label class="form-label">Keterangan</label>
                             <input type="text" class="form-control @error('jenis_perbaikan') is-invalid @enderror" name="jenis_perbaikan"
                                 value="{{ $m_barang->jenis_perbaikan }}" placeholder="Jenis perbaikan" required>
                             @error('jenis_perbaikan')

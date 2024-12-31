@@ -240,7 +240,7 @@
             </table>
 
 
-            <p>Pada hari ini telah menyerahkan barang-barang di bawah ini kepada PIHAK KEDUA Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sequi distinctio ut. Sapiente maxime, aspernatur est perferendis, pariatur, fuga molestiae ea illo amet libero esse velit molestias distinctio neque laboriosam.:</p>
+            <p>Pada hari ini telah menyerahkan barang-barang di bawah ini kepada PIHAK KEDUA.</p>
 
             <center>
                 <table class="tb6">

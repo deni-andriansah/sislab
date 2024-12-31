@@ -17,7 +17,7 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Merk</h5>
+            <h5>Barang</h5>
         </div>
         <div class="float-end ">
             <a href="{{ route('merk.create') }}" class="btn btn-sm btn-primary">Add</a>

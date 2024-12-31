@@ -34,7 +34,7 @@
                         <th>Nama Barang</th>
                         <th>Nama Ruangan</th>
                         <th>Posisi</th>
-                        <th>Jenis Perbaikan</th>
+                        <th>Keterangan</th>
                         <th>Waktu Pengerjaan</th>
                         <th>Kondisi</th>
                         <th>Aksi</th>
