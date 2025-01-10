@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('m__barangs', function (Blueprint $table) {
             $table->id();
+            $table->string('code_maintenance');
             $table->bigInteger('id_barang')->unsigned();
             $table->foreign('id_barang')->references('id')->on('barangs')->ondelete('cascade');
             $table->bigInteger('id_ruangan')->unsigned();
             $table->foreign('id_ruangan')->references('id')->on('ruangans')->ondelete('cascade');
-            $table->string('posisi');
-            $table->string('jenis_perbaikan');
+            $table->string('tanggal_maintenance');
             $table->string('waktu_pengerjaan');
-            $table->bigInteger('id_kondisi')->unsigned();
-            $table->foreign('id_kondisi')->references('id')->on('kondisis')->ondelete('cascade');
+            $table->string('jumlah');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

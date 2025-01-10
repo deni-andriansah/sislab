@@ -21,6 +21,17 @@
                         @method('put')
                         @csrf
                         <div class="mb-3">
+                            <label class="form-label">Kode Barang</label>
+                            <input type="text" class="form-control @error('code_barang') is-invalid @enderror" name="code_barang"
+                                value="{{ $barang->code_barang }}" placeholder="Kode barang" required>
+                            @error('code_barang')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Nama Barang</label>
                             <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang"
                                 value="{{ $barang->nama_barang }}" placeholder="Nama barang" required>
@@ -32,12 +43,14 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="">Nama Merk</label>
-                            <select name="id_merk" id="" class="form-control">
-                                @foreach ($merk as $item)
-                                    <option value="{{$item->id}}" {{$item->id == $barang->id_merk ? 'selected': ''}}>{{ $item->nama_merk }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-label">Nama Merk</label>
+                            <input type="text" class="form-control @error('merk') is-invalid @enderror" name="merk"
+                                value="{{ $barang->merk }}" placeholder="Nama barang" required>
+                            @error('merk')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
@@ -50,19 +63,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="">Kondisi</label>
-                            <select name="id_kondisi" id="" class="form-control">
-                                @foreach ($kondisi as $item)
-                                    <option value="{{$item->id}}" {{$item->id == $barang->id_kondisi ? 'selected': ''}}>{{ $item->kondisi }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Posisi</label>
-                            <input type="text" class="form-control @error('posisi') is-invalid @enderror" name="posisi"
-                                value="{{ $barang->posisi }}" placeholder="Posisi" required>
-                            @error('posisi')
+                            <label class="form-label">Detail</label>
+                            <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail"
+                                value="{{ $barang->detail }}" placeholder="Detail" required>
+                            @error('detail')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -70,10 +74,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Spek</label>
-                            <input type="text" class="form-control @error('spek') is-invalid @enderror" name="spek"
-                                value="{{ $barang->spek }}" placeholder="Spek" required>
-                            @error('spek')
+                            <label class="form-label">Jumlah</label>
+                            <input type="text" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah"
+                                value="{{ $barang->jumlah }}" placeholder="Jumlah" required>
+                            @error('jumlah')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

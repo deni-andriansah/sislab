@@ -85,7 +85,24 @@
               <div data-i18n="Basic">Peminjaman Ruangan</div>
             </a>
           </li>
-
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-desktop"></i>
+          <div data-i18n="Authentications">Pengembalian</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="" class="menu-link" >
+              <div data-i18n="Basic">Pengembalian Barang</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="" class="menu-link" >
+              <div data-i18n="Basic">Pengembalian Ruangan</div>
+            </a>
+          </li>
         </ul>
       </li>
       <li class="menu-item">

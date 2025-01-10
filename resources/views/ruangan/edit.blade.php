@@ -43,6 +43,18 @@
                         </div>
 
 
+                        <div class="mb-3">
+                            <label class="form-label">Posisi Ruangan</label>
+                            <input type="text" class="form-control @error('posisi_ruangan') is-invalid @enderror" name="posisi_ruangan"
+                                value="{{ $ruangan->posisi_ruangan }}" placeholder="nama pic" required>
+                            @error('posisi_ruangan')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
 
 
 

@@ -17,6 +17,17 @@
                     <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-2">
+                            <label class="form-label">Kode Barang</label>
+                            <input type="text" class="form-control @error('code') is-invalid @enderror" name="code_barang"
+                            value="{{ old('barang') }}" placeholder="Kode barang" required>
+                            @error('code')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
                             <label class="form-label">Nama Barang</label>
                             <input type="text" class="form-control @error('barang') is-invalid @enderror" name="nama_barang"
                             value="{{ old('barang') }}" placeholder="Nama barang" required>
@@ -27,14 +38,17 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="">Nama Merk</label>
-                            <select name="id_merk" id="" class="form-control">
-                                @foreach ($merk as $data)
-                                    <option value="{{$data->id}}">{{ $data->nama_merk}}</option>
-                                @endforeach
-                            </select>
+                        <div class="mb-2">
+                            <label class="form-label">Merk</label>
+                            <input type="text" class="form-control @error('merk') is-invalid @enderror" name="merk"
+                            value="{{ old('merk') }}" placeholder="Merk" required>
+                            @error('merk')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+
 
                         <div class="mb-3">
                             <label for="">Kategori</label>
@@ -45,21 +59,11 @@
                             </select>
                         </div>
 
-
-                        <div class="mb-3">
-                            <label for="">kondisi</label>
-                            <select name="id_kondisi" id="" class="form-control">
-                                @foreach ($kondisi as $data)
-                                    <option value="{{$data->id}}">{{ $data->kondisi}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
                         <div class="mb-2">
-                            <label class="form-label">Posisi</label>
-                            <input type="text" class="form-control @error('posisi') is-invalid @enderror" name="posisi"
-                            value="{{ old('posisi') }}" placeholder="Posisi" required>
-                            @error('posisi')
+                            <label class="form-label">Detail</label>
+                            <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail"
+                            value="{{ old('detail') }}" placeholder="Detail" required>
+                            @error('detail')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -67,10 +71,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Spek</label>
-                            <input type="text" class="form-control @error('spek') is-invalid @enderror" name="spek"
-                            value="{{ old('spek') }}" placeholder="Spek" required>
-                            @error('spek')
+                            <label class="form-label">Jumlah</label>
+                            <input type="text" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah"
+                            value="{{ old('jumlah') }}" placeholder="Jumlah" required>
+                            @error('jumlah')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

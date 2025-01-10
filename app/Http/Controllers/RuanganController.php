@@ -45,6 +45,7 @@ class RuanganController extends Controller
         $ruangan=new ruangan;
         $ruangan->nama_ruangan=$request->nama_ruangan;
         $ruangan->nama_pic=$request->nama_pic;
+        $ruangan->posisi_ruangan=$request->posisi_ruangan;
         Alert::success('Success','data berhasil disimpan')->autoClose(1000);
         $ruangan->save();
         return redirect()->route('ruangan.index');
@@ -86,6 +87,7 @@ class RuanganController extends Controller
         $ruangan = Ruangan::FindOrFail($id);
         $ruangan->nama_ruangan=$request->nama_ruangan;
         $ruangan->nama_pic=$request->nama_pic;
+        $ruangan->posisi_ruangan=$request->posisi_ruangan;
         Alert::success('Success','data berhasil diubah')->autoClose(1000);
         $ruangan->save();
         return redirect()->route('ruangan.index');

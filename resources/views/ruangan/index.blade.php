@@ -35,6 +35,7 @@
                         <th>No</th>
                         <th>Nama Ruangan</th>
                         <th>Nama PIC</th>
+                        <th>Posisi Ruangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $data->nama_ruangan }}</td>
                         <td>{{ $data->nama_pic }}</td>
+                        <td>{{ $data->posisi_ruangan }}</td>
 
                         <td>
                             <form action="{{ route('ruangan.destroy', $data->id) }}" method="POST">
