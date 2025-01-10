@@ -8,28 +8,62 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ __('Kategori') }}
+                        {{ __('Anggota') }}
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('kategori.index') }}" class="btn btn-sm btn-primary">Kembali</a>
+                        <a href="{{ route('anggota.index') }}" class="btn btn-sm btn-primary">Kembali</a>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('kategori.update', $kategori->id) }}" method="POST"
+                    <form action="{{ route('anggota.update', $anggota->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="mb-3">
-                            <label class="form-label">Nama Kategori</label>
-                            <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror" name="nama_kategori"
-                                value="{{ $kategori->nama_kategori }}" placeholder="Nama kategori" required>
-                            @error('nama_kategori')
+                            <label class="form-label">Nama Peminjam</label>
+                            <input type="text" class="form-control @error('nama_anggota') is-invalid @enderror" name="nama_peminjam"
+                                value="{{ $anggota->nama_peminjam }}" placeholder="Nama peminjam" required>
+                            @error('nama_anggota')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ $anggota->email }}" placeholder="Email" required>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nomer Telepon</label>
+                            <input type="text" class="form-control @error('no_telepon') is-invalid @enderror" name="no_telepon"
+                                value="{{ $anggota->no_telepon }}" placeholder="Nomer telepon" required>
+                            @error('no_telepon')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">instansi Lembaga</label>
+                            <input type="text" class="form-control @error('instansi_lembaga') is-invalid @enderror" name="instansi_lembaga"
+                                value="{{ $anggota->instansi_lembaga }}" placeholder="Instansi Lembaga" required>
+                            @error('instansi_lembaga')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
 
 
 

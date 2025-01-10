@@ -81,8 +81,8 @@
                   <div class="col-md-6  mb-lg-0 stretch-card transparent">
                     <div class="card card-light-blue">
                       <div class="card-body"  style="background-color: rgb(255, 125, 125); color:rgb(255, 255, 255)">
-                        <p class="mb-4 "><b>Jumlah Data di Tabel Merk</b></p>
-                        <p class="fs-30 mb-2"><h4>{{$merk}}</h4></p>
+                        <p class="mb-4 "><b>Jumlah Data di Tabel Anggota</b></p>
+                        <p class="fs-30 mb-2"><h4>{{$anggota}}</h4></p>
                       </div>
                     </div>
                   </div>

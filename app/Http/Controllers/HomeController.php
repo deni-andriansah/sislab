@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
-use App\Models\Merk;
+use App\Models\anggota;
 use App\Models\Ruangan;
 use App\Models\Kategori;
 
@@ -29,8 +29,8 @@ class HomeController extends Controller
     {
         $kategori = Kategori::count('id');
         $barang = Barang::count('id');
-        $merk = Merk::count('id');
+        $anggota = anggota::count('id');
         $ruangan = Ruangan::count('id');
-        return view('home',compact('kategori','barang','merk','ruangan'));
+        return view('home',compact('kategori','barang','anggota','ruangan'));
     }
 }

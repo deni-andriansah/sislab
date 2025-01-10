@@ -17,10 +17,10 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Kategori</h5>
+            <h5>Anggota</h5>
         </div>
         <div class="float-end ">
-            <a href="{{ route('kategori.create') }}" class="btn btn-sm btn-primary">Add</a>
+            <a href="{{ route('anggota.create') }}" class="btn btn-sm btn-primary">Add</a>
         </div>
     </div>
 
@@ -30,24 +30,30 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Nama Peminjam</th>
+                        <th>Email</th>
+                        <th>Nomer Telepon</th>
+                        <th>Instansi Lembaga</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @php $i = 1; @endphp
-                    @foreach ($kategori as $data)
+                    @foreach ($anggota as $data)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $data->nama_kategori }}</td>
+                        <td>{{ $data->nama_peminjam }}</td>
+                        <td>{{ $data->email }}</td>
+                        <td>{{ $data->no_telepon }}</td>
+                        <td>{{ $data->instansi_lembaga }}</td>
 
                         <td>
-                            <form action="{{ route('kategori.destroy', $data->id) }}" method="POST">
+                            <form action="{{ route('anggota.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('kategori.edit', $data->id) }}"
+                                <a href="{{ route('anggota.edit', $data->id) }}"
                                     class="btn btn-sm btn-warning">Edit</a> |
-                                <a href="{{ route('kategori.destroy', $data->id)}}"
+                                <a href="{{ route('anggota.destroy', $data->id)}}"
                                      class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
                             </form>
                         </td>

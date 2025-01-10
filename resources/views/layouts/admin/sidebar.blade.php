@@ -47,14 +47,9 @@
                 <div data-i18n="Connections">Kategori</div>
               </a>
             </li>
-          <li class="menu-item">
-            <a href="{{ route('merk.index') }}" class="menu-link">
-              <div data-i18n="Connections">Merk</div>
-            </a>
-          </li>
            <li class="menu-item">
-            <a href="{{ route('kondisi.index') }}" class="menu-link">
-              <div data-i18n="Connections">Kondisi</div>
+            <a href="{{ route('anggota.index') }}" class="menu-link">
+              <div data-i18n="Connections">Anggota</div>
             </a>
           </li>
           <li class="menu-item">

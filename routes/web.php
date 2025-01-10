@@ -21,10 +21,9 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('merk', App\Http\Controllers\MerkController::class)->middleware('auth');
 Route::resource('kategori', App\Http\Controllers\KategoriController::class)->middleware('auth');
 Route::resource('ruangan', App\Http\Controllers\RuanganController::class)->middleware('auth');
-Route::resource('kondisi', App\Http\Controllers\KondisiController::class)->middleware('auth');
+Route::resource('anggota', App\Http\Controllers\AnggotaController::class)->middleware('auth');
 Route::resource('barang', App\Http\Controllers\BarangController::class)->middleware('auth');
 Route::resource('detail_ruangan', App\Http\Controllers\DetailRuanganController::class)->middleware('auth');
 

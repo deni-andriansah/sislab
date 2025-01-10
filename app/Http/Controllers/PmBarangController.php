@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\anggota;
 use App\Models\Ruangan;
-use App\Models\Kondisi;
 use App\Models\pm_barang;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
@@ -62,34 +62,31 @@ class PmBarangController extends Controller
     {
         $barang =  Barang::all();
         $ruangan =  Ruangan::all();
-        $kondisi = Kondisi::all();
-        return view('pm_barang.create', compact('barang','ruangan', 'kondisi'));
+        $anggota = anggota::all();
+        return view('pm_barang.create', compact('barang','ruangan', 'anggota'));
     }
 
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_peminjam' => 'required',
-            'email' => 'required',
-            'instansi' => 'required',
+            'code_peminjaman' => 'required',
+            'jenis_kegitan' => 'required',
             'tanggal_peminjaman' => 'required',
-            'tanggal_pengembalian' => 'required',
-            'keterangan' => 'required',
+            'waktu_pengerjaan' => 'required',
             'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
 
         ]);
 
         $pm_barang = new pm_barang();
-        $pm_barang->nama_peminjam = $request->nama_peminjam;
-        $pm_barang->email = $request->email;
-        $pm_barang->instansi = $request->instansi;
+        $pm_barang->code_peminjaman = $request->code_peminjaman;
+        $pm_barang->id_anggota = $request->id_anggota;
+        $pm_barang->jenis_kegitan = $request->jenis_kegitan;
         $pm_barang->id_barang = $request->id_barang;
         $pm_barang->id_ruangan = $request->id_ruangan;
         $pm_barang->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pm_barang->tanggal_pengembalian = $request->tanggal_pengembalian;
-        $pm_barang->keterangan = $request->keterangan;
-        $pm_barang->id_kondisi = $request->id_kondisi;
+        $pm_barang->waktu_pengerjaan = $request->waktu_pengerjaan;
+
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');
@@ -115,34 +112,30 @@ class PmBarangController extends Controller
     {
         $barang =  Barang::all();
         $ruangan =  Ruangan::all();
-        $kondisi = Kondisi::all();
+        $anggota = anggota::all();
         $pm_barang = pm_barang::findOrFail($id);
-        return view('pm_barang.edit', compact('pm_barang','barang','ruangan','kondisi'));
+        return view('pm_barang.edit', compact('pm_barang','barang','ruangan','anggota'));
     }
 
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama_peminjam' => 'required',
-            'email' => 'required',
-            'instansi' => 'required',
+            'code_peminjaman' => 'required',
+            'jenis_kegitan' => 'required',
             'tanggal_peminjaman' => 'required',
-            'tanggal_pengembalian' => 'required',
-            'keterangan' => 'required',
+            'waktu_pengerjaan' => 'required',
             'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
         ]);
 
         $pm_barang = pm_barang::findOrFail($id);
-        $pm_barang->nama_peminjam = $request->nama_peminjam;
-        $pm_barang->email = $request->email;
-        $pm_barang->instansi = $request->instansi;
+        $pm_barang->code_peminjaman = $request->code_peminjaman;
+        $pm_barang->id_anggota = $request->id_anggota;
+        $pm_barang->jenis_kegitan = $request->jenis_kegitan;
         $pm_barang->id_barang = $request->id_barang;
         $pm_barang->id_ruangan = $request->id_ruangan;
         $pm_barang->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pm_barang->tanggal_pengembalian = $request->tanggal_pengembalian;
-        $pm_barang->keterangan = $request->keterangan;
-        $pm_barang->id_kondisi = $request->id_kondisi;
+        $pm_barang->waktu_pengerjaan = $request->waktu_pengerjaan;
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');

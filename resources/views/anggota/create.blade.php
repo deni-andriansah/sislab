@@ -6,21 +6,54 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ __('Kategori') }}
+                        {{ __('Anggota') }}
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('kategori.index') }}" class="btn btn-sm btn-primary">Kembali</a>
+                        <a href="{{ route('anggota.index') }}" class="btn btn-sm btn-primary">Kembali</a>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('kategori.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-2">
-                            <label class="form-label">Nama Kategori</label>
-                            <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="nama_kategori"
-                            value="{{ old('kategori') }}" placeholder="Nama kategori" required>
-                            @error('kategori')
+                            <label class="form-label">Nama Peminjam</label>
+                            <input type="text" class="form-control @error('anggota') is-invalid @enderror" name="nama_peminjam"
+                            value="{{ old('anggota') }}" placeholder="Nama peminjam" required>
+                            @error('anggota')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                            value="{{ old('email') }}" placeholder="Email" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label">Nomer Telepon</label>
+                            <input type="text" class="form-control @error('no_telepon') is-invalid @enderror" name="no_telepon"
+                            value="{{ old('no_telepon') }}" placeholder="Nomer telepon" required>
+                            @error('no_telepon')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label">Instansi Lembaga</label>
+                            <input type="text" class="form-control @error('instansi_lembaga') is-invalid @enderror" name="instansi_lembaga"
+                            value="{{ old('instansi_lembaga') }}" placeholder="Instansi Lembaga" required>
+                            @error('instansi_lembaga')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

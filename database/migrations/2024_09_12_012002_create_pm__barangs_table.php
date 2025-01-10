@@ -13,18 +13,15 @@ return new class extends Migration
     {
         Schema::create('pm__barangs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_peminjam');
-            $table->string('email');
-            $table->string('instansi');
+            $table->string('code_peminjaman');
+            $table->bigInteger('id_anggota')->unsigned();
+            $table->string('jenis_kegatan');
             $table->bigInteger('id_barang')->unsigned();
             $table->foreign('id_barang')->references('id')->on('barangs')->ondelete('cascade');
             $table->bigInteger('id_ruangan')->unsigned();
             $table->foreign('id_ruangan')->references('id')->on('ruangans')->ondelete('cascade');
             $table->string('tanggal_peminjaman');
-            $table->string('tanggal_pengembalian');
-            $table->string('keterangan');
-            $table->bigInteger('id_kondisi')->unsigned();
-            $table->foreign('id_kondisi')->references('id')->on('kondisis')->ondelete('cascade');
+            $table->string('waktu_peminjaman');
             $table->string('cover');
             $table->timestamps();
         });

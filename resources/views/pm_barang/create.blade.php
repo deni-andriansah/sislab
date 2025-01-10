@@ -18,32 +18,30 @@
                         @csrf
 
                         <div class="mb-2">
-                            <label class="form-label">Nama peminjam</label>
-                            <input type="text" class="form-control @error('nama_peminjam') is-invalid @enderror" name="nama_peminjam"
-                            value="{{ old('nama_peminjam') }}" placeholder="Nama peminjam" required>
-                            @error('nama_peminjam')
+                            <label class="form-label">Kode Peminjaman</label>
+                            <input type="text" class="form-control @error('code_peminjaman') is-invalid @enderror" name="code_peminjaman"
+                            value="{{ old('code_peminjaman') }}" placeholder="Kode peminjaman" required>
+                            @error('code_peminjaman')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
 
-                        <div class="mb-2">
-                            <label class="form-label">Email</label>
-                            <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" placeholder="Email" required>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="mb-3">
+                            <label for="">Nama Peminjam</label>
+                            <select name="id_anggota" id="" class="form-control">
+                                @foreach ($anggota as $data)
+                                    <option value="{{$data->id}}">{{ $data->nama_peminjam}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Instansi</label>
-                            <input type="text" class="form-control @error('instansi') is-invalid @enderror" name="instansi"
-                            value="{{ old('instansi') }}" placeholder="Instansi" required>
-                            @error('instansi')
+                            <label class="form-label">Jenis Kegitan</label>
+                            <input type="text" class="form-control @error('jenis_kegitan') is-invalid @enderror" name="jenis_kegitan"
+                            value="{{ old('jenis_kegitan') }}" placeholder="Jenis kegitan" required>
+                            @error('jenis_kegitan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -80,34 +78,14 @@
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Tanggal Pengembalian</label>
-                            <input type="date" class="form-control @error('tanggal_pengembalian') is-invalid @enderror" name="tanggal_pengembalian"
-                            value="{{ old('tanggal_pengembalian') }}" placeholder="Tanggal pengembalian" required>
-                            @error('tanggal_pengembalian')
+                            <label class="form-label">Waktu Peminjaman</label>
+                            <input type="date" class="form-control @error('waktu_peminjaman') is-invalid @enderror" name="waktu_peminjaman"
+                            value="{{ old('waktu_peminjaman') }}" placeholder="Tanggal pengembalian" required>
+                            @error('waktu_peminjaman')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Keterangan</label>
-                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan"
-                            value="{{ old('keterangan') }}" placeholder="Keterangan" required>
-                            @error('keterangan')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="">Kondisi</label>
-                            <select name="id_kondisi" id="" class="form-control">
-                                @foreach ($kondisi as $data)
-                                    <option value="{{$data->id}}">{{ $data->kondisi}}</option>
-                                @endforeach
-                            </select>
                         </div>
 
                         <div class="mb-3">
