@@ -82,18 +82,18 @@
           </li>
         </ul>
       </li>
-      <li class="menu-item">
+      <li class="menu-item {{ Request::is('p_barang*', 'p_ruangan*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-desktop"></i>
           <div data-i18n="Authentications">Pengembalian</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item {{ Request::is('p_barang*') ? 'active' : '' }}">
             <a href="{{ route('p_barang.index') }}" class="menu-link" >
               <div data-i18n="Basic">Pengembalian Barang</div>
             </a>
           </li>
-          <li class="menu-item">
+          <li class="menu-item {{ Request::is('p_ruangan*') ? 'active' : '' }}">
             <a href="{{ route('p_ruangan.index') }}" class="menu-link" >
               <div data-i18n="Basic">Pengembalian Ruangan</div>
             </a>
