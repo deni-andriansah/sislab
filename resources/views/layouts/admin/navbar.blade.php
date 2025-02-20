@@ -19,19 +19,19 @@
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
 
                 <span class="avatar-initial " style="border-radius: 500px"><i class='bx bxs-user'></i></span>
-           
+
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li>
+            {{-- <li>
                 <a class="dropdown-item" href="{{url('register')}}">
                   <i class="mdi mdi-power me-1 mdi-20px"></i>
                   <span class="align-middle">Register</span>
                 </a>
-              </li>
+              </li> --}}
 
-          <li>
+          {{-- <li>
             <div class="dropdown-divider"></div>
-          </li>
+          </li> --}}
           <li>
             <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#logoutModal">
               <i class="mdi mdi-power me-1 mdi-20px"></i>

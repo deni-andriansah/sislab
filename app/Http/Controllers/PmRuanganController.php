@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use App\Models\pm_Ruangan;
+use App\Models\anggota;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use PDF;
@@ -58,31 +59,29 @@ class PmRuanganController extends Controller
 
     public function create()
     {
+        $anggota =  anggota::all();
         $ruangan =  Ruangan::all();
-        return view('pm_ruangan.create', compact('ruangan'));
+        return view('pm_ruangan.create', compact('anggota','ruangan'));
     }
 
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'penanggungjawab' => 'required',
-            'instansi' => 'required',
-            'jenis_kegiatan' => 'required',
+            'code_peminjaman' => 'required',
             'tanggal_peminjaman' => 'required',
-            'tanggal_pengembalian' => 'required',
-            'keterangan' => 'required',
+            'jenis_kegiatan' => 'required',
+            'waktu_peminjaman' => 'required',
             'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
         ]);
 
         $pm_ruangan = new pm_ruangan();
-        $pm_ruangan->penanggungjawab = $request->penanggungjawab;
-        $pm_ruangan->instansi = $request->instansi;
-        $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
+        $pm_ruangan->code_peminjaman = $request->code_peminjaman;
+        $pm_ruangan->id_anggota = $request->id_anggota;
         $pm_ruangan->id_ruangan = $request->id_ruangan;
+        $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
         $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pm_ruangan->tanggal_pengembalian = $request->tanggal_pengembalian;
-        $pm_ruangan->keterangan = $request->keterangan;
+        $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');
@@ -106,32 +105,30 @@ class PmRuanganController extends Controller
 
     public function edit($id)
     {
+        $anggota =  anggota::all();
         $ruangan =  Ruangan::all();
         $pm_ruangan = pm_ruangan::findOrFail($id);
-        return view('pm_ruangan.edit', compact('pm_ruangan','ruangan'));
+        return view('pm_ruangan.edit', compact('pm_ruangan','anggota','ruangan'));
     }
 
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'penanggungjawab' => 'required',
-            'instansi' => 'required',
-            'jenis_kegiatan' => 'required',
+            'code_peminjaman' => 'required',
             'tanggal_peminjaman' => 'required',
-            'tanggal_pengembalian' => 'required',
-            'keterangan' => 'required',
+            'jenis_kegiatan' => 'required',
+            'waktu_peminjaman' => 'required',
             'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
         ]);
 
         $pm_ruangan = pm_ruangan::findOrFail($id);
-        $pm_ruangan->penanggungjawab = $request->penanggungjawab;
-        $pm_ruangan->instansi = $request->instansi;
-        $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
+        $pm_ruangan->code_peminjaman = $request->code_peminjaman;
+        $pm_ruangan->id_anggota = $request->id_anggota;
         $pm_ruangan->id_ruangan = $request->id_ruangan;
+        $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
         $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pm_ruangan->tanggal_pengembalian = $request->tanggal_pengembalian;
-        $pm_ruangan->keterangan = $request->keterangan;
+        $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');

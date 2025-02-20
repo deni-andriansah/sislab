@@ -89,12 +89,12 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="" class="menu-link" >
+            <a href="{{ route('p_barang.index') }}" class="menu-link" >
               <div data-i18n="Basic">Pengembalian Barang</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="" class="menu-link" >
+            <a href="{{ route('p_ruangan.index') }}" class="menu-link" >
               <div data-i18n="Basic">Pengembalian Ruangan</div>
             </a>
           </li>

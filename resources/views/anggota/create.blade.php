@@ -17,6 +17,17 @@
                     <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-2">
+                            <label class="form-label">Kode Mahasiswa</label>
+                            <input type="text" class="form-control @error('code_anggota') is-invalid @enderror" name="code_anggota"
+                            value="{{ old('code_anggota') }}" placeholder="Kode Mahasiswa" required>
+                            @error('code_anggota')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
                             <label class="form-label">Nama Peminjam</label>
                             <input type="text" class="form-control @error('anggota') is-invalid @enderror" name="nama_peminjam"
                             value="{{ old('anggota') }}" placeholder="Nama peminjam" required>

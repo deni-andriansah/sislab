@@ -18,32 +18,10 @@
                         @csrf
 
                         <div class="mb-2">
-                            <label class="form-label">Penanggung Jawab</label>
-                            <input type="text" class="form-control @error('penanggungjawab') is-invalid @enderror" name="penanggungjawab"
-                            value="{{ old('penanggungjawab') }}" placeholder="Penanggung jawab" required>
-                            @error('penanggungjawab')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Instansi</label>
-                            <input type="text" class="form-control @error('instansi') is-invalid @enderror" name="instansi"
-                            value="{{ old('instansi') }}" placeholder="Instansi" required>
-                            @error('instansi')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Jenis Kegiatan</label>
-                            <input type="text" class="form-control @error('jenis_kegiatan') is-invalid @enderror" name="jenis_kegiatan"
-                            value="{{ old('jenis_kegiatan') }}" placeholder="Jenis kegiatan" required>
-                            @error('jenis_kegiatan')
+                            <label class="form-label">Kode Peminjaman</label>
+                            <input type="text" class="form-control @error('code_peminjaman') is-invalid @enderror" name="code_peminjaman"
+                            value="{{ old('code_peminjaman') }}" placeholder="Kode Peminjaman" required>
+                            @error('code_peminjaman')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -51,7 +29,16 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="">Nama Ruangan</label>
+                            <label for="">Nama Peminjam</label>
+                            <select name="id_anggota" id="" class="form-control">
+                                @foreach ($anggota as $data)
+                                    <option value="{{$data->id}}">{{ $data->nama_peminjam}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="">Ruangan</label>
                             <select name="id_ruangan" id="" class="form-control">
                                 @foreach ($ruangan as $data)
                                     <option value="{{$data->id}}">{{ $data->nama_ruangan}}</option>
@@ -71,10 +58,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Tanggal Pengembalian</label>
-                            <input type="date" class="form-control @error('tanggal_pengembalian') is-invalid @enderror" name="tanggal_pengembalian"
-                            value="{{ old('tanggal_pengembalian') }}" placeholder="Tanggal pengembalian" required>
-                            @error('tanggal_pengembalian')
+                            <label class="form-label">Jenis Kegiatan</label>
+                            <input type="text" class="form-control @error('jenis_kegiatan') is-invalid @enderror" name="jenis_kegiatan"
+                            value="{{ old('jenis_kegiatan') }}" placeholder="Jenis kegiatan" required>
+                            @error('jenis_kegiatan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -82,10 +69,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Keterangan</label>
-                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan"
-                            value="{{ old('keterangan') }}" placeholder="Keterangan" required>
-                            @error('keterangan')
+                            <label class="form-label">Waktu Peminjaman</label>
+                            <input type="text" class="form-control @error('waktu_peminjaman') is-invalid @enderror" name="waktu_peminjaman"
+                            value="{{ old('waktu_peminjaman') }}" placeholder="Waktu Peminjaman" required>
+                            @error('waktu_peminjaman')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

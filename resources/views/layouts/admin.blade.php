@@ -37,6 +37,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/fontawesome-free-6.7.2-web/css/all.css')}}">
 
     <!-- Page CSS -->
 
@@ -98,6 +99,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js')}}"></script>
+    <script src="{{asset('assets/fontawesome-free-6.7.2-web/js/all.js')}}"></script>
      @include('sweetalert::alert')
     @stack('scripts')
   </body>

@@ -30,8 +30,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Barang</th>
+                        <th>Kode Maintenance</th>
                         <th>Ruangan</th>
+                        <th>Nama Barang</th>
+                        <th>Kondisi</th>
+                        <th>Keterangan</th>
+                        <th>Jumlah</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -40,8 +44,12 @@
                     @foreach ($detail_ruangan as $data)
                     <tr>
                         <td>{{ $i++ }}</td>
+                        <td>{{ $data->code_maintenance }}</td>
                         <td>{{$data->barang->nama_barang}}</td>
                         <td>{{$data->ruangan->nama_ruangan}}</td>
+                        <td>{{ $data->kondisi }}</td>
+                        <td>{{ $data->keterangan }}</td>
+                        <td>{{ $data->jumlah }}</td>
 
                         <td>
                             <form action="{{ route('detail_ruangan.destroy', $data->id) }}" method="POST">

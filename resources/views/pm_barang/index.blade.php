@@ -35,10 +35,10 @@
                         <th>Nama Peminjam</th>
                         <th>Jenis kegiatan</th>
                         <th>Nama Barang</th>
+                        <th>Jumlah Pinjam</th>
                         <th>Nama Ruangan</th>
                         <th>Tanggal Peminjaman</th>
                         <th>Waktu Peminjaman</th>
-                        <th>Dokumentasi</th>
                         <th>serah terima </th>
                         <th>berita peminjaman</th>
                         <th>aksi</th>
@@ -51,15 +51,12 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $data->code_peminjaman }}</td>
                         <td>{{ $data->anggota->nama_peminjam }}</td>
-                        <td>{{ $data->jenis_kegitan }}</td>
+                        <td>{{ $data->jenis_kegiatan }}</td>
                         <td>{{$data->barang->nama_barang}}</td>
+                        <td>{{ $data->jumlah_pinjam }}</td>
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_peminjaman }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
-                        <td>
-                            <img src="{{ asset('/images/pm_barang/' . $data->cover) }}"
-                                style="width: 150px">
-                        </td>
 
 <!-- Tombol untuk membuka modal -->
 <td class="button">

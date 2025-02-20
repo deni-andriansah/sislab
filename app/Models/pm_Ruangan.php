@@ -8,12 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class pm_Ruangan extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','penanggungjawab','instansi','jenis_kegiatan','id_ruangan','tanggal_peminjaman','tanggal_pengembalian','keterangan','cover'];
+    protected $fillable = ['id','code_peminjaman','id_anggota','id_ruangan','tanggal_peminjaman','jenis_kegiatan','waktu_peminjaman','cover'];
     public $timestamps = true;
 
     public function ruangan()
     {
         return $this->belongsTo(Ruangan::class, 'id_ruangan');
+    }
+
+    public function anggota()
+    {
+        return $this->belongsTo(anggota::class, 'id_anggota');
     }
 
     public function deleteImage(){
@@ -22,5 +27,5 @@ class pm_Ruangan extends Model
         }
     }
 
-    
+
 }

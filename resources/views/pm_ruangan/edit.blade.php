@@ -22,10 +22,10 @@
                         @csrf
 
                          <div class="mb-3">
-                            <label class="form-label">Penanggung Jawab</label>
-                            <input type="text" class="form-control @error('penanggungjawab') is-invalid @enderror" name="penanggungjawab"
-                                value="{{ $pm_ruangan->penanggungjawab }}" placeholder="Penanggung jawab" required>
-                            @error('penanggungjawab')
+                            <label class="form-label">Kode Peminjaman</label>
+                            <input type="text" class="form-control @error('code_peminjaman') is-invalid @enderror" name="code_peminjaman"
+                                value="{{ $pm_ruangan->code_peminjaman }}" placeholder="Kode Peminjaman" required>
+                            @error('code_peminjaman')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -33,29 +33,16 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Instansi</label>
-                            <input type="text" class="form-control @error('instansi') is-invalid @enderror" name="instansi"
-                                value="{{ $pm_ruangan->instansi }}" placeholder="Instansi" required>
-                            @error('instansi')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                            <label for="">Nama Peminjam</label>
+                            <select name="id_anggota" id="" class="form-control">
+                                @foreach ($anggota as $item)
+                                    <option value="{{$item->id}}" {{$item->id == $pm_ruangan->id_anggota ? 'selected': ''}}>{{ $item->nama_peminjam }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Jenis Kegiatan</label>
-                            <input type="text" class="form-control @error('jenis_kegiatan') is-invalid @enderror" name="jenis_kegiatan"
-                                value="{{ $pm_ruangan->jenis_kegiatan }}" placeholder="Jenis kegiatan" required>
-                            @error('jenis_kegiatan')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="">Nama Ruangan</label>
+                            <label for="">Ruangan</label>
                             <select name="id_ruangan" id="" class="form-control">
                                 @foreach ($ruangan as $item)
                                     <option value="{{$item->id}}" {{$item->id == $pm_ruangan->id_ruangan ? 'selected': ''}}>{{ $item->nama_ruangan }}</option>
@@ -75,22 +62,32 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Tanggal Pengembalian</label>
-                            <input type="date" class="form-control @error('tanggal_pengembalian') is-invalid @enderror" name="tanggal_pengembalian"
-                                value="{{ $pm_ruangan->tanggal_pengembalian }}" placeholder="Tanggal pengembalian" required>
-                            @error('tanggal_pengembalian')
+                            <label class="form-label">Jenis Kegiatan</label>
+                            <input type="text" class="form-control @error('jenis_kegiatan') is-invalid @enderror" name="jenis_kegiatan"
+                                value="{{ $pm_ruangan->jenis_kegiatan }}" placeholder="Jenis kegiatan" required>
+                            @error('jenis_kegiatan')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal Peminjaman</label>
+                            <input type="date" class="form-control @error('tanggal_peminjaman') is-invalid @enderror" name="tanggal_peminjaman"
+                                value="{{ $pm_ruangan->tanggal_peminjaman }}" placeholder="Tanggal peminjaman" required>
+                            @error('tanggal_peminjaman')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Keterangan</label>
-                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan"
-                                value="{{ $pm_ruangan->keterangan }}" placeholder="Keterangan" required>
-                            @error('keterangan')
+                            <label class="form-label">Waktu Peminjaman</label>
+                            <input type="date" class="form-control @error('waktu_peminjaman') is-invalid @enderror" name="waktu_peminjaman"
+                                value="{{ $pm_ruangan->waktu_peminjaman }}" placeholder="Waktu peminjaman" required>
+                            @error('waktu_peminjaman')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

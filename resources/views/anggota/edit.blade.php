@@ -21,6 +21,17 @@
                         @method('put')
                         @csrf
                         <div class="mb-3">
+                            <label class="form-label">Kode Mahasiswa</label>
+                            <input type="text" class="form-control @error('code_anggota') is-invalid @enderror" name="code_anggota"
+                                value="{{ $anggota->code_anggota }}" placeholder="Kode Mahasiswa" required>
+                            @error('code_anggota')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Nama Peminjam</label>
                             <input type="text" class="form-control @error('nama_anggota') is-invalid @enderror" name="nama_peminjam"
                                 value="{{ $anggota->nama_peminjam }}" placeholder="Nama peminjam" required>

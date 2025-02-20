@@ -30,6 +30,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Kode Anggota</th>
                         <th>Nama Peminjam</th>
                         <th>Email</th>
                         <th>Nomer Telepon</th>
@@ -42,12 +43,13 @@
                     @foreach ($anggota as $data)
                     <tr>
                         <td>{{ $i++ }}</td>
+                        <td>{{ $data->code_anggota }}</td>
                         <td>{{ $data->nama_peminjam }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->no_telepon }}</td>
                         <td>{{ $data->instansi_lembaga }}</td>
 
-                        <td>
+                        <td style="width: 1000px">
                             <form action="{{ route('anggota.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

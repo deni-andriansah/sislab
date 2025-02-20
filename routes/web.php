@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
+Auth::routes(['register' => false]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,6 +37,9 @@ Route::resource('lm_ruangan', App\Http\Controllers\LmRuanganController::class)->
 Route::resource('pm_ruangan', App\Http\Controllers\PmRuanganController::class)->middleware('auth');
 Route::resource('pm_barang', App\Http\Controllers\PmBarangController::class)->middleware('auth');
 
+Route::resource('p_ruangan', App\Http\Controllers\PRuanganController::class)->middleware('auth');
+Route::resource('p_barang', App\Http\Controllers\PBarangController::class)->middleware('auth');
+
 Route::resource('l_barang', App\Http\Controllers\LBarangController::class)->middleware('auth');
 Route::resource('l_ruangan', App\Http\Controllers\LRuanganController::class)->middleware('auth');
 
@@ -46,3 +50,6 @@ Route::get('/pm_ruangan/view-pdf/{idPeminjaman}', [App\Http\Controllers\Pmruanga
 
 Route::get('pm_barang/export-barang/{idPeminjaman}', [App\Http\Controllers\PmBarangController::class, 'viewBARANG'])->name('pm_barang.view-barang');
 Route::get('pm_ruangan/export-ruangan/{idPeminjaman}', [App\Http\Controllers\PmruanganController::class, 'viewruangan'])->name('pm_ruangan.view-ruangan');
+
+Route::post('/barang/{id}/pinjam', [App\Http\Controllers\BarangController::class, 'pinjam'])->name('barang.pinjam');
+

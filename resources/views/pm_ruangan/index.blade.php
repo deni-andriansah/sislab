@@ -30,13 +30,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Penanggung Jawab</th>
-                        <th>Instansi</th>
-                        <th>Jenis Kegiatan</th>
-                        <th>Nama Ruangan</th>
+                        <th>Kode Peminjaman</th>
+                        <th>Nama Peminjam</th>
+                        <th>Ruangan</th>
                         <th>Tanggal Peminjaman</th>
-                        <th>Tanggal Pengembalian</th>
-                        <th>Keterangan</th>
+                        <th>Jenis Kegiatan</th>
+                        <th>Waktu Peminjaman</th>
                         <th>Dokumentasi</th>
                         <th>serah terima</th>
                         <th>berita peminjaman</th>
@@ -48,13 +47,12 @@
                     @foreach ($pm_ruangan as $data)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $data->penanggungjawab }}</td>
-                        <td>{{ $data->instansi }}</td>
-                        <td>{{$data->jenis_kegiatan}}</td>
+                        <td>{{ $data->code_peminjaman }}</td>
+                        <td>{{$data->anggota->nama_peminjam}}</td>
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_peminjaman }}</td>
-                        <td>{{ $data->tanggal_pengembalian }}</td>
-                        <td  style="width: 80px">{{ $data->keterangan }}</td>
+                        <td>{{$data->jenis_kegiatan}}</td>
+                        <td>{{ $data->waktu_peminjaman }}</td>
                         <td>
                             <img src="{{ asset('/images/pm_ruangan/' . $data->cover) }}"
                                 style="width: 150px">

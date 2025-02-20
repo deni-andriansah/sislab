@@ -17,10 +17,10 @@
 <div class="card">
     <div class="card-header">
         <div class="float-start">
-            <h5>Kategori</h5>
+            <h5>Pengembalian Barang</h5>
         </div>
         <div class="float-end ">
-            <a href="{{ route('kategori.create') }}" class="btn btn-sm btn-primary">Add</a>
+            <a href="{{ route('p_barang.create') }}" class="btn btn-sm btn-primary">Add</a>
         </div>
     </div>
 
@@ -30,24 +30,30 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Kose Peminjam</th>
+                        <th>Nama Pengembali</th>
+                        <th>Tanggal Pengembalian</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @php $i = 1; @endphp
-                    @foreach ($kategori as $data)
+                    @foreach ($p_barang as $data)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $data->nama_kategori }}</td>
+                        <td>{{ $data->pm_barang->code_peminjaman}}</td>
+                        <td>{{ $data->nama_pengembali }}</td>
+                        <td>{{ $data->tanggal_pengembalian }}</td>
+                        <td>{{ $data->keterangan }}</td>
 
-                        <td>
-                            <form action="{{ route('kategori.destroy', $data->id) }}" method="POST">
+                        <td  style="width: 1000px">
+                            <form action="{{ route('p_barang.destroy', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('kategori.edit', $data->id) }}"
+                                <a href="{{ route('p_barang.edit', $data->id) }}"
                                     class="btn btn-sm btn-warning">Edit</a> |
-                                <a href="{{ route('kategori.destroy', $data->id)}}"
+                                <a href="{{ route('p_barang.destroy', $data->id)}}"
                                      class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
                             </form>
                         </td>

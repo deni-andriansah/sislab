@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('code_peminjaman');
             $table->bigInteger('id_anggota')->unsigned();
-            $table->string('jenis_kegatan');
+            $table->string('jenis_kegiatan');
             $table->bigInteger('id_barang')->unsigned();
             $table->foreign('id_barang')->references('id')->on('barangs')->ondelete('cascade');
+            $table->string('jumlah_pinjam');
             $table->bigInteger('id_ruangan')->unsigned();
             $table->foreign('id_ruangan')->references('id')->on('ruangans')->ondelete('cascade');
             $table->string('tanggal_peminjaman');
             $table->string('waktu_peminjaman');
-            $table->string('cover');
             $table->timestamps();
         });
     }

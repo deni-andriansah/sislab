@@ -28,6 +28,7 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'code_anggota' => 'required',
             'nama_peminjam' => 'required',
             'email' => 'required',
             'no_telepon' => 'required',
@@ -36,6 +37,7 @@ class AnggotaController extends Controller
         ]);
 
         $anggota = new anggota();
+        $anggota->code_anggota = $request->code_anggota;
         $anggota->nama_peminjam = $request->nama_peminjam;
         $anggota->email = $request->email;
         $anggota->no_telepon = $request->no_telepon;
@@ -62,6 +64,7 @@ class AnggotaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'code_anggota' => 'required',
             'nama_peminjam' => 'required',
             'email' => 'required',
             'no_telepon' => 'required',
@@ -70,6 +73,7 @@ class AnggotaController extends Controller
         ]);
 
         $anggota = anggota::findOrFail($id);
+        $anggota->code_anggota = $request->code_anggota;
         $anggota->nama_peminjam = $request->nama_peminjam;
         $anggota->email = $request->email;
         $anggota->no_telepon = $request->no_telepon;

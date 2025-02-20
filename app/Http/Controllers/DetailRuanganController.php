@@ -29,12 +29,21 @@ class DetailRuanganController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-
+            'code_maintenance' => 'required',
+            'kondisi' => 'required',
+            'keterangan' => 'required',
+            'jumlah' => 'required',
         ]);
 
         $detail_ruangan = new detail_ruangan();
+        $detail_ruangan->code_maintenance = $request->code_maintenance;
         $detail_ruangan->id_barang = $request->id_barang;
         $detail_ruangan->id_ruangan = $request->id_ruangan;
+        $detail_ruangan->kondisi = $request->kondisi;
+        $detail_ruangan->keterangan = $request->keterangan;
+        $detail_ruangan->jumlah = $request->jumlah;
+
+
 
         Alert::success('Success','data berhasil disimpan')->autoClose(1000);
         $detail_ruangan->save();
@@ -61,12 +70,19 @@ class DetailRuanganController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-
+            'code_maintenance' => 'required',
+            'kondisi' => 'required',
+            'keterangan' => 'required',
+            'jumlah' => 'required',
         ]);
 
         $detail_ruangan = detail_ruangan::findOrFail($id);
+        $detail_ruangan->code_maintenance = $request->code_maintenance;
         $detail_ruangan->id_barang = $request->id_barang;
         $detail_ruangan->id_ruangan = $request->id_ruangan;
+        $detail_ruangan->kondisi = $request->kondisi;
+        $detail_ruangan->keterangan = $request->keterangan;
+        $detail_ruangan->jumlah = $request->jumlah;
 
 
         Alert::success('Success','data berhasil dirubah')->autoClose(1000);
