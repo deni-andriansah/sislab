@@ -110,16 +110,26 @@
 
 
 
-                        <td  style="width: 10000px" >
-                            <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('pm_barang.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a>
-                                <a href="{{ route('pm_barang.destroy', $data->id)}}"
-                                     class="btn btn-sm btn-danger mt-2" data-confirm-delete="true">Delete</a>
-                            </form>
-                        </td>
+<td>
+    <div class="dropdown d-inline">
+        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        ⋮
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+                <a class="dropdown-item" href="{{ route('pm_barang.edit', $data->id) }}">✏ Edit</a>
+            </li>
+            <li>
+                <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+                  <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">🗑 Hapus</button>
+                </form>
+            </li>
+</ul>
+</div>
+
+ </td>
                     </tr>
                     @endforeach
                 </tbody>

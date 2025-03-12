@@ -52,15 +52,25 @@
                         <td>{{ $data->jumlah }}</td>
 
                         <td>
-                            <form action="{{ route('barang.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('barang.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a> |
-                                <a href="{{ route('barang.destroy', $data->id)}}"
-                                     class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
-                            </form>
-                        </td>
+                            <div class="dropdown d-inline">
+     <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+         ⋮
+     </button>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+         <li>
+             <a class="dropdown-item" href="{{ route('barang.edit', $data->id) }}">✏ Edit</a>
+         </li>
+         <li>
+             <form action="{{ route('barang.destroy', $data->id) }}" method="POST" class="d-inline">
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit" class="dropdown-item text-danger">🗑 Hapus</button>
+             </form>
+         </li>
+     </ul>
+ </div>
+
+                         </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -72,10 +82,3 @@
 </div>
 @endsection
 
-@push('scripts')
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
-<script>
-    new DataTable('#example');
-</script>
-@endpush

@@ -49,16 +49,26 @@
                         <td>{{ $data->no_telepon }}</td>
                         <td>{{ $data->instansi_lembaga }}</td>
 
-                        <td style="width: 1000px">
-                            <form action="{{ route('anggota.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('anggota.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a> |
-                                <a href="{{ route('anggota.destroy', $data->id)}}"
-                                     class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
-                            </form>
-                        </td>
+                        <td>
+                            <div class="dropdown d-inline">
+     <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+         ⋮
+     </button>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+         <li>
+             <a class="dropdown-item" href="{{ route('anggota.edit', $data->id) }}">✏ Edit</a>
+         </li>
+         <li>
+             <form action="{{ route('anggota.destroy', $data->id) }}" method="POST" class="d-inline">
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit" class="dropdown-item text-danger" >🗑 Hapus</button>
+             </form>
+         </li>
+     </ul>
+ </div>
+
+                         </td>
                     </tr>
                     @endforeach
                 </tbody>
