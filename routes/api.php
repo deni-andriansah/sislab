@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\Anggota;
+use App\Http\Controllers\Api\Anggota;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::prefix('anggota')->group(function () {
+    Route::get('/', [Anggota::class, 'index']);
+    Route::post('/', [Anggota::class, 'store']);
+    Route::get('/{id}', [Anggota::class, 'show']);
+    Route::put('/{id}', [Anggota::class, 'update']);
+    Route::delete('/{id}', [Anggota::class, 'destroy']);
+});
 
 Route::middleware('auth:sanctum')->group(function () {
-
-        Route::get('/anggota', [Anggota::class, 'index']);
-        Route::post('/anggota', [Anggota::class, 'store']);
-        Route::get('/anggota/{id}', [Anggota::class, 'show']);
-        Route::put('/anggota/{id}', [Anggota::class, 'update']);
-        Route::delete('/anggota/{id}', [Anggota::class, 'destroy']);
-
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 });

@@ -52,8 +52,21 @@
                         <td>{{ $data->code_peminjaman }}</td>
                         <td>{{ $data->anggota->nama_peminjam }}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
-                        <td>{{$data->barang->nama_barang}}</td>
-                        <td>{{ $data->jumlah_pinjam }}</td>
+                         <td>
+                        <ul>
+                            @foreach ($data->peminjaman_details as $detail)
+                            <li>{{ $detail->barang->nama_barang }} </li>
+                            @endforeach
+                        </ul>
+                    </td>
+                     <td>
+                        <ul>
+                            @foreach ($data->peminjaman_details as $detail)
+                            <li> {{ $detail->jumlah_pinjam }} Pcs</li>
+                            @endforeach
+                        </ul>
+                    </td>
+
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_peminjaman }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
@@ -110,26 +123,27 @@
 
 
 
-<td>
-    <div class="dropdown d-inline">
-        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <<td>
+                        <div class="dropdown d-inline">
+    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         ⋮
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li>
-                <a class="dropdown-item" href="{{ route('pm_barang.edit', $data->id) }}">✏ Edit</a>
-            </li>
-            <li>
-                <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-                  <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">🗑 Hapus</button>
-                </form>
-            </li>
-</ul>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li>
+            <a class="dropdown-item" href="{{ route('pm_barang.edit', $data->id) }}">✏ Edit</a>
+        </li>
+        <li>
+            <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">🗑 Hapus</button>
+            </form>
+        </li>
+    </ul>
 </div>
 
- </td>
+                        </td>
+
                     </tr>
                     @endforeach
                 </tbody>

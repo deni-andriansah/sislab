@@ -30,6 +30,10 @@ class pm_Barang extends Model
     {
         return $this->hasMany(l_barang::class, 'id_pm_barang');
     }
+    public function peminjaman_details()
+    {
+        return $this->hasMany( peminjaman_detail::class, 'id_pm_barang');
+    }
 
     public static function generateUniqueCode()
     {
