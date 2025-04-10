@@ -77,29 +77,79 @@ class PmBarangController extends Controller
     return redirect()->route('pm_barang.index');
 }
 
-    public function edit($id)
-    {
-        $barang = Barang::all();
-        $ruangan = Ruangan::all();
-        $anggota = Anggota::all();
-        $pm_barang = pm_barang::where('code_peminjaman', $id)->get();
-        return view('pm_barang.edit', compact('pm_barang', 'barang', 'ruangan', 'anggota'));
+public function edit($id)
+{
+    \Log::info("ID yang diterima di edit: " . $id);
+
+    // Ambil satu data peminjaman
+    $pm_barang = pm_barang::where('code_peminjaman', $id)->first();
+if (!$pm_barang) {
+    return redirect()->route('pm_barang.index')->with('error', 'Data peminjaman tidak ditemukan');
+}
+
+    // Ambil detail barang yang dipinjam
+    $details = peminjaman_detail::where('id_pm_barang', $pm_barang->id)->get();
+    $barang = Barang::all();
+    $ruangan = Ruangan::all();
+    $anggota = Anggota::all();
+
+    return view('pm_barang.edit', compact('pm_barang', 'details', 'barang', 'ruangan', 'anggota'));
+}
+
+public function update(Request $request, $id)
+{
+    $validated = $request->validate([
+        'jenis_kegiatan' => 'required',
+        'id_barang' => 'required|array',
+        'jumlah_pinjam' => 'required|array',
+        'jumlah_pinjam.*' => 'integer|min:1',
+        'tanggal_peminjaman' => 'required|date',
+        'waktu_peminjaman' => 'required',
+    ]);
+
+    $pm_barang = pm_barang::where('code_peminjaman', $id)->firstOrFail();
+
+    // Mengembalikan stok barang lama
+    foreach ($pm_barang->peminjaman_details as $detail) {
+        $barangLama = Barang::findOrFail($detail->id_barang);
+        $barangLama->jumlah += $detail->jumlah_pinjam;
+        $barangLama->save();
     }
 
-    public function update(Request $request, $id)
-    {
-        $pm_barang = pm_barang::where('code_peminjaman', $id)->get();
+    // Hapus detail lama
+    peminjaman_detail::where('id_pm_barang', $pm_barang->id)->delete();
 
-        foreach ($pm_barang as $item) {
-            $barangLama = Barang::findOrFail($item->id_barang);
-            $barangLama->jumlah += $item->jumlah_pinjam;
-            $barangLama->save();
-            $item->delete();
+    // Update data peminjaman
+    $pm_barang->update([
+        'id_anggota' => $request->id_anggota,
+        'jenis_kegiatan' => $request->jenis_kegiatan,
+        'id_ruangan' => $request->id_ruangan,
+        'tanggal_peminjaman' => $request->tanggal_peminjaman,
+        'waktu_peminjaman' => $request->waktu_peminjaman,
+    ]);
+
+    // Simpan detail baru
+    foreach ($request->id_barang as $index => $id_barang) {
+        $barang = Barang::findOrFail($id_barang);
+
+        if ($barang->jumlah < $request->jumlah_pinjam[$index]) {
+            Alert::error('Error', 'Stok barang tidak mencukupi!')->autoClose(2000);
+            return redirect()->back();
         }
 
-        return $this->store($request);
+        $barang->jumlah -= $request->jumlah_pinjam[$index];
+        $barang->save();
+
+        peminjaman_detail::create([
+            'id_pm_barang' => $pm_barang->id,
+            'id_barang' => $id_barang,
+            'jumlah_pinjam' => $request->jumlah_pinjam[$index],
+        ]);
     }
 
+    Alert::success('Success', 'Data berhasil diperbarui')->autoClose(1000);
+    return redirect()->route('pm_barang.index');
+}
 
     public function destroy($id)
     {

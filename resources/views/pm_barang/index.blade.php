@@ -50,7 +50,7 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $data->code_peminjaman }}</td>
-                        <td>{{ $data->anggota->nama_peminjam }}</td>
+                        <td>{{ $data->anggota->nama_peminjam}}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
                          <td>
                         <ul>
@@ -128,15 +128,13 @@
     <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         ⋮
     </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li>
-            <a class="dropdown-item" href="{{ route('pm_barang.edit', $data->id) }}">✏ Edit</a>
-        </li>
+    <ul class="dropdown-menu">
+        <li><a href="{{ route('pm_barang.edit', $data->code_peminjaman) }}" class="dropdown-item">Edit</a></li>
         <li>
             <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">🗑 Hapus</button>
+                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
             </form>
         </li>
     </ul>

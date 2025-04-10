@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
-use App\Models\pm_Ruangan;
+use App\Models\pm_ruangan;
 use App\Models\anggota;
+use App\Models\PeminjamanDetailRuangan;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use PDF;
@@ -52,6 +53,7 @@ class PmRuanganController extends Controller
     public function index()
     {
         $pm_ruangan =  pm_ruangan::all();
+
         confirmDelete('Delete','Are you sure?');
         return view('pm_ruangan.index', compact('pm_ruangan'));
     }
@@ -66,35 +68,28 @@ class PmRuanganController extends Controller
 
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'code_peminjaman' => 'required',
-            'tanggal_peminjaman' => 'required',
-            'jenis_kegiatan' => 'required',
-            'waktu_peminjaman' => 'required',
-            'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
-        ]);
+{
 
-        $pm_ruangan = new pm_ruangan();
-        $pm_ruangan->code_peminjaman = $request->code_peminjaman;
-        $pm_ruangan->id_anggota = $request->id_anggota;
-        $pm_ruangan->id_ruangan = $request->id_ruangan;
-        $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
-        $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
+    $pm_ruangan = new pm_ruangan();
+    $pm_ruangan->code_peminjaman = $request->code_peminjaman;
+    $pm_ruangan->id_anggota = $request->id_anggota;
+    $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
+    $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
+    $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
 
-        if ($request->hasFile('cover')) {
-            $img = $request->file('cover');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/pm_ruangan', $name);
-            $pm_ruangan->cover = $name;
-        }
+    $pm_ruangan->save();
 
-        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
-        $pm_ruangan->save();
-
-        return redirect()->route('pm_ruangan.index');
+    // Simpan ke tabel detail ruangan
+    foreach ($request->id_ruangan as $id_ruangan) {
+        $detail = new PeminjamanDetailRuangan();
+        $detail->id_pm_ruangan = $pm_ruangan->id;
+        $detail->id_ruangan = $id_ruangan;
+        $detail->save();
     }
+
+    Alert::success('Success', 'Data berhasil disimpan')->autoClose(1000);
+    return redirect()->route('pm_ruangan.index');
+}
 
 
     public function show(pm_ruangan $barang)
@@ -105,11 +100,14 @@ class PmRuanganController extends Controller
 
     public function edit($id)
     {
-        $anggota =  anggota::all();
-        $ruangan =  Ruangan::all();
+        $anggota = anggota::all();
+        $ruangan = Ruangan::all();
         $pm_ruangan = pm_ruangan::findOrFail($id);
-        return view('pm_ruangan.edit', compact('pm_ruangan','anggota','ruangan'));
+        $details = PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->get();
+
+        return view('pm_ruangan.edit', compact('pm_ruangan', 'anggota', 'ruangan', 'details'));
     }
+
 
 
     public function update(Request $request, $id)
@@ -119,28 +117,33 @@ class PmRuanganController extends Controller
             'tanggal_peminjaman' => 'required',
             'jenis_kegiatan' => 'required',
             'waktu_peminjaman' => 'required',
-            'cover' => 'file|mimes:jpeg,png,jpg,gif,svg,pdf|max:1024',
-        ]);
+            'id_ruangan' => 'required|array|min:1',
+            ]);
 
         $pm_ruangan = pm_ruangan::findOrFail($id);
         $pm_ruangan->code_peminjaman = $request->code_peminjaman;
         $pm_ruangan->id_anggota = $request->id_anggota;
-        $pm_ruangan->id_ruangan = $request->id_ruangan;
         $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
         $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
         $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
 
-        if ($request->hasFile('cover')) {
-            $img = $request->file('cover');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/pm_ruangan', $name);
-            $pm_ruangan->cover = $name;
+        $pm_ruangan->save();
+
+        // Hapus detail lama
+        PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->delete();
+
+        // Simpan detail baru
+        foreach ($request->id_ruangan as $id_ruangan) {
+            $detail = new PeminjamanDetailRuangan();
+            $detail->id_pm_ruangan = $pm_ruangan->id;
+            $detail->id_ruangan = $id_ruangan;
+            $detail->save();
         }
 
-        Alert::success('Success','data berhasil diubah')->autoClose(1000);
-        $pm_ruangan->save();
+        Alert::success('Success','Data berhasil diubah')->autoClose(1000);
         return redirect()->route('pm_ruangan.index');
     }
+
 
 
     public function destroy($id)
