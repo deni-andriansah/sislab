@@ -15,8 +15,4 @@ class m_Ruangan extends Model
     {
         return $this->belongsTo(Ruangan::class, 'id_ruangan');
     }
-    public function kondisi()
-    {
-        return $this->belongsTo(Kondisi::class, 'id_kondisi');
-    }
 }

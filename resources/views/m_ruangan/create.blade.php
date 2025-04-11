@@ -16,6 +16,17 @@
                 <div class="card-body">
                     <form action="{{ route('m_ruangan.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="mb-2">
+                            <label class="form-label">Code Maintenance</label>
+                            <input type="text" class="form-control @error('code_maintenance') is-invalid @enderror" name="code_maintenance"
+                            value="{{ old('code_maintenance') }}" placeholder="Jenis perbaikan" required>
+                            @error('code_maintenance')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
 
                         <div class="mb-3">
                             <label for="">Nama Ruangan</label>
@@ -27,10 +38,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Jenis Perbaikan</label>
-                            <input type="text" class="form-control @error('jenis_perbaikan') is-invalid @enderror" name="jenis_perbaikan"
-                            value="{{ old('jenis_perbaikan') }}" placeholder="Jenis perbaikan" required>
-                            @error('jenis_perbaikan')
+                            <label class="form-label">Tanggal Maintenance</label>
+                            <input type="date" class="form-control @error('tanggal_maintenance') is-invalid @enderror" name="tanggal_maintenance"
+                            value="{{ old('tanggal_maintenance') }}" placeholder="Jenis perbaikan" required>
+                            @error('tanggal_maintenance')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -49,13 +60,15 @@
                         </div>
 
 
-                        <div class="mb-3">
-                            <label for="">Kondisi</label>
-                            <select name="id_kondisi" id="" class="form-control">
-                                @foreach ($kondisi as $data)
-                                    <option value="{{$data->id}}">{{ $data->kondisi}}</option>
-                                @endforeach
-                            </select>
+                        <div class="mb-2">
+                            <label class="form-label">Keterangan</label>
+                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan"
+                            value="{{ old('keterangan') }}" placeholder="Waktu pengerjaan" required>
+                            @error('keterangan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
 

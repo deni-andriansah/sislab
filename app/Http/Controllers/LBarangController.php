@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kondisi;
 use App\Models\pm_barang;
-use App\Models\l_Barang;
+use App\Models\l_barang;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
@@ -16,10 +16,9 @@ class LBarangController extends Controller
     }
     public function index()
     {
-        $l_barang =  l_barang::all();
         $pm_barang =  pm_barang::all();
         confirmDelete('Delete','Are you sure?');
-        return view('l_barang.index', compact('l_barang','pm_barang'));
+        return view('l_barang.index', compact('pm_barang'));
     }
 
 

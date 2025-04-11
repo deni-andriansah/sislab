@@ -31,10 +31,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Code Maintenace</th>
                         <th>Nama Ruangan</th>
-                        <th>Jenis Perbaikan</th>
+                        <th>Tanggal Maintenace</th>
                         <th>Waktu Pengerjaan</th>
-                        <th>Kondisi</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -43,10 +44,11 @@
                     @foreach ($m_ruangan as $data)
                     <tr>
                         <td>{{ $i++ }}</td>
+                        <td>{{ $data->code_maintenance }}</td>
                         <td>{{$data->ruangan->nama_ruangan}}</td>
-                        <td>{{ $data->jenis_perbaikan }}</td>
+                        <td>{{ $data->tanggal_maintenance }}</td>
                         <td>{{ $data->waktu_pengerjaan }}</td>
-                        <td>{{$data->kondisi->kondisi}}</td>
+                         <td>{{ $data->waktu_pengerjaan }}</td>
 
                         <td>
                             <div class="dropdown d-inline">
