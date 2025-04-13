@@ -5,18 +5,16 @@ use App\Http\Controllers\Api\BarangApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Anggota;
 use App\Http\Controllers\Api\PeminjamanController;
-
-
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\KategoriController;
 
 /*
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------
 | API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
+|----------------------------------------------------------------------
+| Here is where you can register API routes for your application.
+| These routes are loaded by the RouteServiceProvider within a group
+| which is assigned the "api" middleware group. Enjoy building your API!
 */
 
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
@@ -26,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Anggota API Routes
 Route::prefix('anggota')->group(function () {
     Route::get('/', [Anggota::class, 'index']);
     Route::post('/', [Anggota::class, 'store']);
@@ -34,6 +33,7 @@ Route::prefix('anggota')->group(function () {
     Route::delete('/{id}', [Anggota::class, 'destroy']);
 });
 
+// Barang API Routes
 Route::prefix('barang')->group(function () {
     Route::get('/', [BarangApiController::class, 'index']);
     Route::get('/create-kode', [BarangApiController::class, 'createKode']); // untuk generate kode otomatis
@@ -42,6 +42,7 @@ Route::prefix('barang')->group(function () {
     Route::put('/{id}', [BarangApiController::class, 'update']);
     Route::delete('/{id}', [BarangApiController::class, 'destroy']);
 });
+
 // Peminjaman API Routes
 Route::prefix('peminjaman')->group(function () {
     Route::get('/', [PeminjamanController::class, 'index']);               // List semua peminjaman
@@ -51,7 +52,16 @@ Route::prefix('peminjaman')->group(function () {
     Route::delete('/{id}', [PeminjamanController::class, 'destroy']);      // Hapus peminjaman (berdasarkan ID)
 });
 
+// Kategori API Routes
+Route::prefix('kategori')->group(function () {
+    Route::get('/', [KategoriController::class, 'index']);   // List semua kategori
+    Route::post('/', [KategoriController::class, 'store']);  // Simpan kategori baru
+    Route::get('/{id}', [KategoriController::class, 'show']); // Detail kategori berdasarkan ID
+    Route::put('/{id}', [KategoriController::class, 'update']); // Update kategori berdasarkan ID
+    Route::delete('/{id}', [KategoriController::class, 'destroy']); // Hapus kategori berdasarkan ID
+});
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 });
+Route::middleware('auth:sanctum')->get('/profile', [UserController::class, 'profile']);
