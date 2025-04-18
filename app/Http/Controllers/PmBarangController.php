@@ -112,47 +112,53 @@ if (!$pm_barang) {
 
 public function update(Request $request, $id)
 {
-    $validated = $request->validate([
+    // Validasi input
+    $request->validate([
+        'id_anggota' => 'required|exists:anggotas,id',
         'jenis_kegiatan' => 'required',
-        'id_barang' => 'required|array',
-        'jumlah_pinjam' => 'required|array',
-        'jumlah_pinjam.*' => 'integer|min:1',
         'tanggal_peminjaman' => 'required|date',
         'tanggal_pengembalian' => 'required|date',
         'waktu_peminjaman' => 'required',
+        'id_barang' => 'required|array|min:1',
+        'jumlah_pinjam' => 'required|array|min:1',
+        'jumlah_pinjam.*' => 'integer|min:1',
     ]);
 
+    // Ambil data peminjaman
     $pm_barang = pm_barang::where('code_peminjaman', $id)->firstOrFail();
 
-    // Mengembalikan stok barang lama
+    // Kembalikan stok barang sebelumnya
     foreach ($pm_barang->peminjaman_details as $detail) {
-        $barangLama = Barang::findOrFail($detail->id_barang);
-        $barangLama->jumlah += $detail->jumlah_pinjam;
-        $barangLama->save();
+        $barang = Barang::find($detail->id_barang);
+        if ($barang) {
+            $barang->jumlah += $detail->jumlah_pinjam;
+            $barang->save();
+        }
     }
 
-    // Hapus detail lama
+    // Hapus semua detail lama
     peminjaman_detail::where('id_pm_barang', $pm_barang->id)->delete();
 
-    // Update data peminjaman
+    // Update data utama
     $pm_barang->update([
         'id_anggota' => $request->id_anggota,
         'jenis_kegiatan' => $request->jenis_kegiatan,
-        'id_ruangan' => $request->id_ruangan,
         'tanggal_peminjaman' => $request->tanggal_peminjaman,
         'tanggal_pengembalian' => $request->tanggal_pengembalian,
         'waktu_peminjaman' => $request->waktu_peminjaman,
+        'id_ruangan' => $request->id_ruangan,
     ]);
 
-    // Simpan detail baru
+    // Tambah ulang detail baru
     foreach ($request->id_barang as $index => $id_barang) {
         $barang = Barang::findOrFail($id_barang);
 
         if ($barang->jumlah < $request->jumlah_pinjam[$index]) {
-            Alert::error('Error', 'Stok barang tidak mencukupi!')->autoClose(2000);
-            return redirect()->back();
+            Alert::error('Error', 'Stok barang tidak mencukupi untuk ' . $barang->nama_barang)->autoClose(2000);
+            return redirect()->back()->withInput();
         }
 
+        // Kurangi stok barang
         $barang->jumlah -= $request->jumlah_pinjam[$index];
         $barang->save();
 
