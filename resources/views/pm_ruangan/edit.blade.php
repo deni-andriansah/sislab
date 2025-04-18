@@ -8,6 +8,7 @@
             <a href="{{ route('pm_ruangan.index') }}" class="btn btn-primary btn-sm">Kembali</a>
         </div>
         <div class="card-body">
+            <!-- Ganti dari $pm_ruangan->id ke $pm_ruangan->code_peminjaman -->
             <form action="{{ route('pm_ruangan.update', $pm_ruangan->code_peminjaman) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -32,6 +33,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label">Tanggal Pengembalian</label>
+                    <input type="date" name="tanggal_pengembalian" class="form-control" value="{{ $pm_ruangan->tanggal_pengembalian }}" required>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label">Waktu Peminjaman</label>
                     <input type="time" name="waktu_peminjaman" class="form-control" value="{{ $pm_ruangan->waktu_peminjaman }}" required>
                 </div>
@@ -40,7 +46,7 @@
                 <div id="ruangan-container">
                     @foreach($details as $detail)
                     <div class="row mb-2 ruangan-item">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <select name="id_ruangan[]" class="form-control" required>
                                 @foreach($ruangan as $r)
                                     <option value="{{ $r->id }}" {{ $detail->id_ruangan == $r->id ? 'selected' : '' }}>{{ $r->nama_ruangan }}</option>
@@ -68,15 +74,12 @@
         let newRow = document.createElement('div');
         newRow.classList.add('row', 'mb-2', 'ruangan-item');
         newRow.innerHTML = `
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <select name="id_ruangan[]" class="form-control" required>
                     @foreach($ruangan as $r)
                         <option value="{{ $r->id }}">{{ $r->nama_ruangan }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="col-md-4">
-                <input type="number" name="jumlah_pinjam[]" class="form-control" min="1" required>
             </div>
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger remove-ruangan">✖</button>

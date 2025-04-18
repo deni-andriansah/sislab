@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class pm_Barang extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','code_peminjaman','id_anggota','jenis_kegiatan','id_barang','jumlah_pinjam','id_ruangan','tanggal_peminjaman','waktu_peminjaman','cover'];
+    protected $fillable = ['id','code_peminjaman','id_anggota','id_anggota','jenis_kegiatan','id_barang','jumlah_pinjam','id_ruangan','tanggal_peminjaman','tanggal_pengembalian','waktu_peminjaman','cover'];
     public $timestamps = true;
 
     public function barang()
@@ -34,6 +34,7 @@ class pm_Barang extends Model
     {
         return $this->hasMany( peminjaman_detail::class, 'id_pm_barang');
     }
+
 
     public static function generateUniqueCode()
     {

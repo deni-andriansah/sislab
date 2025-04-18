@@ -75,6 +75,7 @@ class PmRuanganController extends Controller
     $pm_ruangan->id_anggota = $request->id_anggota;
     $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
     $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
+    $pm_ruangan->tanggal_pengembalian = $request->tanggal_pengembalian;
     $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
 
     $pm_ruangan->save();
@@ -115,6 +116,7 @@ class PmRuanganController extends Controller
         $this->validate($request, [
             'code_peminjaman' => 'required',
             'tanggal_peminjaman' => 'required',
+            'tanggal_pengembalian' => 'required',
             'jenis_kegiatan' => 'required',
             'waktu_peminjaman' => 'required',
             'id_ruangan' => 'required|array|min:1',
@@ -125,6 +127,7 @@ class PmRuanganController extends Controller
         $pm_ruangan->id_anggota = $request->id_anggota;
         $pm_ruangan->jenis_kegiatan = $request->jenis_kegiatan;
         $pm_ruangan->tanggal_peminjaman = $request->tanggal_peminjaman;
+        $pm_ruangan->tanggal_pengembalian = $request->tanggal_pengembalian;
         $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
 
         $pm_ruangan->save();

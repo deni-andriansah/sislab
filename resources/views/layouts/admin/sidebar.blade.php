@@ -37,6 +37,15 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+
+        <!-- profile -->
+        {{-- <li class="menu-item {{ request()->routeIs('profile.index') ? 'active' : '' }}">
+            <a href="{{ route('profile.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div>Profil</div>
+            </a>
+        </li> --}}
+
         <!-- Dashboards -->
         <li class="menu-item {{ request()->routeIs('home') ? 'active' : '' }}">
             <a href="{{ route('home') }}" class="menu-link">
@@ -109,13 +118,13 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ request()->routeIs('p_barang.index') ? 'active' : '' }}">
-                    <a href="#" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-arrow-back"></i> <!-- Ikon Pengembalian Barang -->
+                    <a href="{{ route('p_barang.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-cart"></i> <!-- Ikon Peminjaman Barang -->
                         <div>Pengembalian Barang</div>
                     </a>
                 </li>
                 <li class="menu-item {{ request()->routeIs('p_ruangan.index') ? 'active' : '' }}">
-                    <a href="#" class="menu-link">
+                    <a href="{{ route('p_ruangan.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-door-open"></i> <!-- Ikon Pengembalian Ruangan -->
                         <div>Pengembalian Ruangan</div>
                     </a>

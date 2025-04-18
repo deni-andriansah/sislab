@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Anggota;
 use App\Http\Controllers\Api\PeminjamanController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KategoriController;
+use App\Http\Controllers\Api\RuanganApi;
 
 /*
 |----------------------------------------------------------------------
@@ -20,8 +21,16 @@ use App\Http\Controllers\Api\KategoriController;
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 
+// Route to get the authenticated user
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::prefix('ruangan')->group(function () {
+    Route::get('/', [RuanganApi::class, 'index']);
+    Route::post('/', [RuanganApi::class, 'store']);
+    Route::get('/{id}', [RuanganApi::class, 'show']);
+    Route::put('/{id}', [RuanganApi::class, 'update']);
+    Route::delete('/{id}', [RuanganApi::class, 'destroy']);
 });
 
 // Anggota API Routes
@@ -49,19 +58,20 @@ Route::prefix('peminjaman')->group(function () {
     Route::post('/', [PeminjamanController::class, 'store']);              // Simpan data peminjaman baru
     Route::get('/{code}', [PeminjamanController::class, 'show']);          // Detail satu peminjaman (berdasarkan kode)
     Route::put('/{code}', [PeminjamanController::class, 'update']);        // Update peminjaman berdasarkan kode
-    Route::delete('/{id}', [PeminjamanController::class, 'destroy']);      // Hapus peminjaman (berdasarkan ID)
+    Route::delete('/{code}', [PeminjamanController::class, 'destroy']);    // Hapus peminjaman (berdasarkan kode)
 });
 
 // Kategori API Routes
 Route::prefix('kategori')->group(function () {
-    Route::get('/', [KategoriController::class, 'index']);   // List semua kategori
-    Route::post('/', [KategoriController::class, 'store']);  // Simpan kategori baru
-    Route::get('/{id}', [KategoriController::class, 'show']); // Detail kategori berdasarkan ID
-    Route::put('/{id}', [KategoriController::class, 'update']); // Update kategori berdasarkan ID
-    Route::delete('/{id}', [KategoriController::class, 'destroy']); // Hapus kategori berdasarkan ID
+    Route::get('/', [KategoriController::class, 'index']);                // List semua kategori
+    Route::post('/', [KategoriController::class, 'store']);               // Simpan kategori baru
+    Route::get('/{id}', [KategoriController::class, 'show']);             // Detail kategori berdasarkan ID
+    Route::put('/{id}', [KategoriController::class, 'update']);           // Update kategori berdasarkan ID
+    Route::delete('/{id}', [KategoriController::class, 'destroy']);       // Hapus kategori berdasarkan ID
 });
 
+// User authentication routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
+    Route::get('/profile', [UserController::class, 'profile']);
 });
-Route::middleware('auth:sanctum')->get('/profile', [UserController::class, 'profile']);

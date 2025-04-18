@@ -32,16 +32,18 @@
                     <tr>
                         <th>No</th>
                         <th>Kode Peminjam</th>
+                        <th>NIM</th>
                         <th>Nama Peminjam</th>
-                        <th>Jenis kegiatan</th>
+                        <th>Jenis Kegiatan</th>
                         <th>Nama Barang</th>
                         <th>Jumlah Pinjam</th>
                         <th>Nama Ruangan</th>
                         <th>Tanggal Peminjaman</th>
+                        <th>Tanggal Pengembalian</th>
                         <th>Waktu Peminjaman</th>
-                        <th>serah terima </th>
-                        <th>berita peminjaman</th>
-                        <th>aksi</th>
+                        <th>Serah Terima</th>
+                        <th>Berita Peminjaman</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -50,6 +52,7 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $data->code_peminjaman }}</td>
+                        <td>{{ $data->anggota->nim}}</td>
                         <td>{{ $data->anggota->nama_peminjam}}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
                          <td>
@@ -69,6 +72,7 @@
 
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_peminjaman }}</td>
+                        <td>{{ $data->tanggal_pengembalian }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
 
 <!-- Tombol untuk membuka modal -->

@@ -20,10 +20,14 @@ class PmBarangController extends Controller
 
     public function index()
     {
-        $pm_barang = pm_barang::all();
-        confirmDelete('Delete', 'Are you sure?');
-        return view('pm_barang.index', compact('pm_barang'));
+        $pm_barang = pm_barang::with('anggota', 'ruangan', 'peminjaman_details.barang')->get();
+        $anggota = Anggota::all(); // Pastikan model Anggota ada
+        $barang = Barang::all(); // Jika barang juga dibutuhkan
+        $ruangan = Ruangan::all(); // Jika ruangan juga dibutuhkan
+
+        return view('pm_barang.index', compact('pm_barang', 'anggota', 'barang', 'ruangan'));
     }
+
 
     public function create()
     {
@@ -33,49 +37,59 @@ class PmBarangController extends Controller
         return view('pm_barang.create', compact('barang', 'ruangan', 'anggota'));
     }
 
-  public function store(Request $request)
-{
-    $validated = $request->validate([
-        'jenis_kegiatan' => 'required',
-        'id_barang' => 'required|array',
-        'jumlah_pinjam' => 'required|array',
-        'jumlah_pinjam.*' => 'integer|min:1',
-        'tanggal_peminjaman' => 'required|date',
-        'waktu_peminjaman' => 'required',
-    ]);
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'jenis_kegiatan' => 'required',
+            'id_barang' => 'required|array',
+            'jumlah_pinjam' => 'required|array',
+            'jumlah_pinjam.*' => 'integer|min:1',
+            'tanggal_peminjaman' => 'required|date',
+            'tanggal_pengembalian' => 'required|date',
+            'waktu_peminjaman' => 'required',
+            'nim' => 'required', // Pastikan NIM dikirim
+        ]);
 
-    $codePeminjaman = 'PM-' . date('Ymd') . '-' . mt_rand(1000, 9999);
-
-    $pm_barang = new pm_barang();
-    $pm_barang->code_peminjaman = $codePeminjaman;
-    $pm_barang->id_anggota = $request->id_anggota;
-    $pm_barang->jenis_kegiatan = $request->jenis_kegiatan;
-    $pm_barang->id_ruangan = $request->id_ruangan;
-    $pm_barang->tanggal_peminjaman = $request->tanggal_peminjaman;
-    $pm_barang->waktu_peminjaman = $request->waktu_peminjaman;
-    $pm_barang->save();
-
-    foreach ($request->id_barang as $index => $id_barang) {
-        $barang = Barang::findOrFail($id_barang);
-
-        if ($barang->jumlah < $request->jumlah_pinjam[$index]) {
-            Alert::error('Error', 'Stok barang tidak mencukupi!')->autoClose(2000);
-            return redirect()->back();
+        // CARI id_anggota DARI NIM
+        $anggota = Anggota::where('nim', $request->nim)->first();
+        if (!$anggota) {
+            return redirect()->back()->with('error', 'NIM tidak ditemukan!');
         }
 
-        $barang->jumlah -= $request->jumlah_pinjam[$index];
-        $barang->save();
+        $codePeminjaman = 'PM-' . date('Ymd') . '-' . mt_rand(1000, 9999);
 
-        $peminjaman_detail = new peminjaman_detail();
-        $peminjaman_detail->id_pm_barang = $pm_barang->id;
-        $peminjaman_detail->id_barang = $id_barang;
-        $peminjaman_detail->jumlah_pinjam = $request->jumlah_pinjam[$index];
-        $peminjaman_detail->save();
+        $pm_barang = new pm_barang();
+        $pm_barang->code_peminjaman = $codePeminjaman;
+        $pm_barang->id_anggota = $anggota->id; // Menggunakan ID anggota hasil pencarian NIM
+        $pm_barang->jenis_kegiatan = $request->jenis_kegiatan;
+        $pm_barang->id_ruangan = $request->id_ruangan;
+        $pm_barang->tanggal_peminjaman = $request->tanggal_peminjaman;
+        $pm_barang->tanggal_pengembalian = $request->tanggal_pengembalian;
+        $pm_barang->waktu_peminjaman = $request->waktu_peminjaman;
+        $pm_barang->save();
+
+        foreach ($request->id_barang as $index => $id_barang) {
+            $barang = Barang::findOrFail($id_barang);
+
+            if ($barang->jumlah < $request->jumlah_pinjam[$index]) {
+                Alert::error('Error', 'Stok barang tidak mencukupi!')->autoClose(2000);
+                return redirect()->back();
+            }
+
+            $barang->jumlah -= $request->jumlah_pinjam[$index];
+            $barang->save();
+
+            $peminjaman_detail = new peminjaman_detail();
+            $peminjaman_detail->id_pm_barang = $pm_barang->id;
+            $peminjaman_detail->id_barang = $id_barang;
+            $peminjaman_detail->jumlah_pinjam = $request->jumlah_pinjam[$index];
+            $peminjaman_detail->save();
+        }
+
+        Alert::success('Success', 'Data berhasil disimpan')->autoClose(1000);
+        return redirect()->route('pm_barang.index');
     }
 
-    Alert::success('Success', 'Data berhasil disimpan')->autoClose(1000);
-    return redirect()->route('pm_barang.index');
-}
 
 public function edit($id)
 {
@@ -104,6 +118,7 @@ public function update(Request $request, $id)
         'jumlah_pinjam' => 'required|array',
         'jumlah_pinjam.*' => 'integer|min:1',
         'tanggal_peminjaman' => 'required|date',
+        'tanggal_pengembalian' => 'required|date',
         'waktu_peminjaman' => 'required',
     ]);
 
@@ -125,6 +140,7 @@ public function update(Request $request, $id)
         'jenis_kegiatan' => $request->jenis_kegiatan,
         'id_ruangan' => $request->id_ruangan,
         'tanggal_peminjaman' => $request->tanggal_peminjaman,
+        'tanggal_pengembalian' => $request->tanggal_pengembalian,
         'waktu_peminjaman' => $request->waktu_peminjaman,
     ]);
 
@@ -151,17 +167,41 @@ public function update(Request $request, $id)
     return redirect()->route('pm_barang.index');
 }
 
-    public function destroy($id)
-    {
-        $pm_barang = pm_barang::findOrFail($id);
-        $barang = Barang::findOrFail($pm_barang->id_barang);
+public function destroy($id)
+{
+    $pm_barang = pm_barang::findOrFail($id);
 
-        // Kembalikan stok barang sebelum dihapus
-        $barang->jumlah += $pm_barang->jumlah_pinjam;
+    $details = peminjaman_detail::where('id_pm_barang', $pm_barang->id)->get();
+
+    foreach ($details as $detail) {
+        $barang = Barang::findOrFail($detail->id_barang);
+        $barang->jumlah += $detail->jumlah_pinjam;
         $barang->save();
-
-        $pm_barang->delete();
-        Alert::success('Success', 'Data berhasil dihapus');
-        return redirect()->route('pm_barang.index');
     }
+
+
+    peminjaman_detail::where('id_pm_barang', $pm_barang->id)->delete();
+
+
+    $pm_barang->delete();
+
+    Alert::success('Success', 'Data berhasil dihapus');
+    return redirect()->route('pm_barang.index');
+}
+
+
+    public function cariAnggota(Request $request)
+{
+    $nim = $request->nim;
+    $anggota = \App\Models\Anggota::where('nim', $nim)->first();
+
+    if ($anggota) {
+        return view('pm_barang.create', [
+            'nama_peminjam' => $anggota->nama_peminjam,
+            'nim' => $nim,
+        ]);
+    } else {
+        return redirect()->back()->with('error', 'NIM tidak ditemukan!');
+    }
+}
 }

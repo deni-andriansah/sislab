@@ -22,12 +22,12 @@
 
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-            {{-- <li>
-                <a class="dropdown-item" href="{{url('register')}}">
+            <li>
+                <a class="dropdown-item" href="{{url('profile')}}">
                   <i class="mdi mdi-power me-1 mdi-20px"></i>
-                  <span class="align-middle">Register</span>
+                  <span class="align-middle">Profile</span>
                 </a>
-              </li> --}}
+              </li>
 
           {{-- <li>
             <div class="dropdown-divider"></div>

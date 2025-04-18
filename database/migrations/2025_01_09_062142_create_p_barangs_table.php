@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('p_barangs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_pm_barang')->unsigned();
-            $table->foreign('id_pm_barang')->references('id')->on('pm__barangs')->ondelete('cascade');
-            $table->string('nama_pengembali');
-            $table->string('tanggal_pengembalian');
+            $table->date('tanggal_selesai');
             $table->string('keterangan');
             $table->timestamps();
         });

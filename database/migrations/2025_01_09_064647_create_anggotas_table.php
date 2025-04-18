@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('anggotas', function (Blueprint $table) {
             $table->id();
-            $table->string('code_anggota');
+            $table->string('nim')->unique();
             $table->string('nama_peminjam');
             $table->string('email');
             $table->string('no_telepon');
             $table->string('instansi_lembaga');
             $table->timestamps();
-        });
+       });
     }
 
     /**

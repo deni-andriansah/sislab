@@ -1,5 +1,8 @@
-
 @extends('layouts.admin')
+
+@php
+    use Illuminate\Support\Str;
+@endphp
 
 @section('content')
 <div class="container">
@@ -8,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ __('Maintenance Barang') }}
+                        {{ __('Edit Maintenance Barang') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('m_barang.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -16,90 +19,107 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('m_barang.update', $m_barang->id) }}" method="POST"
-                        enctype="multipart/form-data">
-                        @method('put')
+                    <form action="{{ route('m_barang.update', $m_barang->id) }}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
-                        <div class="mb-3">
-                            <label class="form-label">Code Maintenace</label>
-                            <input type="text" class="form-control @error('code_maintenance') is-invalid @enderror" name="code_maintenance"
-                                value="{{ $m_barang->code_maintenance }}" placeholder="code maintenace" required>
+
+                        <!-- Code Maintenance -->
+                        <div class="mb-2">
+                            <label class="form-label">Code Maintenance</label>
+                            <input type="text" class="form-control @error('code_maintenance') is-invalid @enderror"
+                                   name="code_maintenance"
+                                   value="{{ old('code_maintenance', $m_barang->code_maintenance) }}"
+                                   placeholder="code maintenance" required readonly>
                             @error('code_maintenance')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
 
+                        <!-- Nama Barang -->
                         <div class="mb-3">
                             <label for="">Nama Barang</label>
-                            <select name="id_barang" id="" class="form-control">
-                                @foreach ($barang as $item)
-                                    <option value="{{$item->id}}" {{$item->id == $m_barang->id_barang ? 'selected': ''}}>{{ $item->nama_barang }}</option>
+                            <select name="id_barang" class="form-control">
+                                @foreach ($barang as $data)
+                                    <option value="{{ $data->id }}" {{ $data->id == $m_barang->id_barang ? 'selected' : '' }}>
+                                        {{ $data->nama_barang }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
 
+                        <!-- Nama Ruangan -->
                         <div class="mb-3">
                             <label for="">Nama Ruangan</label>
-                            <select name="id_ruangan" id="" class="form-control">
-                                @foreach ($ruangan as $item)
-                                    <option value="{{$item->id}}" {{$item->id == $m_barang->id_ruangan ? 'selected': ''}}>{{ $item->nama_ruangan }}</option>
+                            <select name="id_ruangan" class="form-control">
+                                @foreach ($ruangan as $data)
+                                    <option value="{{ $data->id }}" {{ $data->id == $m_barang->id_ruangan ? 'selected' : '' }}>
+                                        {{ $data->nama_ruangan }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
 
-
-
-
-
-                        <div class="mb-3">
+                        <!-- Tanggal Maintenance -->
+                        <div class="mb-2">
                             <label class="form-label">Tanggal Maintenance</label>
-                            <input type="text" class="form-control @error('tanggal_maintenance') is-invalid @enderror" name="tanggal_maintenance"
-                                value="{{ $m_barang->tanggal_maintenance }}" placeholder="tanggal_maintenance" required>
+                            <input type="date" class="form-control @error('tanggal_maintenance') is-invalid @enderror"
+                                   name="tanggal_maintenance"
+                                   value="{{ old('tanggal_maintenance', $m_barang->tanggal_maintenance) }}"
+                                   placeholder="tanggal maintenance" required>
                             @error('tanggal_maintenance')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <!-- Waktu Pengerjaan -->
+                        <div class="mb-2">
                             <label class="form-label">Waktu Pengerjaan</label>
-                            <input type="text" class="form-control @error('waktu_pengerjaan') is-invalid @enderror" name="waktu_pengerjaan"
-                                value="{{ $m_barang->waktu_pengerjaan }}" placeholder="Waktu pengerjaan" required>
+                            <input type="text" class="form-control @error('waktu_pengerjaan') is-invalid @enderror"
+                                   name="waktu_pengerjaan"
+                                   value="{{ old('waktu_pengerjaan', $m_barang->waktu_pengerjaan) }}"
+                                   placeholder="waktu pengerjaan" required>
                             @error('waktu_pengerjaan')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
 
-
-                        <div class="mb-3">
-                            <label class="form-label">jumlah</label>
-                            <input type="text" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah"
-                                value="{{ $m_barang->jumlah }}" placeholder="jumlah" required>
+                        <!-- Jumlah -->
+                        <div class="mb-2">
+                            <label class="form-label">Jumlah</label>
+                            <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
+                                   name="jumlah"
+                                   value="{{ old('jumlah', $m_barang->jumlah) }}"
+                                   placeholder="jumlah" required>
                             @error('jumlah')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <!-- Keterangan -->
+                        <div class="mb-2">
                             <label class="form-label">Keterangan</label>
-                            <input type="text" class="form-control @error('jenis_perbaikan') is-invalid @enderror" name="jenis_perbaikan"
-                                value="{{ $m_barang->jenis_perbaikan }}" placeholder="Jenis perbaikan" required>
-                            @error('jenis_perbaikan')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                   name="keterangan"
+                                   value="{{ old('keterangan', $m_barang->keterangan) }}"
+                                   placeholder="keterangan" required>
+                            @error('keterangan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-primary">SIMPAN</button>
-                        <button type="reset" class="btn btn-sm btn-danger">RESET</button>
+                        <br>
+                        <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+
                     </form>
                 </div>
             </div>

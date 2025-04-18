@@ -6,99 +6,94 @@ use App\Models\Ruangan;
 use App\Models\m_Ruangan;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;  // Import Str class untuk generate random string
 
 class MRuanganController extends Controller
 {
     public function __construct()
     {
-        $this -> middleware('auth');
-    }
-    public function index()
-    {
-        $m_ruangan =  m_ruangan::all();
-        confirmDelete('Delete','Are you sure?');
-        return view('m_ruangan.index', compact('m_ruangan'));
-        return view('lm_ruangan.index', compact('m_ruangan'));
+        $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $m_ruangan = m_ruangan::all();
+        confirmDelete('Delete','Are you sure?');
+        return view('m_ruangan.index', compact('m_ruangan'));
+    }
 
     public function create()
     {
-        $ruangan =  Ruangan::all();
-        return view('m_ruangan.create', compact('ruangan',));
+        $ruangan = Ruangan::all();
+        $codeMaintenance = 'MAINT-' . Str::upper(Str::random(8));  // Generate random code_maintenance
+        return view('m_ruangan.create', compact('ruangan', 'codeMaintenance')); // Pass code_maintenance to view
     }
-
 
     public function store(Request $request)
     {
+        // Validasi input
         $validated = $request->validate([
-            'code_maintenance' => 'required',
             'tanggal_maintenance' => 'required',
             'waktu_pengerjaan' => 'required',
             'keterangan' => 'required',
-
-
-
         ]);
 
+        // Create new maintenance record
         $m_ruangan = new m_ruangan();
-        $m_ruangan->code_maintenance = $request->code_maintenance;
+        $m_ruangan->code_maintenance = $request->code_maintenance;  // Using the code from the form
         $m_ruangan->id_ruangan = $request->id_ruangan;
         $m_ruangan->tanggal_maintenance = $request->tanggal_maintenance;
         $m_ruangan->waktu_pengerjaan = $request->waktu_pengerjaan;
         $m_ruangan->keterangan = $request->keterangan;
 
-        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
+        // Success message and save the data
+        Alert::success('Success', 'Data berhasil disimpan')->autoClose(1000);
         $m_ruangan->save();
 
         return redirect()->route('m_ruangan.index');
     }
-
 
     public function show(m_ruangan $ruangan)
     {
         //
     }
 
-
     public function edit($id)
     {
-        $ruangan =  Ruangan::all();
+        $ruangan = Ruangan::all();
         $m_ruangan = m_ruangan::findOrFail($id);
-        return view('m_ruangan.edit', compact('m_ruangan','ruangan'));
+        return view('m_ruangan.edit', compact('m_ruangan', 'ruangan'));
     }
-
 
     public function update(Request $request, $id)
     {
+        // Validasi input
         $this->validate($request, [
-            'code_maintenance' => 'required',
             'tanggal_maintenance' => 'required',
             'waktu_pengerjaan' => 'required',
             'keterangan' => 'required',
-
-
         ]);
 
         $m_ruangan = m_ruangan::findOrFail($id);
-         $m_ruangan->code_maintenance = $request->code_maintenance;
+
+        // Keep the code_maintenance unchanged during update
         $m_ruangan->id_ruangan = $request->id_ruangan;
         $m_ruangan->tanggal_maintenance = $request->tanggal_maintenance;
         $m_ruangan->waktu_pengerjaan = $request->waktu_pengerjaan;
         $m_ruangan->keterangan = $request->keterangan;
 
-
-        Alert::success('Success','data berhasil diubah')->autoClose(1000);
+        // Success message and save the data
+        Alert::success('Success', 'Data berhasil diubah')->autoClose(1000);
         $m_ruangan->save();
+
         return redirect()->route('m_ruangan.index');
     }
-
 
     public function destroy($id)
     {
         $m_ruangan = m_ruangan::findOrFail($id);
         $m_ruangan->delete();
-        Alert::success('success','Data berhasil Dihapus');
+        Alert::success('Success', 'Data berhasil dihapus');
         return redirect()->route('m_ruangan.index');
     }
 }

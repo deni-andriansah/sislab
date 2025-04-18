@@ -1,99 +1,83 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Kategori;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
+    public function __construct()
+    {
+        $this -> middleware('auth');
+    }
     public function index()
     {
         $kategori = Kategori::all();
-        return response()->json([
-            'success' => true,
-            'message' => 'Daftar semua kategori',
-            'data' => $kategori
-        ]);
+        confirmDelete('Delete','Are you sure?');
+        return view('kategori.index', compact('kategori'));
     }
+
+
+    public function create()
+    {
+        return view('kategori.create');
+    }
+
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'nama_kategori' => 'required',
+
         ]);
 
-        $kategori = Kategori::create([
-            'nama_kategori' => $validated['nama_kategori']
-        ]);
+        $kategori = new Kategori();
+        $kategori->nama_kategori = $request->nama_kategori;
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Kategori berhasil ditambahkan',
-            'data' => $kategori
-        ], 201);
+        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
+        $kategori->save();
+
+        return redirect()->route('kategori.index');
     }
 
-    public function show($id)
+
+    public function show(kategori $kategori)
     {
-        $kategori = Kategori::find($id);
-
-        if (!$kategori) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Kategori tidak ditemukan'
-            ], 404);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => $kategori
-        ]);
+        //
     }
+
+
+    public function edit($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        return view('kategori.edit', compact('kategori'));
+    }
+
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $this->validate($request, [
             'nama_kategori' => 'required',
+
         ]);
 
-        $kategori = Kategori::find($id);
+        $kategori = Kategori::findOrFail($id);
+        $kategori->nama_kategori = $request->nama_kategori;
 
-        if (!$kategori) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Kategori tidak ditemukan'
-            ], 404);
-        }
 
-        $kategori->update([
-            'nama_kategori' => $validated['nama_kategori']
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Kategori berhasil diperbarui',
-            'data' => $kategori
-        ]);
+        Alert::success('Success','data berhasil diubah')->autoClose(1000);
+        $kategori->save();
+        return redirect()->route('kategori.index');
     }
+
 
     public function destroy($id)
     {
-        $kategori = Kategori::find($id);
-
-        if (!$kategori) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Kategori tidak ditemukan'
-            ], 404);
-        }
-
+        $kategori = Kategori::findOrFail($id);
         $kategori->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Kategori berhasil dihapus'
-        ]);
+        Alert::success('success','Data berhasil Dihapus');
+        return redirect()->route('kategori.index');
     }
 }

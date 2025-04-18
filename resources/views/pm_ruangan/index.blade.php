@@ -36,6 +36,7 @@
                         <th>Jenis kegiatan</th>
                         <th>Nama Ruangan</th>
                         <th>Tanggal Peminjaman</th>
+                        <th>Tanggal Pengembalian</th>
                         <th>Waktu Peminjaman</th>
                         <th>serah terima </th>
                         <th>berita peminjaman</th>
@@ -59,6 +60,7 @@
                     </td>
 
                         <td>{{ $data->tanggal_peminjaman }}</td>
+                        <td>{{ $data->tanggal_pengembalian }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
 
 <!-- Tombol untuk membuka modal -->
