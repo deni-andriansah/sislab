@@ -48,10 +48,10 @@
      </button>
      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
          <li>
-             <a class="dropdown-item" href="{{ route('barang.edit', $data->id) }}">✏ Edit</a>
+             <a class="dropdown-item" href="{{ route('kategori.edit', $data->id) }}">✏ Edit</a>
          </li>
          <li>
-             <form action="{{ route('barang.destroy', $data->id) }}" method="POST" class="d-inline">
+             <form action="{{ route('kategori.destroy', $data->id) }}" method="POST" class="d-inline">
                  @csrf
                  @method('DELETE')
                  <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">🗑 Hapus</button>

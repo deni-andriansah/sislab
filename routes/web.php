@@ -39,6 +39,8 @@ Route::resource('pm_barang', App\Http\Controllers\PmBarangController::class)->mi
 Route::get('/pm_ruangan/{code_peminjaman}/edit', [PmRuanganController::class, 'edit'])->name('pm_ruangan.edit');
 Route::put('/pm_ruangan/{code_peminjaman}', [PmRuanganController::class, 'update'])->name('pm_ruangan.update');
 
+Route::get('/ruangan/{id}/pinjam', [RuanganController::class, 'updateStatusDipinjam'])->name('ruangan.updateStatusDipinjam');
+Route::get('/ruangan/{id}/kembalikan', [RuanganController::class, 'updateStatusTersedia'])->name('ruangan.updateStatusTersedia');
 
 Route::resource('p_ruangan', App\Http\Controllers\PRuanganController::class)->middleware('auth');
 Route::resource('p_barang', App\Http\Controllers\PBarangController::class)->middleware('auth');

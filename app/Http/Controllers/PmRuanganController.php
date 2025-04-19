@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use App\Models\pm_Ruangan;
-use App\Models\anggota;
+use App\Models\Anggota;
 use App\Models\PeminjamanDetailRuangan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,7 +19,6 @@ class PmRuanganController extends Controller
 
     public function index()
     {
-        // Mengambil data peminjaman ruangan beserta detailnya
         $pm_ruangan = pm_Ruangan::with('PeminjamanDetailRuangan.ruangan')->get();
         confirmDelete('Delete', 'Are you sure?');
         return view('pm_ruangan.index', compact('pm_ruangan'));
@@ -27,14 +26,13 @@ class PmRuanganController extends Controller
 
     public function create()
     {
-        $anggota = anggota::all(); // Mengambil semua data anggota
-        $ruangan = Ruangan::all(); // Mengambil semua data ruangan
+        $anggota = Anggota::all();
+        $ruangan = Ruangan::all();
         return view('pm_ruangan.create', compact('anggota', 'ruangan'));
     }
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'code_peminjaman' => 'required',
             'id_anggota' => 'required|exists:anggotas,id',
@@ -43,9 +41,18 @@ class PmRuanganController extends Controller
             'tanggal_pengembalian' => 'required|date',
             'waktu_peminjaman' => 'required',
             'id_ruangan' => 'required|array|min:1',
+        ], [
+            'code_peminjaman.required' => 'Kode peminjaman harus diisi!',
+            'id_anggota.required' => 'Anggota peminjam harus dipilih!',
+            'id_anggota.exists' => 'Anggota yang dipilih tidak valid!',
+            'jenis_kegiatan.required' => 'Jenis kegiatan harus diisi!',
+            'tanggal_peminjaman.required' => 'Tanggal peminjaman harus diisi!',
+            'tanggal_pengembalian.required' => 'Tanggal pengembalian harus diisi!',
+            'waktu_peminjaman.required' => 'Waktu peminjaman harus diisi!',
+            'id_ruangan.required' => 'Ruangan harus dipilih!',
+            'id_ruangan.array' => 'Pilih minimal satu ruangan!',
         ]);
 
-        // Menyimpan data peminjaman ruangan
         $pm_ruangan = new pm_Ruangan();
         $pm_ruangan->code_peminjaman = $request->code_peminjaman;
         $pm_ruangan->id_anggota = $request->id_anggota;
@@ -55,12 +62,14 @@ class PmRuanganController extends Controller
         $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
         $pm_ruangan->save();
 
-        // Menyimpan detail ruangan yang dipilih
         foreach ($request->id_ruangan as $id_ruangan) {
             PeminjamanDetailRuangan::create([
                 'id_pm_ruangan' => $pm_ruangan->id,
                 'id_ruangan' => $id_ruangan,
             ]);
+
+            // Update status ruangan menjadi tidak tersedia
+            Ruangan::where('id', $id_ruangan)->update(['status' => 'Dipinjam']);
         }
 
         Alert::success('Success', 'Data berhasil disimpan')->autoClose(1000);
@@ -98,14 +107,22 @@ class PmRuanganController extends Controller
         $pm_ruangan->waktu_peminjaman = $request->waktu_peminjaman;
         $pm_ruangan->save();
 
-        // Hapus detail ruangan lama dan tambahkan detail baru
+        // Kembalikan status ruangan lama menjadi tersedia
+        $ruanganLama = PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->pluck('id_ruangan');
+        Ruangan::whereIn('id', $ruanganLama)->update(['status' => 'tersedia']);
+
+        // Hapus detail lama
         PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->delete();
 
+        // Tambah detail baru dan ubah status ruangan
         foreach ($request->id_ruangan as $id_ruangan) {
             PeminjamanDetailRuangan::create([
                 'id_pm_ruangan' => $pm_ruangan->id,
                 'id_ruangan' => $id_ruangan,
             ]);
+
+            // Ubah status ruangan menjadi tidak tersedia
+            Ruangan::where('id', $id_ruangan)->update(['status' => 'tidak tersedia']);
         }
 
         Alert::success('Success', 'Data berhasil diperbarui')->autoClose(1000);
@@ -115,37 +132,18 @@ class PmRuanganController extends Controller
     public function destroy($id)
     {
         $pm_ruangan = pm_Ruangan::findOrFail($id);
+
+        // Kembalikan status ruangan menjadi tersedia
+        $ruanganDipinjam = PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->pluck('id_ruangan');
+        Ruangan::whereIn('id', $ruanganDipinjam)->update(['status' => 'tersedia']);
+
+        // Hapus detail peminjaman
+        PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->delete();
+
+        // Hapus peminjaman
         $pm_ruangan->delete();
+
         Alert::success('Success', 'Data berhasil dihapus');
         return redirect()->route('pm_ruangan.index');
-    }
-
-    public function viewPDF(Request $request)
-    {
-        $pm_ruangan = pm_Ruangan::findOrFail($request->idPeminjaman);
-        $data = [
-            'title' => 'Data Produk',
-            'date' => date('m/d/Y'),
-            'pm_ruangan' => $pm_ruangan,
-        ];
-
-        $pdf = PDF::loadView('pm_ruangan.export-pdf', $data)->setPaper('a4', 'portrait');
-        return response($pdf->stream(), 200)
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'inline; filename="document.pdf"');
-    }
-
-    public function viewRUANGAN(Request $request)
-    {
-        $pm_ruangan = pm_Ruangan::findOrFail($request->idPeminjaman);
-        $isi = [
-            'date' => date('m/d/Y'),
-            'pm_ruangan' => $pm_ruangan,
-        ];
-
-        $pdf = PDF::loadView('pm_ruangan.export-ruangan', $isi)->setPaper('a4', 'portrait');
-        return response($pdf->stream(), 200)
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'inline; filename="document.pdf"');
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
@@ -37,7 +36,7 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'merk' => 'required',
             'detail' => 'required',
-            'jumlah' => 'required',
+            'jumlah' => 'required|integer|min:0',
             'id_kategori' => 'required',
         ]);
 
@@ -62,7 +61,7 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'merk' => 'required',
             'detail' => 'required',
-            'jumlah' => 'required',
+            'jumlah' => 'required|integer|min:0',
             'id_kategori' => 'required',
         ]);
 
@@ -76,19 +75,60 @@ class BarangController extends Controller
     {
         $barang = Barang::findOrFail($id);
 
-        // Pastikan barang belum dipinjam atau sudah dikembalikan
+        // Cek apakah barang sedang dipinjam
         $isDipinjam = $barang->peminjaman_details()
             ->whereHas('pm_barang', function ($query) {
                 $query->whereNotIn('code_peminjaman', function ($subQuery) {
-                    $subQuery->select('code_peminjaman')->from('p_barangs'); // Barang yang sudah dikembalikan
+                    $subQuery->select('code_peminjaman')->from('p_barangs');
                 });
             })->exists();
 
+        // Jika barang dipinjam, tampilkan pesan error dan blok penghapusan
         if ($isDipinjam) {
-            return redirect()->route('barang.index')->with('error', 'Barang tidak bisa dihapus karena masih dipinjam.');
+            Alert::error('Gagal Dihapus', 'Barang tidak bisa dihapus karena sedang dipinjam')->autoClose(3000);
+            return redirect()->route('barang.index');
         }
 
+        // Jika tidak ada peminjaman aktif, hapus barang
         $barang->delete();
-        return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus.');
+
+        Alert::success('Berhasil', 'Barang berhasil dihapus')->autoClose(1000);
+        return redirect()->route('barang.index');
+    }
+
+    public function reduceStock($id, $jumlah)
+    {
+        $barang = Barang::findOrFail($id);
+
+        if ($barang->jumlah < $jumlah) {
+            throw new \Exception('Stok barang tidak cukup');
+        }
+
+        $barang->jumlah -= $jumlah;
+
+        // Jika jumlah barang menjadi 0 atau kurang, set status menjadi "Tidak Tersedia"
+        if ($barang->jumlah <= 0) {
+            $barang->status = 'Tidak Tersedia';
+            $barang->jumlah = 0; // Pastikan jumlah tidak negatif
+        }
+
+        $barang->save();
+
+        return $barang;
+    }
+
+    public function addStock($id, $jumlah)
+    {
+        $barang = Barang::findOrFail($id);
+        $barang->jumlah += $jumlah;
+
+        // Jika jumlah barang lebih dari 0, set status menjadi "Tersedia"
+        if ($barang->jumlah > 0) {
+            $barang->status = 'Tersedia';
+        }
+
+        $barang->save();
+
+        return $barang;
     }
 }

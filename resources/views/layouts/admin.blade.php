@@ -45,6 +45,11 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('assets/js/config.js')}}"></script>
     @yield('style')
+    <style>
+        .swal2-container{
+            z-index: 9999 !important;
+        }
+    </style>
   </head>
 
   <body>

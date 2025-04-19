@@ -10,7 +10,7 @@
                     <a href="{{ route('pm_barang.index') }}" class="btn btn-sm btn-primary">Kembali</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('p_barang.update', $p_barang->id) }}" method="POST">
+                    <form action="{{ route('pm_barang.update', $pm_barang->code_peminjaman) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -58,7 +58,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Barang yang Dipinjam</label>
-                            <table class="table table-bordered table-striped align-middle" id="barang-table">
+                            <table class="table table-bordered" id="barang-table">
                                 <thead class="table-primary text-center">
                                     <tr>
                                         <th>Nama Barang</th>
@@ -67,9 +67,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($p_barang->pm_barang->detail as $index => $detail)
+                                    @foreach($details as $index => $detail)
                                     <tr class="barang-row">
-                                        <td class="align-middle">
+                                        <td>
                                             <select name="id_barang[]" class="form-select" required>
                                                 <option value="">Pilih Barang</option>
                                                 @foreach($barang as $b)
@@ -77,22 +77,17 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td class="align-middle">
+                                        <td>
                                             <input type="number" name="jumlah_pinjam[]" class="form-control" min="1" value="{{ $detail->jumlah_pinjam }}" required>
                                         </td>
-                                        <td class="text-center align-middle">
+                                        <td class="text-center">
                                             <button type="button" class="btn btn-danger btn-sm remove-barang">Hapus</button>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-
-                            <div class="d-flex justify-content-end mt-2 mb-3">
-                                <button type="button" class="btn btn-success btn-sm" id="add-barang">
-                                    <i class="bi bi-plus-lg"></i> Tambah Barang
-                                </button>
-                            </div>
+                            <button type="button" class="btn btn-sm btn-success" id="add-barang">+ Tambah Barang</button>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
@@ -106,19 +101,36 @@
 {{-- Template baris barang baru --}}
 <template id="barang-template">
     <tr class="barang-row">
-        <td class="align-middle">
+        <td>
             <select name="id_barang[]" class="form-select" required>
+                <option value="">Pilih Barang</option>
                 @foreach($barang as $b)
                     <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
                 @endforeach
             </select>
         </td>
-        <td class="align-middle">
+        <td>
             <input type="number" name="jumlah_pinjam[]" class="form-control" min="1" required>
         </td>
-        <td class="text-center align-middle">
+        <td class="text-center">
             <button type="button" class="btn btn-danger btn-sm remove-barang">Hapus</button>
         </td>
     </tr>
 </template>
+
 @endsection
+
+@push('scripts')
+<script>
+    document.getElementById('add-barang').addEventListener('click', function () {
+        const template = document.getElementById('barang-template').content.cloneNode(true);
+        document.querySelector('#barang-table tbody').appendChild(template);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-barang')) {
+            e.target.closest('.barang-row').remove();
+        }
+    });
+</script>
+@endpush

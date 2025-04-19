@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container mt-10">
+<div class="container-fluid mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
         </div>
@@ -51,7 +51,9 @@
                             <td>{{ $data->detail }}</td>
                             <td>{{ $data->jumlah }}</td>
                             <td>
-                                @if($data->status === 'Dipinjam')
+                                @if($data->jumlah == 0)
+                                    <span class="badge bg-secondary">Tidak Tersedia</span>
+                                @elseif($data->status === 'Dipinjam')
                                     <span class="badge bg-danger">Dipinjam</span>
                                 @else
                                     <span class="badge bg-success">Tersedia</span>
@@ -73,6 +75,9 @@
                                                 <button type="submit" class="dropdown-item text-danger">🗑 Hapus</button>
                                             </form>
                                         </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('barang.show', $data->id) }}">👁 Lihat Detail</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
@@ -84,4 +89,14 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.datatables.net/2.0.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
 @endsection

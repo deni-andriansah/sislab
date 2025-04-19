@@ -28,7 +28,6 @@ class PBarangController extends Controller
     {
         // Validasi input dari form
         $validated = $request->validate([
-            'id_pm_barang' => 'required|exists:pm_barangs,id', // Pastikan ini sesuai dengan tabel yang ada
             'tanggal_selesai' => 'required|date',
             'keterangan' => 'nullable|string',
         ]);

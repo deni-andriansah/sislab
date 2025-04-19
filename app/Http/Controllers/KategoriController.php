@@ -77,7 +77,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::findOrFail($id);
         $kategori->delete();
-        Alert::success('success','Data berhasil Dihapus');
+        Alert::success('Success','data berhasil di hapus')->autoClose(1000);
         return redirect()->route('kategori.index');
     }
 }

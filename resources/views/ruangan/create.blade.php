@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                            {{ __('Ruangan') }}
+                        {{ __('Tambah Ruangan') }}
                     </div>
                     <div class="float-end">
                         <a href="{{ route('ruangan.index') }}" class="btn btn-sm btn-primary">Kembali</a>
@@ -14,13 +14,13 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('ruangan.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('ruangan.store') }}" method="POST">
                         @csrf
                         <div class="mb-2">
-                            <label class="form-label">Nama ruangan</label>
-                            <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="nama_ruangan"
-                            value="{{ old('ruangan') }}" placeholder="Nama ruangan" required>
-                            @error('ruangan')
+                            <label class="form-label">Nama Ruangan</label>
+                            <input type="text" class="form-control @error('nama_ruangan') is-invalid @enderror" name="nama_ruangan"
+                            value="{{ old('nama_ruangan') }}" placeholder="Nama ruangan" required>
+                            @error('nama_ruangan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -28,10 +28,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label">Nama pic</label>
-                            <input type="text" class="form-control @error('pic') is-invalid @enderror" name="nama_pic"
-                            value="{{ old('pic') }}" placeholder="Nama pic" required>
-                            @error('pic')
+                            <label class="form-label">Nama PIC</label>
+                            <input type="text" class="form-control @error('nama_pic') is-invalid @enderror" name="nama_pic"
+                            value="{{ old('nama_pic') }}" placeholder="Nama PIC" required>
+                            @error('nama_pic')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -40,22 +40,16 @@
 
                         <div class="mb-2">
                             <label class="form-label">Posisi Ruangan</label>
-                            <input type="text" class="form-control @error('posisi') is-invalid @enderror" name="posisi_ruangan"
-                            value="{{ old('posisi') }}" placeholder="posisi ruangan" required>
-                            @error('posisi')
+                            <input type="text" class="form-control @error('posisi_ruangan') is-invalid @enderror" name="posisi_ruangan"
+                            value="{{ old('posisi_ruangan') }}" placeholder="Posisi ruangan" required>
+                            @error('posisi_ruangan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
 
-
-
-
-
-                    <br>
-                    <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
-
+                        <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>
