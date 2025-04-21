@@ -74,11 +74,7 @@
                                             <a class="dropdown-item" href="{{ route('p_barang.edit', $data->id) }}">✏ Edit</a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('p_barang.destroy', $data->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="dropdown-item text-danger">🗑 Hapus</button>
-                                            </form>
+                                            <button type="button" class="dropdown-item text-danger" onclick="confirmDelete({{ $data->id }})">🗑 Hapus</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -107,25 +103,22 @@
 <script>
     new DataTable('#example');
 
-    document.querySelectorAll('.btn-delete').forEach(button => {
-        button.addEventListener('click', function () {
-            let id = this.getAttribute('data-id');
-            Swal.fire({
-                title: "Yakin ingin menghapus?",
-                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Ya, hapus!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    let form = document.getElementById('delete-form');
-                    form.action = "{{ route('p_barang.destroy', ':id') }}".replace(':id', id);
-                    form.submit();
-                }
-            });
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Apakah kamu yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('delete-form');
+                form.action = `{{ url('p_barang') }}/${id}`;
+                form.submit();
+            }
         });
-    });
+    }
 </script>
 @endpush

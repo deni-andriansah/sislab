@@ -56,11 +56,15 @@
                                             <a class="dropdown-item" href="{{ route('anggota.edit', $data->id) }}">✏ Edit</a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('anggota.destroy', $data->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">🗑 Hapus</button>
-                                            </form>
+                                            @if ($data->pm_barang->isEmpty() && $data->pm_ruangan->isEmpty())
+                                                <form action="{{ route('anggota.destroy', $data->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">🗑 Hapus</button>
+                                                </form>
+                                            @else
+                                                <button class="dropdown-item text-muted" disabled title="Tidak dapat dihapus, masih ada peminjaman.">🗑 Tidak Bisa Dihapus</button>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>

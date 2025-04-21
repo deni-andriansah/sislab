@@ -18,7 +18,7 @@
         </div>
 
         <div class="card-body">
-            <form action="{{ route('p_ruangan.update', $p_ruangan->id) }}" method="POST">
+            <form action="{{ route('p_ruangan.update', $pengembalian->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -27,12 +27,14 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_pm_ruangan" class="form-label">ID Peminjaman Ruangan</label>
-                            <select class="form-control" id="id_pm_ruangan" name="id_pm_ruangan" disabled>
+                            <select class="form-control" id="id_pm_ruangan" name="id_pm_ruangan" required>
+                                <option value="">-- Pilih Peminjaman --</option>
                                 @foreach($pm_ruangan as $item)
-                                    <option value="{{ $item->id }}"
+                                    <option
+                                        value="{{ $item->id }}"
                                         data-tanggal="{{ $item->tanggal_pengembalian }}"
-                                        {{ $item->id == $p_ruangan->id_pm_ruangan ? 'selected' : '' }}>
-                                        {{ $item->code_peminjaman }} - {{ $item->anggota->nama ?? 'Tanpa Nama' }}
+                                        {{ $pengembalian->id_pm_ruangan == $item->id ? 'selected' : '' }}>
+                                        {{ $item->code_peminjaman }} - {{ $item->anggota->nama_peminjam ?? 'Tanpa Nama' }}
                                     </option>
                                 @endforeach
                             </select>
@@ -43,8 +45,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="tanggal_selesai" class="form-label">Tanggal Selesai Pengembalian</label>
-                            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai"
-                                value="{{ old('tanggal_selesai', $p_ruangan->tanggal_selesai) }}" required>
+                            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" value="{{ old('tanggal_selesai', $pengembalian->tanggal_selesai) }}" required>
                         </div>
                     </div>
 
@@ -53,9 +54,9 @@
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>
                             <select class="form-control" id="keterangan" name="keterangan">
-                                <option value="Baik" {{ $p_ruangan->keterangan == 'Baik' ? 'selected' : '' }}>Baik</option>
-                                <option value="Rusak" {{ $p_ruangan->keterangan == 'Rusak' ? 'selected' : '' }}>Rusak</option>
-                                <option value="Telat Dikembalikan" {{ $p_ruangan->keterangan == 'Telat Dikembalikan' ? 'selected' : '' }}>Telat Dikembalikan</option>
+                                <option value="Baik" {{ $pengembalian->keterangan == 'Baik' ? 'selected' : '' }}>Baik</option>
+                                <option value="Rusak" {{ $pengembalian->keterangan == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                                <option value="Telat Dikembalikan" {{ $pengembalian->keterangan == 'Telat Dikembalikan' ? 'selected' : '' }}>Telat Dikembalikan</option>
                             </select>
                         </div>
                     </div>
@@ -64,8 +65,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="denda" class="form-label">Denda</label>
-                            <input type="text" class="form-control" id="denda" name="denda"
-                                value="Rp {{ number_format($denda, 0, ',', '.') }}" readonly>
+                            <input type="text" class="form-control" id="denda" name="denda" value="Rp 0" readonly>
                         </div>
                     </div>
                 </div>
@@ -109,8 +109,9 @@
 
     tanggalSelesaiInput.addEventListener('change', hitungDenda);
     keteranganInput.addEventListener('input', hitungDenda);
+    selectPeminjaman.addEventListener('change', hitungDenda);
 
-    // Panggil saat awal halaman juga
-    hitungDenda();
+    // Jalankan langsung saat halaman dimuat
+    window.addEventListener('load', hitungDenda);
 </script>
 @endpush

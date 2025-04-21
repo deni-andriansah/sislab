@@ -17,24 +17,23 @@
       <!-- User -->
       <li class="nav-item navbar-dropdown dropdown-user dropdown">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-
-                <span class="avatar-initial " style="border-radius: 500px"><i class='bx bxs-user'></i></span>
-
+          <span class="avatar-initial" style="border-radius: 500px">
+            <i class='bx bxs-user'></i>
+          </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-                <a class="dropdown-item" href="{{url('profile')}}">
-                  <i class="mdi mdi-power me-1 mdi-20px"></i>
-                  <span class="align-middle">Profile</span>
-                </a>
-              </li>
+          <li>
+            <a class="dropdown-item" href="{{ url('profile') }}">
+              <span class="align-middle">Profile</span>
+            </a>
+          </li>
 
           {{-- <li>
             <div class="dropdown-divider"></div>
           </li> --}}
+
           <li>
             <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#logoutModal">
-              <i class="mdi mdi-power me-1 mdi-20px"></i>
               <span class="align-middle">Log Out</span>
             </a>
           </li>
@@ -47,32 +46,29 @@
 
 <!-- Logout Confirmation Modal -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"> <!-- Add modal-dialog-centered class -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-dialog-centered"> <!-- Add modal-dialog-centered class -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          {{-- <img src="/images/group.svg" alt="Konfirmasi Logout" style="width: 200px;"> --}}
         </div>
-        <div class="modal-body">
-          <div class="text-center">
-            <img src="/images/group.svg" alt="Konfirmasi Logout" style="width: 200px;">
-          </div>
-          <div class="text-center">
-            <i class="fas fa-exclamation-circle fa-3x text-danger"></i>
-            <h5 class="mt-3"><b>ANDA YAKIN INGIN KELUAR??</b></h5>
-          </div>
-        </div>
-
-        <!-- Centered Buttons -->
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">TIDAK</button>
-          <button type="button" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">YA</button>
-          <form action="{{ route('logout') }}" method="post" id="logout-form">
-            @csrf
-          </form>
+        <div class="text-center">
+          <i class="fas fa-exclamation-circle fa-3x text-danger"></i>
+          <h5 class="mt-3"><b>ANDA YAKIN INGIN KELUAR??</b></h5>
         </div>
       </div>
+
+      <!-- Centered Buttons -->
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">TIDAK</button>
+        <button type="button" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">YA</button>
+        <form action="{{ route('logout') }}" method="post" id="logout-form">
+          @csrf
+        </form>
+      </div>
     </div>
+  </div>
 </div>
-
-
-

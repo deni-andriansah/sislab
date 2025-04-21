@@ -38,8 +38,8 @@
                         <th>Tanggal Peminjaman</th>
                         <th>Tanggal Pengembalian</th>
                         <th>Waktu Peminjaman</th>
-                        <th>serah terima </th>
-                        <th>berita peminjaman</th>
+                        {{-- <th>serah terima </th>
+                        <th>berita peminjaman</th> --}}
                         <th>aksi</th>
                     </tr>
                 </thead>
@@ -62,7 +62,7 @@
                         <td>{{ $data->tanggal_peminjaman }}</td>
                         <td>{{ $data->tanggal_pengembalian }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
-
+{{--
 <!-- Tombol untuk membuka modal -->
 <td class="button">
     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal-{{ $data->id }}">
@@ -111,7 +111,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 

@@ -78,6 +78,13 @@ class AnggotaController extends Controller
     public function destroy($id)
     {
         $anggota = Anggota::findOrFail($id);
+
+        // Cek apakah anggota masih memiliki peminjaman barang atau ruangan
+        if ($anggota->pm_barang()->exists() || $anggota->pm_ruangan()->exists()) {
+            Alert::error('Gagal', 'Anggota masih memiliki peminjaman dan tidak dapat dihapus!');
+            return redirect()->route('anggota.index');
+        }
+
         $anggota->delete();
         Alert::success('Success', 'Data berhasil dihapus');
         return redirect()->route('anggota.index');

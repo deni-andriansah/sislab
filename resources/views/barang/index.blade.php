@@ -75,9 +75,6 @@
                                                 <button type="submit" class="dropdown-item text-danger">🗑 Hapus</button>
                                             </form>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('barang.show', $data->id) }}">👁 Lihat Detail</a>
-                                        </li>
                                     </ul>
                                 </div>
                             </td>

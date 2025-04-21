@@ -91,7 +91,7 @@ class RuanganController extends Controller
         $ruangan = Ruangan::findOrFail($id);
 
         // Validasi: hanya bisa dihapus kalau status "Tersedia"
-        if ($ruangan->status !== 'Tersedia') {
+        if ($ruangan->status !== 'tersedia') {
             Alert::error('Gagal', 'Ruangan masih dipinjam dan tidak dapat dihapus');
             return redirect()->route('ruangan.index');
         }else{
