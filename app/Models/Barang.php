@@ -26,13 +26,13 @@ class Barang extends Model
 
     public function detail_ruangan()
     {
-        return $this->hasMany(Deteail_ruangan::class, 'id_barang');
+        return $this->hasMany(Detail_ruangan::class, 'id_barang');
     }
 
     // Relasi ke peminjaman detail
     public function peminjaman_details()
     {
-        return $this->hasMany(Peminjaman_detail::class, 'id_barang');
+        return $this->hasMany(peminjaman_detail::class, 'id_barang');
     }
 
     // Relasi ke tabel pengembalian barang

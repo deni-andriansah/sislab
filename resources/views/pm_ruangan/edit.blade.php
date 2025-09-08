@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
+                            <label for="nama_peminjam" class="form-label">Nama Peminjam (Masukkan NIM terlebih dahulu)</label>
                             <input type="hidden" id="id_anggota" name="id_anggota" value="{{ old('id_anggota', $pm_ruangan->id_anggota) }}">
                             <input type="text" id="nama_peminjam" class="form-control bg-light" value="{{ old('nama_peminjam', $pm_ruangan->anggota->nama_peminjam) }}" readonly>
                         </div>

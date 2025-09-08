@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
+                            <label for="nama_peminjam" class="form-label">Nama Peminjam (Otomatis)</label>
                             <input type="hidden" id="id_anggota" name="id_anggota">
                             <input type="text" id="nama_peminjam" class="form-control bg-light" readonly>
                         </div>
