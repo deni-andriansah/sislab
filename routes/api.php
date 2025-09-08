@@ -25,13 +25,14 @@ Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('ruangan')->group(function () {
-    Route::get('/', [RuanganApi::class, 'index']);
-    Route::post('/', [RuanganApi::class, 'store']);
-    Route::get('/{id}', [RuanganApi::class, 'show']);
-    Route::put('/{id}', [RuanganApi::class, 'update']);
-    Route::delete('/{id}', [RuanganApi::class, 'destroy']);
-});
+
+// Route::prefix('ruangan')->group(function () {
+//     Route::get('/', [RuanganApi::class, 'index']);
+//     Route::post('/', [RuanganApi::class, 'store']);
+//     Route::get('/{id}', [RuanganApi::class, 'show']);
+//     Route::put('/{id}', [RuanganApi::class, 'update']);
+//     Route::delete('/{id}', [RuanganApi::class, 'destroy']);
+// });
 
 // Anggota API Routes
 Route::prefix('anggota')->group(function () {
