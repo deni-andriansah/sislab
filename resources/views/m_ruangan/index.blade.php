@@ -83,6 +83,60 @@
             </div>
         </div>
     </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table" id="example">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Code Maintenace</th>
+                        <th>Nama Ruangan</th>
+                        <th>Tanggal Maintenace</th>
+                        <th>Waktu Pengerjaan</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @php $i = 1; @endphp
+                    @foreach ($m_ruangan as $data)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $data->code_maintenance }}</td>
+                        <td>{{$data->ruangan->nama_ruangan}}</td>
+                        <td>{{ $data->tanggal_maintenance }}</td>
+                        <td>{{ $data->waktu_pengerjaan }}</td>
+                         <td>{{ $data->keterangan }}</td>
+
+                        <td>
+                            <div class="dropdown d-inline">
+     <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+         ⋮
+     </button>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+         <li>
+             <a class="dropdown-item" href="{{ route('m_ruangan.edit', $data->id) }}">✏ Edit</a>
+         </li>
+         <li>
+             <form action="{{ route('m_ruangan.destroy', $data->id) }}" method="POST" class="d-inline">
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">🗑 Hapus</button>
+             </form>
+         </li>
+     </ul>
+ </div>
+
+                         </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
 @endsection
 
 @push('scripts')

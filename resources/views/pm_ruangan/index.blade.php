@@ -53,8 +53,17 @@
                         <td>{{ $data->jenis_kegiatan }}</td>
                          <td>
                         <ul>
-                            @foreach ($data->PeminjamanDetailRuangan as $detail)
-                            <li>{{ $detail->ruangan->nama_ruangan }} </li>
+                            @foreach ($data->peminjamandetailruangan as $detail)
+                            <li>
+                            @if(!$detail){
+                            {{ "data tidak ada" }}
+                            }
+                            @else 
+                            {{ $detail->ruangan->nama_ruangan }}
+                            @endif
+                            
+                                
+                            </li>
                             @endforeach
                         </ul>
                     </td>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\p_barang;
-use App\Models\pm_barang;
+use App\Models\pm_Barang;
 use App\Models\peminjaman_detail;
 use App\Models\Barang;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,7 +20,7 @@ class PBarangController extends Controller
 
     public function create()
     {
-        $pm_barang = pm_barang::all();
+        $pm_barang = pm_Barang::all();
         return view('p_barang.create', compact('pm_barang'));
     }
 
@@ -70,6 +70,10 @@ class PBarangController extends Controller
 
         // Menyimpan perubahan pada pm_barang
         $pm_barang->save();
+        $pm_barang = pm_Barang::find($request->id_pm_barang);
+        if ($pm_barang) {
+            $pm_barang->delete();
+        }
 
         // Mengarahkan kembali ke halaman utama dengan pesan sukses
         return redirect()->route('p_barang.index')->with('success', "Pengembalian berhasil dengan denda Rp. " . number_format($denda, 0, ',', '.'));
@@ -79,7 +83,7 @@ class PBarangController extends Controller
     {
         // Mengambil data p_barang berdasarkan id
         $p_barang = p_barang::findOrFail($id);
-        $pm_barang = pm_barang::all();
+        $pm_barang = pm_Barang::all();
 
         // Menghitung denda di controller dan mengirimkan ke view
         $tanggal_kembali = Carbon::parse($p_barang->pm_barang->tanggal_pengembalian);
@@ -104,7 +108,7 @@ class PBarangController extends Controller
 
         // Mencari data p_barang yang akan diupdate
         $p_barang = p_barang::findOrFail($id);
-        $pm_barang = pm_barang::findOrFail($request->id_pm_barang);
+        $pm_barang = pm_Barang::findOrFail($request->id_pm_barang);
 
         // Menghitung denda jika ada keterlambatan
         $tanggal_kembali = Carbon::parse($pm_barang->tanggal_pengembalian);
@@ -188,7 +192,7 @@ class PBarangController extends Controller
     public function getDetailPeminjaman($id)
     {
         // Mengambil detail peminjaman dengan relasi anggota dan barang
-        $pm = pm_barang::with(['anggota', 'detail.barang'])->find($id);
+        $pm = pm_Barang::with(['anggota', 'detail.barang'])->find($id);
         if (!$pm) {
             return response()->json(['message' => 'Data tidak ditemukan'], 404);
         }
