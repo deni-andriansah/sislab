@@ -26,7 +26,7 @@
     <div class="app-brand demo">
         <a href="{{ route('home') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
-                <img src="{{ asset('assets/img/Group 7.png') }}" alt="">
+                <img src="{{ asset('assets/img/group 7.png') }}" alt="">
             </span>
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -136,7 +136,7 @@
         <li class="menu-item {{ request()->is('m_barang*') || request()->is('m_ruangan*') ? 'active' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-wrench"></i> <!-- Ikon Maintenance -->
-                <div>Perawatan</div>
+                <div>Maintenance</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ request()->routeIs('m_barang.index') ? 'active' : '' }}">

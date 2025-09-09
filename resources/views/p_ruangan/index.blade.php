@@ -43,6 +43,7 @@
                             <td>
                                 PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
                             </td>
+                            <td>{{ $data->id_pm_ruangan }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d M Y') }}</td>
                             <td>{{ $data->keterangan ?? '-' }}</td>
                             <td>

@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="nama_peminjam" class="form-label">Nama Peminjam (Masukkan NIM terlebih dahulu)</label>
+                            <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
                             <input type="hidden" id="id_anggota" name="id_anggota" value="{{ old('id_anggota', $pm_ruangan->id_anggota) }}">
                             <input type="text" id="nama_peminjam" class="form-control bg-light" value="{{ old('nama_peminjam', $pm_ruangan->anggota->nama_peminjam) }}" readonly>
                         </div>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Waktu Peminjaman</label>
-                                <input type="text" class="form-control" name="waktu_peminjaman" value="{{ old('waktu_peminjaman', $pm_ruangan->waktu_peminjaman) }}" required>
+                                <input type="time" name="waktu_peminjaman" class="form-control" value="{{ $pm_ruangan->waktu_peminjaman }}" required>
                             </div>
                         </div>
 

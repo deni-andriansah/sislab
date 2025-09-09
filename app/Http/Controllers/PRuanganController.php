@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\p_ruangan;
-use App\Models\pm_Ruangan;
-use App\Models\PeminjamanDetailRuangan;
+use App\Models\pm_ruangan;
+use App\Models\peminjamandetailruangan;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,7 +20,7 @@ class PRuanganController extends Controller
 
     public function create()
     {
-        $pm_ruangan = pm_Ruangan::all();
+        $pm_ruangan = pm_ruangan::all();
         return view('p_ruangan.create', compact('pm_ruangan'));
     }
 
@@ -32,7 +32,7 @@ class PRuanganController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $pm_ruangan = pm_Ruangan::findOrFail($request->id_pm_ruangan);
+        $pm_ruangan = pm_ruangan::findOrFail($request->id_pm_ruangan);
 
         $tanggal_kembali = Carbon::parse($pm_ruangan->tanggal_pengembalian);
         $tanggal_selesai = Carbon::parse($request->tanggal_selesai);
@@ -54,7 +54,7 @@ class PRuanganController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
-        $detailRuangan = PeminjamanDetailRuangan::where('id_pm_ruangan', $pm_ruangan->id)->get();
+        $detailRuangan = peminjamandetailruangan::where('id_pm_ruangan', $pm_ruangan->id)->get();
 
         foreach ($detailRuangan as $detail) {
             $ruangan = Ruangan::find($detail->id_ruangan);
@@ -70,7 +70,7 @@ class PRuanganController extends Controller
     public function edit($id)
     {
         $pengembalian = p_ruangan::findOrFail($id);
-        $pm_ruangan = pm_Ruangan::all();
+        $pm_ruangan = pm_ruangan::all();
 
         return view('p_ruangan.edit', compact('pengembalian', 'pm_ruangan'));
     }
@@ -84,7 +84,7 @@ class PRuanganController extends Controller
         ]);
 
         $pengembalian = p_ruangan::findOrFail($id);
-        $pm_ruangan = pm_Ruangan::findOrFail($request->id_pm_ruangan);
+        $pm_ruangan = pm_ruangan::findOrFail($request->id_pm_ruangan);
 
         $tanggal_kembali = Carbon::parse($pm_ruangan->tanggal_pengembalian);
         $tanggal_selesai = Carbon::parse($request->tanggal_selesai);

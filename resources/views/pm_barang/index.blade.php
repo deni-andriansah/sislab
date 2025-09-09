@@ -19,6 +19,21 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Pengembalian Barang</h5>
             <a href="{{ route('p_barang.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+
+
+@section('content')
+<div class="container mt-10">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-12 p-md-0">
+        </div>
+    </div>
+</div>
+<div class="container">
+
+<div class="card">
+    <div class="card-header">
+        <div class="float-start">
+            <h5>Peminjaman Barang</h5>
         </div>
 
         <div class="card-body">
@@ -95,6 +110,76 @@
             </div>
         </div>
     </div>
+</div>
+=======
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kode Peminjam</th>
+                        <th>NIM</th>
+                        <th>Nama Peminjam</th>
+                        <th>Jenis Kegiatan</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah Pinjam</th>
+                        <th>Nama Ruangan</th>
+                        <th>Tanggal Peminjaman</th>
+                        <th>Tanggal Pengembalian</th>
+                        <th>Waktu Peminjaman</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @php $i = 1; @endphp
+                    @foreach ($pm_barang as $data)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $data->code_peminjaman }}</td>
+                        <td>{{ $data->anggota->nim}}</td>
+                        <td>{{ $data->anggota->nama_peminjam}}</td>
+                        <td>{{ $data->jenis_kegiatan }}</td>
+                        <td>
+                            @foreach ($data->peminjaman_details as $detail)
+                                <div>{{ $detail->barang->nama_barang }}</div>
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($data->peminjaman_details as $detail)
+                                <div>{{ $detail->jumlah_pinjam }} Pcs</div>
+                            @endforeach
+                        </td>
+                        <td>{{$data->ruangan->nama_ruangan}}</td>
+                        <td>{{ $data->tanggal_peminjaman }}</td>
+                        <td>{{ $data->tanggal_pengembalian }}</td>
+                        <td>{{ $data->waktu_peminjaman }}</td>
+
+                        <td>
+                            <div class="dropdown d-inline">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ⋮
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('pm_barang.edit', $data->code_peminjaman) }}" class="dropdown-item">Edit</a></li>
+                                    <li>
+                                        <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </div>
 @endsection
 
