@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +25,9 @@ Auth::routes(['register' => false]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('kategori', App\Http\Controllers\KategoriController::class)->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('kategori', App\Http\Controllers\KategoriController::class)->middleware('auth');
 Route::resource('ruangan', App\Http\Controllers\RuanganController::class)->middleware('auth');
 Route::resource('anggota', App\Http\Controllers\AnggotaController::class)->middleware('auth');
 Route::resource('barang', App\Http\Controllers\BarangController::class)->middleware('auth');
@@ -61,6 +66,8 @@ Route::get('pm_barang/export-barang/{idPeminjaman}', [App\Http\Controllers\PmBar
 Route::get('pm_ruangan/export-ruangan/{idPeminjaman}', [App\Http\Controllers\PmruanganController::class, 'viewruangan'])->name('pm_ruangan.view-ruangan');
 
 Route::post('/barang/{id}/pinjam', [App\Http\Controllers\BarangController::class, 'pinjam'])->name('barang.pinjam');
+
+});
 
 
 Route::get('/api/anggota/by-nim/{nim}', function ($nim) {
