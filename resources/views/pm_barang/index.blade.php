@@ -2,18 +2,16 @@
 
 @section('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
-
 @endsection
 
 @section('content')
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
-              </div>
+        </div>
     </div>
 </div>
 <div class="container">
-
 
 <div class="card">
     <div class="card-header">
@@ -41,8 +39,6 @@
                         <th>Tanggal Peminjaman</th>
                         <th>Tanggal Pengembalian</th>
                         <th>Waktu Peminjaman</th>
-                        {{-- <th>Serah Terima</th>
-                        <th>Berita Peminjaman</th> --}}
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -55,95 +51,37 @@
                         <td>{{ $data->anggota->nim}}</td>
                         <td>{{ $data->anggota->nama_peminjam}}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
-                         <td>
-                        <ul>
+                        <td>
                             @foreach ($data->peminjaman_details as $detail)
-                            <li>{{ $detail->barang->nama_barang }} </li>
+                                <div>{{ $detail->barang->nama_barang }}</div>
                             @endforeach
-                        </ul>
-                    </td>
-                     <td>
-                        <ul>
+                        </td>
+                        <td>
                             @foreach ($data->peminjaman_details as $detail)
-                            <li> {{ $detail->jumlah_pinjam }} Pcs</li>
+                                <div>{{ $detail->jumlah_pinjam }} Pcs</div>
                             @endforeach
-                        </ul>
-                    </td>
-
+                        </td>
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_peminjaman }}</td>
                         <td>{{ $data->tanggal_pengembalian }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
 
-{{-- <!-- Tombol untuk membuka modal -->
-<td class="button">
-    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal-{{ $data->id }}">
-        Cetak
-    </button>
-</td>
-
-<!-- Modal untuk menampilkan PDF -->
-<div class="modal fade" id="pdfModal-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat berita acara</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Iframe untuk menampilkan PDF -->
-                <iframe src="{{ route('pm_barang.view-pdf', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-            </div>
-        </div>
-    </div>
-</div>
-<td class="button">
-    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#pdfModal2-{{ $data->id }}">
-        Cetak
-    </button>
-</td>
-
-<!-- Modal untuk menampilkan PDF -->
-<div class="modal fade" id="pdfModal2-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat serah terima</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Iframe untuk menampilkan PDF -->
-                <iframe src="{{ route('pm_barang.view-barang', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-
-
-                        <<td>
-                        <div class="dropdown d-inline">
-    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        ⋮
-    </button>
-    <ul class="dropdown-menu">
-        <li><a href="{{ route('pm_barang.edit', $data->code_peminjaman) }}" class="dropdown-item">Edit</a></li>
-        <li>
-            <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-            </form>
-        </li>
-    </ul>
-</div>
-
+                        <td>
+                            <div class="dropdown d-inline">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ⋮
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('pm_barang.edit', $data->code_peminjaman) }}" class="dropdown-item">Edit</a></li>
+                                    <li>
+                                        <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
 
                     </tr>

@@ -78,6 +78,9 @@
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Waktu Peminjaman</label>
                                 <input type="text" class="form-control" name="waktu_peminjaman" value="{{ old('waktu_peminjaman') }}" required>
+                                @error('waktu_peminjaman')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
 

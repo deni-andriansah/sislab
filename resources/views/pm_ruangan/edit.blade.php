@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Waktu Peminjaman</label>
-                                <input type="text" class="form-control" name="waktu_peminjaman" value="{{ old('waktu_peminjaman', $pm_ruangan->waktu_peminjaman) }}" required>
+                                <input type="time" name="waktu_peminjaman" class="form-control" value="{{ $pm_ruangan->waktu_peminjaman }}" required>
                             </div>
                         </div>
 

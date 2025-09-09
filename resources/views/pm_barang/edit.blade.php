@@ -86,7 +86,7 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                            </table><br>
                             <button type="button" class="btn btn-sm btn-success" id="add-barang">+ Tambah Barang</button>
                         </div>
 
