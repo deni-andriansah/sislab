@@ -47,6 +47,11 @@
                         <td>{{ $data->code_peminjaman }}</td>
                         <td>{{ $data->anggota->nama_peminjam}}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
+                         <td>
+                        <ul>        
+                            </li>
+                        </ul>
+                    </td>
                         <td>
                             @foreach ($data->PeminjamanDetailRuangan as $detail)
                                 <div>{{ $detail->ruangan->nama_ruangan }}</div>

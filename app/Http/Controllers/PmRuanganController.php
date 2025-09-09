@@ -142,6 +142,7 @@ class PmRuanganController extends Controller
 
         // Hapus peminjaman
         $pm_ruangan->delete();
+        $pm_ruangan->save();
 
         Alert::success('Success', 'Data berhasil dihapus');
         return redirect()->route('pm_ruangan.index');

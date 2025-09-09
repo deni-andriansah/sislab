@@ -39,7 +39,10 @@
                         @foreach ($p_barang as $data)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ optional($data->pm_barang)->code_peminjaman ?? '-' }}</td>
+                            <td>
+                                PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
+                            </td>
+
                             <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d M Y') }}</td>
                             <td>{{ $data->keterangan ?? '-' }}</td>
                             <td>
