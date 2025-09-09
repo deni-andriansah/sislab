@@ -11,7 +11,7 @@
         <h1>{{ $title }}</h1>
     </center>
     <p>Tanggal: {{ $date }}</p>
-    <table border="1" id="dataTable" class="table ">
+    <table id="dataTable" class="table ">
         <thead>
             <tr>
                 <th>No</th>

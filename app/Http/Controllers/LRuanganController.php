@@ -17,7 +17,7 @@ class LRuanganController extends Controller
     public function index()
     {
         $l_ruangan =  l_ruangan::all();
-        $pm_ruangan =  pm_Ruangan::all();
+        $pm_ruangan =  pm_ruangan::all();
 
         confirmDelete('Delete','Are you sure?');
         return view('l_ruangan.index', compact('l_ruangan','pm_ruangan'));

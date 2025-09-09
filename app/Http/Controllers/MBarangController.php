@@ -103,6 +103,6 @@ class MBarangController extends Controller
         $m_barang->delete();
 
         Alert::success('Success', 'Data berhasil dihapus');
-        return back();
+        return redirect()->route('m_barang.index');
     }
 }
