@@ -52,10 +52,7 @@
                         <td>{{ $data->anggota->nama_peminjam}}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
                          <td>
-                        <ul>
-
-                            
-                                
+                        <ul>        
                             </li>
                         </ul>
                     </td>
