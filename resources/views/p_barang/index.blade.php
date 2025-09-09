@@ -27,7 +27,7 @@
                     <thead class="bg-light text-dark">
                         <tr>
                             <th>No</th>
-                            <th>Kode Peminjaman</th>
+                            <th>Kode Pengembalian</th>
                             <th>Tanggal Pengembalian</th>
                             <th>Keterangan</th>
                             <th>Denda</th>
@@ -39,10 +39,17 @@
                         @foreach ($p_barang as $data)
                         <tr>
                             <td>{{ $i++ }}</td>
+<<<<<<< HEAD
+                            {{-- 🔹 Format kode pengembalian: PM-YYYYMMDD-ID --}}
+                            <td>
+                                PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
+                            </td>
+=======
                             <td>
                                 PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
                             </td>
 
+>>>>>>> 4a59b74ef5460067e1c7368ebfed8f7a7973b549
                             <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d M Y') }}</td>
                             <td>{{ $data->keterangan ?? '-' }}</td>
                             <td>
@@ -118,10 +125,10 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 const form = document.getElementById('delete-form');
-                form.action = `{{ url('p_barang') }}/${id}`;
+                form.action = {{ url('p_barang') }}/${id};
                 form.submit();
             }
         });
     }
 </script>
-@endpush
+@endpusha
