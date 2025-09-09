@@ -2,29 +2,116 @@
 
 @section('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
-
+<style>
+    .table thead {
+        background-color: #ffffff !important;
+        color: #000 !important;
+    }
+    .table tbody tr:hover {
+        background-color: transparent !important;
+    }
+</style>
 @endsection
+
+@section('content')
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Pengembalian Barang</h5>
+            <a href="{{ route('p_barang.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+
 
 @section('content')
 <div class="container mt-10">
     <div class="row page-titles mx-0">
         <div class="col-sm-12 p-md-0">
-              </div>
+        </div>
     </div>
 </div>
 <div class="container">
-
 
 <div class="card">
     <div class="card-header">
         <div class="float-start">
             <h5>Peminjaman Barang</h5>
         </div>
-        <div class="float-end ">
-            <a href="{{ route('pm_barang.create') }}" class="btn btn-sm btn-primary">Add</a>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="example">
+                    <thead class="bg-light text-dark">
+                        <tr>
+                            <th>No</th>
+                            <th>Kode Pengembalian</th>
+                            <th>Tanggal Pengembalian</th>
+                            <th>Keterangan</th>
+                            <th>Denda</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $i = 1; @endphp
+                        @foreach ($pm_barang as $data)
+                        <tr>
+                            <td>{{ $i++ }}</td>
+                            {{-- 🔹 Format kode pengembalian: PM-YYYYMMDD-ID --}}
+                            <td>
+                                PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d M Y') }}</td>
+                            <td>{{ $data->keterangan ?? '-' }}</td>
+                            <td>
+                                @php
+                                    $denda = 0;
+
+                                    // Denda rusak
+                                    if (strpos(strtolower($data->keterangan), 'rusak') !== false) {
+                                        $denda = 5000;
+                                    }
+
+                                    // Denda terlambat
+                                    $pm_barang = $data->pm_barang;
+                                    if ($pm_barang) {
+                                        $tanggal_pengembalian = \Carbon\Carbon::parse($pm_barang->tanggal_pengembalian);
+                                        $tanggal_selesai = \Carbon\Carbon::parse($data->tanggal_selesai);
+                                        if ($tanggal_selesai->greaterThan($tanggal_pengembalian)) {
+                                            $daysLate = $tanggal_pengembalian->diffInDays($tanggal_selesai);
+                                            $denda += $daysLate * 10000;
+                                        }
+                                    }
+                                @endphp
+                                Rp. {{ number_format($denda, 0, ',', '.') }}
+                            </td>
+                            <td>
+                                <div class="dropdown d-inline">
+                                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        ⋮
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('p_barang.edit', $data->id) }}">✏ Edit</a>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="dropdown-item text-danger" onclick="confirmDelete({{ $data->id }})">🗑 Hapus</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                {{-- Form penghapusan --}}
+                <form id="delete-form" method="POST" style="display:none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            </div>
         </div>
     </div>
-
+</div>
+=======
     <div class="card-body">
         <div class="table-responsive text-nowrap">
             <table class="table" id="dataTable">
@@ -41,8 +128,6 @@
                         <th>Tanggal Peminjaman</th>
                         <th>Tanggal Pengembalian</th>
                         <th>Waktu Peminjaman</th>
-                        {{-- <th>Serah Terima</th>
-                        <th>Berita Peminjaman</th> --}}
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -55,104 +140,37 @@
                         <td>{{ $data->anggota->nim}}</td>
                         <td>{{ $data->anggota->nama_peminjam}}</td>
                         <td>{{ $data->jenis_kegiatan }}</td>
-                         <td>
-                        <ul>
-                            @foreach ($data->peminjaman_details as $detail);
-                            <li>
-                            @if (!$detail){
-                            {{
-                            "tidak ada barang"
-                            }}
-                            @else{
-                            {{ $detail->barang->nama_barang }}
-                            }
-                            @endif
-                            }</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                     <td>
-                        <ul>
+                        <td>
                             @foreach ($data->peminjaman_details as $detail)
-                            <li> {{ $detail->jumlah_pinjam }} Pcs</li>
+                                <div>{{ $detail->barang->nama_barang }}</div>
                             @endforeach
-                        </ul>
-                    </td>
-
+                        </td>
+                        <td>
+                            @foreach ($data->peminjaman_details as $detail)
+                                <div>{{ $detail->jumlah_pinjam }} Pcs</div>
+                            @endforeach
+                        </td>
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_peminjaman }}</td>
                         <td>{{ $data->tanggal_pengembalian }}</td>
                         <td>{{ $data->waktu_peminjaman }}</td>
 
-{{-- <!-- Tombol untuk membuka modal -->
-<td class="button">
-    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal-{{ $data->id }}">
-        Cetak
-    </button>
-</td>
-
-<!-- Modal untuk menampilkan PDF -->
-<div class="modal fade" id="pdfModal-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat berita acara</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Iframe untuk menampilkan PDF -->
-                <iframe src="{{ route('pm_barang.view-pdf', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-            </div>
-        </div>
-    </div>
-</div>
-<td class="button">
-    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#pdfModal2-{{ $data->id }}">
-        Cetak
-    </button>
-</td>
-
-<!-- Modal untuk menampilkan PDF -->
-<div class="modal fade" id="pdfModal2-{{ $data->id }}" tabindex="-1" aria-labelledby="pdfModalLabel-{{ $data->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel-{{ $data->id }}">Menampilkan surat serah terima</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Iframe untuk menampilkan PDF -->
-                <iframe src="{{ route('pm_barang.view-barang', $data->id) }}" width="100%" height="500px" frameborder="0"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-
-
-                        <<td>
-                        <div class="dropdown d-inline">
-    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        ⋮
-    </button>
-    <ul class="dropdown-menu">
-        <li><a href="{{ route('pm_barang.edit', $data->code_peminjaman) }}" class="dropdown-item">Edit</a></li>
-        <li>
-            <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-            </form>
-        </li>
-    </ul>
-</div>
-
+                        <td>
+                            <div class="dropdown d-inline">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ⋮
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('pm_barang.edit', $data->code_peminjaman) }}" class="dropdown-item">Edit</a></li>
+                                    <li>
+                                        <form action="{{ route('pm_barang.destroy', $data->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
 
                     </tr>
@@ -168,8 +186,27 @@
 @push('scripts')
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    new DataTable('#dataTable');
+    new DataTable('#example');
+
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Apakah kamu yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('delete-form');
+                form.action = {{ url('p_barang') }}/${id};
+                form.submit();
+            }
+        });
+    }
 </script>
 @endpush

@@ -1,0 +1,19 @@
+/vendor
+/node_modules
+.env
+.env.*
+/storage/*.key
+/public/storage
+/public/hot
+/storage/debugbar
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
+npm-debug.log
+<<<<<<< HEAD
+yarn-error.log
+=======
+yarn-error.log
+>>>>>>> cd0d8177a4195e777308077555d873b9a733e76b

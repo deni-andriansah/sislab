@@ -39,10 +39,17 @@
                         @foreach ($p_barang as $data)
                         <tr>
                             <td>{{ $i++ }}</td>
+<<<<<<< HEAD
                             {{-- 🔹 Format kode pengembalian: PM-YYYYMMDD-ID --}}
                             <td>
                                 PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
                             </td>
+=======
+                            <td>
+                                PM-{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('Ymd') }}-{{ str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
+                            </td>
+
+>>>>>>> 4a59b74ef5460067e1c7368ebfed8f7a7973b549
                             <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d M Y') }}</td>
                             <td>{{ $data->keterangan ?? '-' }}</td>
                             <td>
