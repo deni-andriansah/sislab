@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class LoginController extends Controller
     {
         // cek kalau user udah login
         if (Auth::check()) {
-            return redirect()->route('dashboard'); // ganti route sesuai dashboard
+            return redirect()->route('home'); // ganti route sesuai dashboard
         }
 
         return view('auth.login'); // form login
@@ -25,7 +26,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
 
         return back()->withErrors([
