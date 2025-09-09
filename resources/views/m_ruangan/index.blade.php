@@ -48,7 +48,7 @@
                         <td>{{$data->ruangan->nama_ruangan}}</td>
                         <td>{{ $data->tanggal_maintenance }}</td>
                         <td>{{ $data->waktu_pengerjaan }}</td>
-                         <td>{{ $data->keterangan }}</td>
+                         <td>{{ $data->waktu_pengerjaan }}</td>
 
                         <td>
                             <div class="dropdown d-inline">

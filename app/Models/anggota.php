@@ -13,11 +13,11 @@ class Anggota extends Model
 
     public function pm_barang()
     {
-        return $this->hasMany(pm_Barang::class, 'id_anggota');
+        return $this->hasMany(pm_barang::class, 'id_anggota');
     }
 
     public function pm_ruangan()
     {
-        return $this->hasMany(pm_Ruangan::class, 'id_anggota');
+        return $this->hasMany(pm_ruangan::class, 'id_anggota');
     }
 }

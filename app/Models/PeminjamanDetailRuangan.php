@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Ruangan;
 use Illuminate\Database\Eloquent\Model;
 
 class PeminjamanDetailRuangan extends Model
@@ -14,13 +13,13 @@ class PeminjamanDetailRuangan extends Model
 
     public function pm_ruangan()
     {
-        return $this->belongsTo(pm_Ruangan::class, 'id_pm_ruangan');
+        return $this->belongsTo(pm_ruangan::class, 'id_pm_ruangan');
     }
 
     // Relasi ke ruangan
     public function ruangan()
     {
-        return $this->belongsTo(Ruangan::class, 'id_ruangan');
+        return $this->belongsTo(ruangan::class, 'id_ruangan');
     }
 
 

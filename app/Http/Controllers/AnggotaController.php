@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\anggota;
+use App\Models\Anggota;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class AnggotaController extends Controller
 
     public function index()
     {
-        $anggota = anggota::all();
+        $anggota = Anggota::all();
         confirmDelete('Delete', 'Are you sure?');
         return view('anggota.index', compact('anggota'));
     }
@@ -35,7 +35,7 @@ class AnggotaController extends Controller
             'instansi_lembaga' => 'required',
         ]);
 
-        $anggota = new anggota();
+        $anggota = new Anggota();
         $anggota->nim = $request->nim;
         $anggota->nama_peminjam = $request->nama_peminjam;
         $anggota->email = $request->email;
@@ -49,7 +49,7 @@ class AnggotaController extends Controller
 
     public function edit($id)
     {
-        $anggota = anggota::findOrFail($id);
+        $anggota = Anggota::findOrFail($id);
         return view('anggota.edit', compact('anggota'));
     }
 
@@ -63,7 +63,7 @@ class AnggotaController extends Controller
             'instansi_lembaga' => 'required',
         ]);
 
-        $anggota = anggota::findOrFail($id);
+        $anggota = Anggota::findOrFail($id);
         $anggota->nim = $request->nim;
         $anggota->nama_peminjam = $request->nama_peminjam;
         $anggota->email = $request->email;
@@ -77,7 +77,7 @@ class AnggotaController extends Controller
 
     public function destroy($id)
     {
-        $anggota = anggota::findOrFail($id);
+        $anggota = Anggota::findOrFail($id);
 
         // Cek apakah anggota masih memiliki peminjaman barang atau ruangan
         if ($anggota->pm_barang()->exists() || $anggota->pm_ruangan()->exists()) {

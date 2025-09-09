@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
 use App\Models\Kondisi;
-use App\Models\pm_Barang;
+use App\Models\pm_barang;
 use App\Models\l_barang;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -17,7 +16,7 @@ class LBarangController extends Controller
     }
     public function index()
     {
-        $pm_barang =  pm_Barang::all();
+        $pm_barang =  pm_barang::all();
         confirmDelete('Delete','Are you sure?');
         return view('l_barang.index', compact('pm_barang'));
     }
@@ -25,7 +24,7 @@ class LBarangController extends Controller
 
     public function create()
     {
-        $pm_barang =  pm_Barang::all();
+        $pm_barang =  pm_barang::all();
         $kondisi = Kondisi::all();
         return view('l_barang.create', compact('pm_barang', 'kondisi'));
     }
@@ -50,11 +49,8 @@ class LBarangController extends Controller
             $l_barang->cover = $name;
         }
 
-        
-
         Alert::success('Success','data berhasil disimpan')->autoClose(1000);
         $l_barang->save();
-        
 
         return redirect()->route('l_barang.index');
     }
@@ -68,7 +64,7 @@ class LBarangController extends Controller
 
     public function edit($id)
     {
-        $pm_barang =  pm_Barang::all();
+        $pm_barang =  pm_barang::all();
         $kondisi = Kondisi::all();
         $l_barang = l_barang::findOrFail($id);
         return view('l_barang.edit', compact('l_barang','pm_barang','kondisi'));
@@ -83,7 +79,7 @@ class LBarangController extends Controller
         ]);
 
         $l_barang = l_barang::findOrFail($id);
-        $l_barang->id_pm_Barang = $request->id_pm_barang;
+        $l_barang->id_pm_barang = $request->id_pm_barang;
         $l_barang->id_kondisi = $request->id_kondisi;
         $l_barang->keterangan = $request->keterangan;
 
