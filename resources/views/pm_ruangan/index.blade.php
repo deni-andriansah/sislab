@@ -53,9 +53,10 @@
                         <td>{{ $data->jenis_kegiatan }}</td>
                          <td>
                         <ul>
-                            @foreach ($data->PeminjamanDetailRuangan as $detail)
-                            <li>{{ $detail->ruangan->nama_ruangan }} </li>
-                            @endforeach
+
+                            
+                                
+                            </li>
                         </ul>
                     </td>
 

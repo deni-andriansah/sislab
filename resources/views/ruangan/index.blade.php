@@ -5,22 +5,11 @@
 @endsection
 
 @section('content')
-<div class="container-fluid mt-10">
-    <div class="row page-titles mx-0">
-        <div class="col-sm-12 p-md-0">
-        </div>
-    </div>
-</div>
-
-<div class="container">
+<div class="container mt-4">
     <div class="card">
-        <div class="card-header">
-            <div class="float-start">
-                <h5>Ruangan</h5>
-            </div>
-            <div class="float-end">
-                <a href="{{ route('ruangan.create') }}" class="btn btn-sm btn-primary">Add</a>
-            </div>
+        <div class="card-header d-flex justify-content-between">
+            <h5>Ruangan</h5>
+            <a href="{{ route('ruangan.create') }}" class="btn btn-sm btn-primary">Add</a>
         </div>
 
         <div class="card-body">
@@ -36,7 +25,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
+                    <tbody>
                         @php $i = 1; @endphp
                         @foreach ($ruangan as $data)
                         <tr>
@@ -53,21 +42,27 @@
                             </td>
                             <td>
                                 <div class="dropdown d-inline">
-                                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-sm btn-secondary dropdown-toggle"
+                                            type="button" data-bs-toggle="dropdown">
                                         ⋮
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('ruangan.edit', $data->id) }}">✏ Edit</a>
+                                            <a class="dropdown-item"
+                                               href="{{ route('ruangan.edit', $data->id) }}">✏ Edit</a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('ruangan.destroy', $data->id) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('ruangan.destroy', $data->id) }}"
+                                                  method="POST"
+                                                  onsubmit="return confirm('Yakin mau hapus ruangan ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="dropdown-item text-danger">🗑 Hapus</button>
+                                                <button type="submit" class="dropdown-item text-danger">
+                                                    🗑 Hapus
+                                                </button>
                                             </form>
                                         </li>
-                                       </ul>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
-use App\Models\Anggota;
+use App\Models\anggota;
 use App\Models\Ruangan;
-use App\Models\pm_barang;
+use App\Models\pm_Barang;
 use App\Models\peminjaman_detail;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,7 +20,7 @@ class PmBarangController extends Controller
     // Menampilkan daftar peminjaman
     public function index()
     {
-        $pm_barang = pm_barang::with('anggota', 'ruangan', 'peminjaman_details.barang')->get();
+        $pm_barang = pm_Barang::with('anggota', 'ruangan', 'peminjaman_details.barang')->get();
         $anggota = Anggota::all(); // Pastikan model Anggota ada
         $barang = Barang::all(); // Jika barang juga dibutuhkan
         $ruangan = Ruangan::all(); // Jika ruangan juga dibutuhkan
@@ -93,7 +93,7 @@ class PmBarangController extends Controller
 
             // Simpan detail peminjaman barang
             $peminjaman_detail = new peminjaman_detail();
-            $peminjaman_detail->id_pm_barang = $pm_barang->id;
+            $peminjaman_detail->id_pm_Barang = $pm_barang->id;
             $peminjaman_detail->id_barang = $id_barang;
             $peminjaman_detail->jumlah_pinjam = $request->jumlah_pinjam[$index];
             $peminjaman_detail->save();

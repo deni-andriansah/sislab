@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use App\Models\pm_Ruangan;
-use App\Models\Anggota;
+use App\Models\anggota;
 use App\Models\PeminjamanDetailRuangan;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -26,7 +26,7 @@ class PmRuanganController extends Controller
 
     public function create()
     {
-        $anggota = Anggota::all();
+        $anggota = anggota::all();
         $ruangan = Ruangan::all();
         return view('pm_ruangan.create', compact('anggota', 'ruangan'));
     }
@@ -78,7 +78,7 @@ class PmRuanganController extends Controller
 
     public function edit($id)
     {
-        $anggota = Anggota::all();
+        $anggota = anggota::all();
         $ruangan = Ruangan::all();
         $pm_ruangan = pm_Ruangan::findOrFail($id);
         $selectedRuangan = PeminjamanDetailRuangan::where('id_pm_ruangan', $id)->pluck('id_ruangan')->toArray();
@@ -142,6 +142,7 @@ class PmRuanganController extends Controller
 
         // Hapus peminjaman
         $pm_ruangan->delete();
+        $pm_ruangan->save();
 
         Alert::success('Success', 'Data berhasil dihapus');
         return redirect()->route('pm_ruangan.index');

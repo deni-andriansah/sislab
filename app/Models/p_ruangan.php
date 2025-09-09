@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\pm_Ruangan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,11 +20,11 @@ class p_ruangan extends Model
 
     public function PeminjamanDetailRuangan()
     {
-        return $this->hasMany( PeminjamanDetailRuangan::class, 'id_pm_ruangan');
+        return $this->hasMany( PeminjamanDetailRuangan::class, 'id_pm_Ruangan');
     }
 
     public function pm_ruangan()
     {
-        return $this->belongsTo(pm_ruangan::class, 'id_pm_ruangan', 'id');
+        return $this->belongsTo(pm_ruangan::class, 'id_pm_Ruangan', 'id');
     }
 }
