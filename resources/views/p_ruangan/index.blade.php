@@ -40,13 +40,16 @@
                         @foreach ($p_ruangan as $data)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $data->kode_pengembalian }}</td>
+                            {{-- tampilkan kode kalau ada, kalau tidak generate otomatis --}}
+                            <td>
+                                {{ $data->kode_pengembalian ?? 'KEMB-' . str_pad($data->id, 4, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d M Y') }}</td>
                             <td>{{ $data->keterangan ?? '-' }}</td>
                             <td>
                                 @php
                                     $denda = 0;
-                                    if (strpos(strtolower($data->keterangan), 'rusak') !== false) {
+                                    if ($data->keterangan && strpos(strtolower($data->keterangan), 'rusak') !== false) {
                                         $denda = 5000;
                                     }
                                     $pm_ruangan = $data->pm_ruangan;
@@ -111,7 +114,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 const form = document.getElementById('delete-form');
-                form.action = `{{ url('p_ruangan') }}/${id}`;
+                form.action = "{{ url('p_ruangan') }}/" + id;
                 form.submit();
             }
         });
